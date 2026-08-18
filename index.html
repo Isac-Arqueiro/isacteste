@@ -1,238 +1,419 @@
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>projeto</title>
-<style>
-body{
-  background:#f0f0f0;
-  text-align:center;
-}
-h1{
-  color:blue;
-}
-  
-</style>
-</head>
-<body>
-
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>projeto</title>
-<style>
-body{
-  background:#f0f0f0;
-  text-align:center;
-}
-h1{
-  color:blue;
-}
-  
-</style>
-</head>
-<body>
-
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mesa de Som</title>
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>MIXER PRO</title>
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
+    padding: 0;
     background: #080808;
     color: white;
     font-family: Arial, sans-serif;
+}
+
+body {
     overflow-x: auto;
 }
 
+/* =====================================================
+   HEADER
+===================================================== */
+
 header {
+
     min-height: 65px;
-    background: linear-gradient(#292929, #111);
+
+    background:
+        linear-gradient(
+            #292929,
+            #111
+        );
+
     border-bottom: 2px solid #000;
+
     display: flex;
+
     align-items: center;
+
     gap: 8px;
+
     padding: 8px 15px;
+
     position: sticky;
+
     top: 0;
+
     z-index: 100;
+
     flex-wrap: wrap;
 }
 
 .logo {
+
     color: #00ff88;
+
     font-size: 20px;
+
     font-weight: bold;
+
     letter-spacing: 2px;
+
     margin-right: 10px;
 }
 
 .top-btn {
+
     background: #222;
+
     border: 1px solid #555;
+
     color: #ddd;
+
     padding: 9px 12px;
+
     border-radius: 5px;
+
     cursor: pointer;
+
     font-size: 11px;
+
     font-weight: bold;
 }
 
 .top-btn:hover {
+
     background: #333;
 }
 
 .top-btn.green {
+
     color: #00ff88;
+
     border-color: #00ff88;
 }
 
 .top-btn.red {
+
     color: #ff5555;
+
     border-color: #aa3333;
 }
 
 .top-btn.blue {
+
     color: #55aaff;
+
     border-color: #336699;
 }
 
 .status {
+
     margin-left: auto;
+
     color: #777;
+
     font-size: 10px;
 }
 
 .status span {
+
     color: #00ff88;
 }
 
+/* =====================================================
+   MESA
+===================================================== */
+
 .mesa-area {
+
     padding: 15px;
 }
 
 .mesa {
+
     display: flex;
+
     gap: 7px;
+
     align-items: stretch;
+
     min-width: max-content;
 }
 
+/* =====================================================
+   CANAL
+===================================================== */
+
 .canal {
+
     width: 155px;
+
     min-height: 930px;
-    background: linear-gradient(
-        90deg,
-        #111,
-        #292929,
-        #111
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            #111,
+            #292929,
+            #111
+        );
+
     border: 1px solid #444;
+
     border-radius: 6px;
+
     padding: 8px;
+
     box-shadow:
         inset 0 0 15px #000,
         0 5px 15px #000;
+
     position: relative;
 }
 
 .canal.mutado {
+
     opacity: .45;
 }
 
 .canal.solo-canal {
+
     border-color: #ffd400;
+
     box-shadow:
         0 0 10px #ffd400,
         inset 0 0 15px #000;
 }
 
+/* =====================================================
+   CABEÇALHO
+===================================================== */
+
 .cabecalho-canal {
+
     background: #0b0b0b;
+
     border-bottom: 2px solid #00ff88;
+
     border-radius: 4px;
+
     padding: 5px;
+
     text-align: center;
+
     margin-bottom: 7px;
 }
 
 .cabecalho-canal strong {
+
     color: #00ff88;
+
     font-size: 12px;
 }
 
 .cabecalho-canal small {
+
     display: block;
+
     color: #777;
+
     font-size: 8px;
+
     margin-top: 3px;
 }
 
 .nome {
+
     width: 100%;
+
     margin-top: 5px;
+
     padding: 5px;
+
     background: #111;
+
     color: #00ff88;
+
     border: 1px solid #444;
+
     border-radius: 4px;
+
     text-align: center;
+
     outline: none;
+
     font-size: 10px;
 }
 
 .nome:focus {
+
     border-color: #00ff88;
 }
 
+/* =====================================================
+   SEÇÕES
+===================================================== */
+
 .secao {
+
     border-bottom: 1px solid #3b3b3b;
+
     padding: 8px 0;
 }
 
 .titulo {
+
     color: #777;
+
     text-align: center;
+
     font-size: 8px;
+
     letter-spacing: 1px;
+
     margin-bottom: 7px;
 }
 
-.knobs {
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+.botoes {
+
     display: flex;
+
+    gap: 4px;
+}
+
+.btn {
+
+    flex: 1;
+
+    background: #222;
+
+    color: #aaa;
+
+    border: 1px solid #444;
+
+    border-radius: 4px;
+
+    padding: 7px 2px;
+
+    cursor: pointer;
+
+    font-size: 8px;
+
+    font-weight: bold;
+}
+
+.btn:hover {
+
+    background: #333;
+}
+
+.btn.play {
+
+    color: #00ff88;
+}
+
+.btn.play.ativo {
+
+    background: #00aa55;
+
+    color: white;
+
+    box-shadow:
+        0 0 8px rgba(0,255,136,.4);
+}
+
+.btn.mute.ativo {
+
+    background: #e00000;
+
+    color: white;
+}
+
+.btn.solo.ativo {
+
+    background: #ffd400;
+
+    color: black;
+}
+
+.btn.copy {
+
+    color: #55aaff;
+}
+
+.btn.paste {
+
+    color: #ffbb55;
+}
+
+.btn.efeitos {
+
+    color: #cc99ff;
+}
+
+.btn.efeito-ativo {
+
+    background: #00aa55;
+
+    color: white;
+}
+
+/* =====================================================
+   KNOBS
+===================================================== */
+
+.knobs {
+
+    display: flex;
+
     justify-content: space-around;
 }
 
 .knob-box {
+
     width: 42px;
+
     text-align: center;
 }
 
 .knob {
+
     width: 38px;
+
     height: 38px;
+
     border-radius: 50%;
+
     position: relative;
+
     cursor: ns-resize;
+
     touch-action: none;
+
     user-select: none;
+
     background:
         radial-gradient(
             circle at 32% 28%,
@@ -240,419 +421,527 @@ header {
             #555 32%,
             #181818 70%
         );
+
     border: 2px solid #080808;
+
     box-shadow:
         0 3px 5px #000,
         inset 0 1px 3px #aaa;
+
+    transform-origin: center center;
 }
 
 .knob::after {
+
     content: "";
+
     position: absolute;
+
     width: 3px;
+
     height: 11px;
+
     background: #00ff88;
+
     top: 3px;
+
     left: 50%;
-    transform: translateX(-50%);
+
+    transform:
+        translateX(-50%);
+
     border-radius: 2px;
-    box-shadow: 0 0 6px #00ff88;
+
+    box-shadow:
+        0 0 6px #00ff88;
 }
 
 .knob-box label {
+
     display: block;
+
     color: #aaa;
+
     font-size: 7px;
+
     margin-top: 3px;
 }
 
-.knob-box .valor-knob {
+.valor-knob {
+
     color: #00ff88;
+
     font-size: 7px;
 }
 
-.botoes {
-    display: flex;
-    gap: 4px;
-}
-
-.btn {
-    flex: 1;
-    background: #222;
-    color: #aaa;
-    border: 1px solid #444;
-    border-radius: 4px;
-    padding: 7px 2px;
-    cursor: pointer;
-    font-size: 8px;
-    font-weight: bold;
-}
-
-.btn:hover {
-    background: #333;
-}
-
-.btn.play {
-    color: #00ff88;
-}
-
-.btn.play.ativo {
-    background: #00aa55;
-    color: white;
-}
-
-.btn.mute.ativo {
-    background: #e00000;
-    color: white;
-}
-
-.btn.solo.ativo {
-    background: #ffd400;
-    color: black;
-}
-.btn.efeito-ativo {
-    background: #00aa55;
-    color: white;
-    box-shadow: 0 0 8px rgba(0,255,136,.5);
-}
-.btn.copy {
-    color: #55aaff;
-}
-
-.btn.paste {
-    color: #ffbb55;
-}
-
-.audio-file {
-    width: 100%;
-    color: #aaa;
-    font-size: 7px;
-}
-
-.audio-file::file-selector-button {
-    background: #222;
-    color: #ddd;
-    border: 1px solid #555;
-    border-radius: 4px;
-    padding: 4px;
-}
+/* =====================================================
+   SLIDERS
+===================================================== */
 
 .slider {
+
     width: 100%;
+
     accent-color: #00ff88;
+
     cursor: pointer;
-}
-
-/* =========================
-   PLAYER / AGULHA
-========================= */
-
-.player-tempo {
-    display: flex;
-    justify-content: space-between;
-    color: #777;
-    font-size: 7px;
-    margin-bottom: 4px;
-}
-
-.player-tempo .tempo-atual {
-    color: #00ff88;
 }
 
 .seek {
+
     width: 100%;
+
     height: 5px;
+
     accent-color: #00ff88;
+
     cursor: pointer;
-    margin: 0;
 }
 
-.seek::-webkit-slider-thumb {
-    cursor: grab;
+.player-tempo {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #777;
+
+    font-size: 7px;
+
+    margin-bottom: 4px;
 }
 
-.seek::-webkit-slider-runnable-track {
-    height: 5px;
-}
+.tempo-atual {
 
-/* =========================
-   FADER
-========================= */
+    color: #00ff88;
+}
 
 .fader-area {
+
     height: 190px;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 }
 
 .fader {
+
     width: 175px;
+
     transform: rotate(-90deg);
+
     accent-color: #00ff88;
 }
 
 .valor-fader {
+
     display: block;
+
     text-align: center;
+
     color: #00ff88;
+
     font-size: 9px;
+
     margin-top: 4px;
 }
 
-/* =========================
+/* =====================================================
    METER
-========================= */
+===================================================== */
 
 .meter-area {
+
     height: 150px;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 }
 
 .meter {
+
     width: 17px;
+
     height: 140px;
+
     background: #080808;
+
     border: 1px solid #333;
+
     padding: 3px;
+
     display: flex;
+
     flex-direction: column-reverse;
+
     gap: 2px;
 }
 
 .led {
+
     width: 100%;
+
     height: 5px;
+
     background: #171717;
+
     border-radius: 2px;
 }
 
 .led.verde {
+
     background: #00ff44;
-    box-shadow: 0 0 6px #00ff44;
+
+    box-shadow:
+        0 0 6px #00ff44;
 }
 
 .led.amarelo {
+
     background: #ffff00;
-    box-shadow: 0 0 6px #ffff00;
+
+    box-shadow:
+        0 0 6px #ffff00;
 }
 
 .led.vermelho {
+
     background: #ff2222;
-    box-shadow: 0 0 7px red;
+
+    box-shadow:
+        0 0 7px red;
 }
 
-.remove {
+/* =====================================================
+   ARQUIVO
+===================================================== */
+
+.audio-file {
+
     width: 100%;
-    color: #ff5555;
+
+    color: #aaa;
+
+    font-size: 7px;
 }
+
+.audio-file::file-selector-button {
+
+    background: #222;
+
+    color: #ddd;
+
+    border: 1px solid #555;
+
+    border-radius: 4px;
+
+    padding: 4px;
+
+    cursor: pointer;
+}
+
+.youtube-url {
+
+    width: 100%;
+
+    margin-top: 6px;
+
+    padding: 6px;
+
+    background: #111;
+
+    color: white;
+
+    border: 1px solid #444;
+
+    border-radius: 4px;
+
+    font-size: 8px;
+}
+
+.youtube-player {
+
+    width: 1px;
+
+    height: 1px;
+
+    position: absolute;
+
+    left: -9999px;
+
+    top: -9999px;
+
+    overflow: hidden;
+}
+
+.info-arquivo {
+
+    color: #666;
+
+    font-size: 7px;
+
+    text-align: center;
+
+    margin-top: 4px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+/* =====================================================
+   ADD CANAL
+===================================================== */
 
 .add-canal {
+
     width: 155px;
+
     min-height: 930px;
+
     border: 2px dashed #444;
+
     border-radius: 6px;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
+
     color: #666;
+
     cursor: pointer;
 }
 
 .add-canal:hover {
+
     color: #00ff88;
+
     border-color: #00ff88;
 }
 
 .add-icon {
+
     font-size: 45px;
 }
 
+/* =====================================================
+   MASTER
+===================================================== */
+
 .master {
+
     width: 180px;
 }
 
 .master .cabecalho-canal {
+
     border-color: #ff9900;
 }
 
 .master .cabecalho-canal strong {
+
     color: #ff9900;
 }
 
-/* =========================
-   CONTROLES GERAIS
-========================= */
+/* =====================================================
+   REMOVE
+===================================================== */
 
-.controle-todos {
+.remove {
+
     width: 100%;
-    background: #111;
-    border: 1px solid #333;
-    padding: 8px;
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-}
 
-.controle-todos button {
-    flex: 1;
-    min-width: 90px;
-    padding: 9px 5px;
-    background: #222;
-    border: 1px solid #444;
-    border-radius: 4px;
-    color: #aaa;
-    font-size: 9px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.controle-todos button:hover {
-    background: #333;
-}
-
-.controle-todos .play-todos {
-    color: #00ff88;
-    border-color: #00aa55;
-}
-
-.controle-todos .pause-todos {
-    color: #ffcc55;
-}
-
-.controle-todos .stop-todos {
     color: #ff5555;
 }
 
-.controle-todos .sync-todos {
-    color: #55aaff;
-}
-
-.info-arquivo {
-    color: #666;
-    font-size: 7px;
-    text-align: center;
-    margin-top: 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.youtube-player {
-    width: 1px;
-    height: 1px;
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
-    overflow: hidden;
-}
-/* =========================
-   MODAL
-========================= */
+/* =====================================================
+   MODAIS
+===================================================== */
 
 .modal {
+
     position: fixed;
+
     inset: 0;
+
     background: rgba(0,0,0,.8);
+
     display: none;
+
     align-items: center;
+
     justify-content: center;
+
     z-index: 500;
 }
 
 .modal.aberto {
+
     display: flex;
 }
 
 .caixa-modal {
-    width: 370px;
+
+    width: 400px;
+
     max-width: 90%;
-    background: linear-gradient(#292929,#111);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            #292929,
+            #111
+        );
+
     border: 1px solid #555;
+
     border-radius: 8px;
+
     padding: 20px;
-    box-shadow: 0 10px 40px #000;
+
+    box-shadow:
+        0 10px 40px #000;
 }
 
 .caixa-modal h2 {
+
     color: #00ff88;
+
     text-align: center;
+
+    margin-top: 0;
 }
 
 .input-cena {
+
     width: 100%;
+
     padding: 10px;
+
     background: #111;
+
     border: 1px solid #555;
+
     color: white;
+
     border-radius: 4px;
+
     margin-bottom: 10px;
 }
 
 .lista-cenas {
+
     max-height: 250px;
+
     overflow-y: auto;
+
     margin-top: 15px;
 }
 
 .item-cena {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     background: #1b1b1b;
+
     border-bottom: 1px solid #333;
+
     padding: 8px;
+
     font-size: 10px;
 }
 
 .item-cena button {
+
     background: #333;
+
     color: white;
+
     border: 1px solid #555;
+
     padding: 5px;
+
     cursor: pointer;
+
     margin-left: 3px;
+
+    border-radius: 3px;
 }
+
 /* =====================================================
-   AGULHA / POSIÇÃO DA MÚSICA
+   EFEITOS
 ===================================================== */
 
-.seeker-area {
-    padding: 5px 0;
+.efeito-controles {
+
+    margin-top: 10px;
 }
 
-.seeker {
-    width: 100%;
-    height: 5px;
-    accent-color: #00ff88;
-    cursor: pointer;
+.efeito-bloco {
+
+    background: #151515;
+
+    border: 1px solid #333;
+
+    padding: 8px;
+
+    margin-bottom: 7px;
+
+    border-radius: 4px;
 }
 
-.tempo-audio {
-    display: flex;
-    justify-content: space-between;
-    color: #888;
-    font-size: 7px;
-    margin-top: 4px;
-}
+.efeito-bloco strong {
 
-.tempo-audio span:last-child {
+    display: block;
+
     color: #00ff88;
+
+    font-size: 9px;
+
+    margin-bottom: 5px;
 }
 
-.btn.play {
-    transition: .1s;
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media(max-width:700px) {
+
+    header {
+
+        position: relative;
+    }
+
+    .status {
+
+        width: 100%;
+
+        margin-left: 0;
+    }
+
 }
 
-.btn.play.ativo {
-    background: #00aa55;
-    color: white;
-    box-shadow: 0 0 8px rgba(0,255,136,.4);
-}
 </style>
+
 </head>
 
 <body>
@@ -663,48 +952,83 @@ header {
         MIXER PRO
     </div>
 
-    <button class="top-btn green" onclick="iniciarAudio()">
+    <button
+        class="top-btn green"
+        onclick="iniciarAudio()"
+    >
         🔊 ÁUDIO
     </button>
 
-    <button class="top-btn green" onclick="playTodos()">
+    <button
+        class="top-btn green"
+        onclick="playTodos()"
+    >
         ▶ PLAY TODOS
     </button>
 
-    <button class="top-btn" onclick="pausarTodos()">
+    <button
+        class="top-btn"
+        onclick="pausarTodos()"
+    >
         ⏸ PAUSAR TODOS
     </button>
 
-    <button class="top-btn red" onclick="pararTodos()">
+    <button
+        class="top-btn red"
+        onclick="pararTodos()"
+    >
         ⏹ PARAR TODOS
     </button>
 
-    <button class="top-btn blue" onclick="sincronizarTodos()">
+    <button
+        class="top-btn blue"
+        onclick="sincronizarTodos()"
+    >
         🔄 SINCRONIZAR
     </button>
 
-    <button class="top-btn" onclick="adicionarCanal()">
+    <button
+        class="top-btn"
+        onclick="adicionarCanal()"
+    >
         ＋ CANAL
     </button>
 
-    <button class="top-btn" onclick="abrirCenas()">
+    <button
+        class="top-btn"
+        onclick="abrirCenas()"
+    >
         💾 CENAS
     </button>
 
-    <button class="top-btn" onclick="salvarCenaRapida()">
+    <button
+        class="top-btn"
+        onclick="salvarCenaRapida()"
+    >
         💾 SALVAR
     </button>
-    
-    <button class="top-btn blue" onclick="compartilharMesa()">
-    🔗 COMPARTILHAR
-</button>
+
+    <button
+        class="top-btn blue"
+        onclick="compartilharMesa()"
+    >
+        🔗 COMPARTILHAR
+    </button>
 
     <div class="status">
+
         ÁUDIO:
-        <span id="statusAudio">DESLIGADO</span>
+        <span id="statusAudio">
+            DESLIGADO
+        </span>
+
         &nbsp; | &nbsp;
+
         CANAIS:
-        <span id="contador">10</span>
+        <span id="contador">
+            0
+        </span>
+
     </div>
 
 </header>
@@ -712,30 +1036,47 @@ header {
 
 <div class="mesa-area">
 
-    <div class="mesa" id="mesa">
+    <div
+        class="mesa"
+        id="mesa"
+    >
 
-        <div class="add-canal"
-             id="botaoAdicionar"
-             onclick="adicionarCanal()">
+        <div
+            class="add-canal"
+            id="botaoAdicionar"
+            onclick="adicionarCanal()"
+        >
 
-            <div class="add-icon">＋</div>
+            <div class="add-icon">
+                ＋
+            </div>
 
-            <strong>ADICIONAR</strong>
+            <strong>
+                ADICIONAR
+            </strong>
 
-            <small>NOVO CANAL</small>
+            <small>
+                NOVO CANAL
+            </small>
 
         </div>
 
 
-        <!-- MASTER -->
+        <!-- =================================================
+             MASTER
+        ================================================== -->
 
         <div class="canal master">
 
             <div class="cabecalho-canal">
 
-                <strong>MASTER</strong>
+                <strong>
+                    MASTER
+                </strong>
 
-                <small>MAIN OUT</small>
+                <small>
+                    MAIN OUT
+                </small>
 
             </div>
 
@@ -750,28 +1091,15 @@ header {
 
                     <div class="knob-box">
 
-                        <div class="knob"
-                             data-tipo="masterHigh"
-                             data-valor="0">
-                        </div>
+                        <div
+                            class="knob"
+                            data-tipo="masterHigh"
+                            data-valor="0"
+                        ></div>
 
-                        <label>AGUDO</label>
-
-                        <span class="valor-knob">
-                            0 dB
-                        </span>
-
-                    </div>
-
-
-                    <div class="knob-box">
-
-                        <div class="knob"
-                             data-tipo="masterMid"
-                             data-valor="0">
-                        </div>
-
-                        <label>MÉDIO</label>
+                        <label>
+                            AGUDO
+                        </label>
 
                         <span class="valor-knob">
                             0 dB
@@ -782,12 +1110,34 @@ header {
 
                     <div class="knob-box">
 
-                        <div class="knob"
-                             data-tipo="masterLow"
-                             data-valor="0">
-                        </div>
+                        <div
+                            class="knob"
+                            data-tipo="masterMid"
+                            data-valor="0"
+                        ></div>
 
-                        <label>GRAVE</label>
+                        <label>
+                            MÉDIO
+                        </label>
+
+                        <span class="valor-knob">
+                            0 dB
+                        </span>
+
+                    </div>
+
+
+                    <div class="knob-box">
+
+                        <div
+                            class="knob"
+                            data-tipo="masterLow"
+                            data-valor="0"
+                        ></div>
+
+                        <label>
+                            GRAVE
+                        </label>
 
                         <span class="valor-knob">
                             0 dB
@@ -808,17 +1158,21 @@ header {
 
                 <div class="fader-area">
 
-                    <input id="masterFader"
-                           class="fader"
-                           type="range"
-                           min="0"
-                           max="100"
-                           value="80">
+                    <input
+                        id="masterFader"
+                        class="fader"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="80"
+                    >
 
                 </div>
 
-                <span class="valor-fader"
-                      id="masterValor">
+                <span
+                    class="valor-fader"
+                    id="masterValor"
+                >
                     80%
                 </span>
 
@@ -831,31 +1185,13 @@ header {
                     MASTER
                 </div>
 
-                <button class="btn mute"
-                        id="masterMute"
-                        onclick="toggleMasterMute()">
+                <button
+                    class="btn mute"
+                    id="masterMute"
+                    onclick="toggleMasterMute()"
+                >
                     MUTE
                 </button>
-
-            </div>
-
-
-            <div class="secao">
-
-                <div class="titulo">
-                    TRANSPORTE
-                </div>
-
-                <div style="
-                    color:#777;
-                    font-size:8px;
-                    text-align:center;
-                    line-height:1.6;
-                ">
-                    PLAY TODOS<br>
-                    PAUSAR TODOS<br>
-                    PARAR TODOS
-                </div>
 
             </div>
 
@@ -865,91 +1201,131 @@ header {
 
 </div>
 
-<!-- MODAL DE EFEITOS -->
 
-<div class="modal" id="modalEfeitos">
+<!-- =====================================================
+     MODAL EFEITOS
+===================================================== -->
+
+<div
+    class="modal"
+    id="modalEfeitos"
+>
 
     <div class="caixa-modal">
 
-        <h2>🎛️ EFEITOS</h2>
+        <h2>
+            🎛️ EFEITOS
+        </h2>
 
-        <div id="efeitosCanal"></div>
-        <div class="secao">
+        <div id="efeitosCanal">
 
-    <div class="titulo">
-        SELECIONAR EFEITOS
-    </div>
+            <div class="secao">
 
-    <div class="botoes">
+                <div class="titulo">
+                    SELECIONAR EFEITOS
+                </div>
 
-        <button
-            class="btn"
-            id="btnGate">
-            GATE
-        </button>
+                <div class="botoes">
 
-        <button
-            class="btn"
-            id="btnCompressor">
-            COMP
-        </button>
+                    <button
+                        class="btn"
+                        id="btnGate"
+                        onclick="toggleEfeito('gate')"
+                    >
+                        GATE
+                    </button>
 
-        <button
-            class="btn"
-            id="btnReverb">
-            REVERB
-        </button>
+                    <button
+                        class="btn"
+                        id="btnCompressor"
+                        onclick="toggleEfeito('compressor')"
+                    >
+                        COMP
+                    </button>
 
-        <button
-            class="btn"
-            id="btnDelay">
-            DELAY
-        </button>
+                    <button
+                        class="btn"
+                        id="btnReverb"
+                        onclick="toggleEfeito('reverb')"
+                    >
+                        REVERB
+                    </button>
 
-    </div>
+                    <button
+                        class="btn"
+                        id="btnDelay"
+                        onclick="toggleEfeito('delay')"
+                    >
+                        DELAY
+                    </button>
 
-</div>
+                </div>
+
+            </div>
+
+            <div
+                class="efeito-controles"
+                id="controlesEfeitos"
+            ></div>
+
+        </div>
 
         <br>
 
         <button
             class="top-btn"
             style="width:100%"
-            onclick="fecharEfeitos()">
-
+            onclick="fecharEfeitos()"
+        >
             FECHAR
-
         </button>
 
     </div>
 
 </div>
-<!-- MODAL DE CENAS -->
 
-<div class="modal" id="modalCenas">
+
+<!-- =====================================================
+     MODAL CENAS
+===================================================== -->
+
+<div
+    class="modal"
+    id="modalCenas"
+>
 
     <div class="caixa-modal">
 
-        <h2>💾 CENAS</h2>
+        <h2>
+            💾 CENAS
+        </h2>
 
-        <input class="input-cena"
-               id="nomeCena"
-               placeholder="Nome da cena">
+        <input
+            class="input-cena"
+            id="nomeCena"
+            placeholder="Nome da cena"
+        >
 
-        <button class="top-btn green"
-                style="width:100%"
-                onclick="salvarCena()">
+        <button
+            class="top-btn green"
+            style="width:100%"
+            onclick="salvarCena()"
+        >
             SALVAR CENA
         </button>
 
-        <div class="lista-cenas"
-             id="listaCenas"></div>
+        <div
+            class="lista-cenas"
+            id="listaCenas"
+        ></div>
 
         <br>
 
-        <button class="top-btn"
-                style="width:100%"
-                onclick="fecharCenas()">
+        <button
+            class="top-btn"
+            style="width:100%"
+            onclick="fecharCenas()"
+        >
             FECHAR
         </button>
 
@@ -961,22 +1337,10 @@ header {
 <script>
 
 /* =====================================================
-   AUDIO
+   MIXER PRO
 ===================================================== */
 
 let audioContext = null;
-
-let youtubeAPIPronta = false;
-
-function onYouTubeIframeAPIReady() {
-
-    youtubeAPIPronta = true;
-
-    console.log(
-        "YouTube API pronta!"
-    );
-
-}
 
 let masterGain = null;
 let masterHigh = null;
@@ -984,62 +1348,125 @@ let masterMid = null;
 let masterLow = null;
 
 let canais = [];
+
 let numeroCanal = 0;
 
 let canalCopiado = null;
 
+let canalEfeitosAtual = null;
+
+let youtubeAPIPronta = false;
+
 
 /* =====================================================
-   INICIAR AUDIO
+   YOUTUBE API
+===================================================== */
+
+function onYouTubeIframeAPIReady() {
+
+    youtubeAPIPronta = true;
+
+    console.log(
+        "YouTube API pronta."
+    );
+}
+
+
+/* =====================================================
+   INICIAR ÁUDIO
 ===================================================== */
 
 async function iniciarAudio() {
 
     if (!audioContext) {
 
-        audioContext = new (
+        const AudioContext =
             window.AudioContext ||
-            window.webkitAudioContext
-        )();
+            window.webkitAudioContext;
+
+        if (!AudioContext) {
+
+            alert(
+                "Seu navegador não suporta Web Audio API."
+            );
+
+            return;
+        }
+
+        audioContext =
+            new AudioContext();
+
 
         masterHigh =
             audioContext.createBiquadFilter();
 
-        masterHigh.type = "highshelf";
-        masterHigh.frequency.value = 6000;
+        masterHigh.type =
+            "highshelf";
+
+        masterHigh.frequency.value =
+            6000;
+
 
         masterMid =
             audioContext.createBiquadFilter();
 
-        masterMid.type = "peaking";
-        masterMid.frequency.value = 1000;
-        masterMid.Q.value = 1;
+        masterMid.type =
+            "peaking";
+
+        masterMid.frequency.value =
+            1000;
+
+        masterMid.Q.value =
+            1;
+
 
         masterLow =
             audioContext.createBiquadFilter();
 
-        masterLow.type = "lowshelf";
-        masterLow.frequency.value = 120;
+        masterLow.type =
+            "lowshelf";
+
+        masterLow.frequency.value =
+            120;
+
 
         masterGain =
             audioContext.createGain();
 
-        masterHigh.connect(masterMid);
-        masterMid.connect(masterLow);
-        masterLow.connect(masterGain);
-        masterGain.connect(audioContext.destination);
+
+        masterHigh.connect(
+            masterMid
+        );
+
+        masterMid.connect(
+            masterLow
+        );
+
+        masterLow.connect(
+            masterGain
+        );
+
+        masterGain.connect(
+            audioContext.destination
+        );
 
         aplicarVolumeMaster();
-
     }
 
-    if (audioContext.state === "suspended") {
+
+    if (
+        audioContext.state ===
+        "suspended"
+    ) {
+
         await audioContext.resume();
     }
 
+
     document.getElementById(
         "statusAudio"
-    ).textContent = "ATIVO";
+    ).textContent =
+        "ATIVO";
 }
 
 
@@ -1050,19 +1477,33 @@ async function iniciarAudio() {
 function criarMeter() {
 
     const meter =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    meter.className = "meter";
+    meter.className =
+        "meter";
 
-    for (let i = 0; i < 20; i++) {
+
+    for (
+        let i = 0;
+        i < 20;
+        i++
+    ) {
 
         const led =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        led.className = "led";
+        led.className =
+            "led";
 
-        meter.appendChild(led);
+        meter.appendChild(
+            led
+        );
     }
+
 
     return meter;
 }
@@ -1076,62 +1517,61 @@ function criarCanal() {
 
     numeroCanal++;
 
-    const numero = numeroCanal;
+    const numero =
+        numeroCanal;
+
 
     const canal =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    canal.className = "canal";
+    canal.className =
+        "canal";
 
-    canal.dataset.numero = numero;
+    canal.dataset.numero =
+        numero;
+
 
     canal.innerHTML = `
-  <div class="secao">
 
-    <div class="titulo">
-        ÁUDIO / YOUTUBE
-    </div>
+        <div class="secao">
 
-    <input
-        type="file"
-        class="audio-file"
-        accept="audio/*"
-    >
+            <div class="titulo">
+                ÁUDIO / YOUTUBE
+            </div>
 
-    <input
-        type="text"
-        class="youtube-url"
-        placeholder="Cole aqui o link do YouTube"
-        style="
-            width:100%;
-            margin-top:6px;
-            padding:6px;
-            background:#111;
-            color:white;
-            border:1px solid #444;
-            border-radius:4px;
-            font-size:8px;
-        "
-    >
+            <input
+                type="file"
+                class="audio-file"
+                accept="audio/*"
+            >
 
-    <button
-        class="btn youtube-btn"
-        style="
-            width:100%;
-            margin-top:5px;
-            color:#ff5555;
-        "
-    >
-        ▶ CARREGAR YOUTUBE
-    </button>
+            <input
+                type="text"
+                class="youtube-url"
+                placeholder="Cole aqui o link do YouTube"
+            >
 
-    <div class="youtube-player"></div>
+            <button
+                class="btn youtube-btn"
+                style="
+                    width:100%;
+                    margin-top:5px;
+                    color:#ff5555;
+                "
+            >
+                ▶ CARREGAR YOUTUBE
+            </button>
 
-    <div class="info-arquivo">
-        Nenhum áudio selecionado
-    </div>
+            <div class="youtube-player"></div>
 
-</div>
+            <div class="info-arquivo">
+                Nenhum áudio selecionado
+            </div>
+
+        </div>
+
 
         <div class="cabecalho-canal">
 
@@ -1153,94 +1593,114 @@ function criarCanal() {
 
         <div class="secao">
 
-    <div class="titulo">
-        DELAY
-    </div>
+            <div class="titulo">
+                DELAY
+            </div>
 
-    <label style="font-size:7px;color:#aaa;">
-        TEMPO
-    </label>
+            <label style="
+                font-size:7px;
+                color:#aaa;
+            ">
+                TEMPO
+            </label>
 
-    <input
-        class="slider delay-time"
-        type="range"
-        min="0"
-        max="1000"
-        value="300"
-    >
+            <input
+                class="slider delay-time"
+                type="range"
+                min="0"
+                max="1000"
+                value="300"
+            >
 
-    <div
-        class="delay-time-value"
-        style="text-align:center;color:#00ff88;font-size:7px;">
-        300 ms
-    </div>
-
-
-    <label style="font-size:7px;color:#aaa;">
-        MIX
-    </label>
-
-    <input
-        class="slider delay-mix"
-        type="range"
-        min="0"
-        max="100"
-        value="0"
-    >
-
-   <div
-    class="delay-mix-value"
-    style="text-align:center;color:#00ff88;font-size:7px;">
-    0%
-</div>
+            <div
+                class="delay-time-value"
+                style="
+                    text-align:center;
+                    color:#00ff88;
+                    font-size:7px;
+                "
+            >
+                300 ms
+            </div>
 
 
-    <label style="font-size:7px;color:#aaa;">
-        FEEDBACK
-    </label>
+            <label style="
+                font-size:7px;
+                color:#aaa;
+            ">
+                MIX
+            </label>
 
-    <input
-        class="slider delay-feedback"
-        type="range"
-        min="0"
-        max="90"
-        value="20"
-    >
+            <input
+                class="slider delay-mix"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+            >
 
-    <div
-        class="delay-feedback-value"
-        style="text-align:center;color:#00ff88;font-size:7px;">
-        20%
-    </div>
-
-</div>
-
-
-<!-- BOTÃO DE EFEITOS -->
-
-<div class="secao">
-
-    <button class="btn efeitos">
-        🎛️ EFEITOS
-    </button>
-
-</div>
+            <div
+                class="delay-mix-value"
+                style="
+                    text-align:center;
+                    color:#00ff88;
+                    font-size:7px;
+                "
+            >
+                0%
+            </div>
 
 
-      <div class="secao">
+            <label style="
+                font-size:7px;
+                color:#aaa;
+            ">
+                FEEDBACK
+            </label>
 
-    <div class="botoes">
+            <input
+                class="slider delay-feedback"
+                type="range"
+                min="0"
+                max="90"
+                value="20"
+            >
 
-        <button class="btn play">
-            ▶ PLAY
-        </button>
+            <div
+                class="delay-feedback-value"
+                style="
+                    text-align:center;
+                    color:#00ff88;
+                    font-size:7px;
+                "
+            >
+                20%
+            </div>
 
-    </div>
-
-</div>
+        </div>
 
 
-        <!-- AGULHA -->
+        <div class="secao">
+
+            <button class="btn efeitos">
+                🎛️ EFEITOS
+            </button>
+
+        </div>
+
+
+        <div class="secao">
+
+            <div class="botoes">
+
+                <button class="btn play">
+                    ▶ PLAY
+                </button>
+
+            </div>
+
+        </div>
+
 
         <div class="secao">
 
@@ -1285,10 +1745,12 @@ function criarCanal() {
                     <div
                         class="knob"
                         data-tipo="gain"
-                        data-valor="0">
-                    </div>
+                        data-valor="0"
+                    ></div>
 
-                    <label>GAIN</label>
+                    <label>
+                        GAIN
+                    </label>
 
                     <span class="valor-knob">
                         0 dB
@@ -1314,10 +1776,12 @@ function criarCanal() {
                     <div
                         class="knob"
                         data-tipo="high"
-                        data-valor="0">
-                    </div>
+                        data-valor="0"
+                    ></div>
 
-                    <label>AGUDO</label>
+                    <label>
+                        AGUDO
+                    </label>
 
                     <span class="valor-knob">
                         0 dB
@@ -1331,10 +1795,12 @@ function criarCanal() {
                     <div
                         class="knob"
                         data-tipo="mid"
-                        data-valor="0">
-                    </div>
+                        data-valor="0"
+                    ></div>
 
-                    <label>MÉDIO</label>
+                    <label>
+                        MÉDIO
+                    </label>
 
                     <span class="valor-knob">
                         0 dB
@@ -1348,10 +1814,12 @@ function criarCanal() {
                     <div
                         class="knob"
                         data-tipo="low"
-                        data-valor="0">
-                    </div>
+                        data-valor="0"
+                    ></div>
 
-                    <label>GRAVE</label>
+                    <label>
+                        GRAVE
+                    </label>
 
                     <span class="valor-knob">
                         0 dB
@@ -1396,66 +1864,6 @@ function criarCanal() {
             >
 
         </div>
-
-    <label style="font-size:7px;color:#aaa;">
-        TEMPO
-    </label>
-
-    <input
-        class="slider delay-time"
-        type="range"
-        min="0"
-        max="1000"
-        value="300"
-    >
-
-    <div
-        class="delay-time-value"
-        style="text-align:center;color:#00ff88;font-size:7px;">
-        300 ms
-    </div>
-
-    <label style="font-size:7px;color:#aaa;">
-        MIX
-    </label>
-
-    <input
-        class="slider delay-mix"
-        type="range"
-        min="0"
-        max="100"
-        value="0"
-    >
-
-    </div>
-     <div class="secao">
-
-    <button class="btn efeitos">
-        🎛️ EFEITOS
-    </button>
-
-</div>
-        
-
-    <label style="font-size:7px;color:#aaa;">
-        FEEDBACK
-    </label>
-
-    <input
-        class="slider delay-feedback"
-        type="range"
-        min="0"
-        max="90"
-        value="20"
-    >
-
-    <div
-        class="delay-feedback-value"
-        style="text-align:center;color:#00ff88;font-size:7px;">
-        20%
-    </div>
-
-</div>
 
 
         <div class="secao">
@@ -1530,8 +1938,7 @@ function criarCanal() {
 
         <div class="secao">
 
-            <button
-                class="btn remove">
+            <button class="btn remove">
                 🗑 REMOVER CANAL
             </button>
 
@@ -1539,53 +1946,83 @@ function criarCanal() {
     `;
 
 
-    /* METER */
+    /* =====================================================
+       ESTADO
+    ===================================================== */
 
-    const areaMeter =
-        canal.querySelector(".meter-area");
+    canal.audioBuffer = null;
 
-    areaMeter.appendChild(
+    canal.source = null;
+
+    canal.preampGain = null;
+
+    canal.channelGain = null;
+
+    canal.highFilter = null;
+
+    canal.midFilter = null;
+
+    canal.lowFilter = null;
+
+    canal.panner = null;
+
+    canal.analyser = null;
+
+    canal.delay = null;
+
+    canal.delayFeedback = null;
+
+    canal.delayMix = null;
+
+    canal.ytPlayer = null;
+
+    canal.youtubeUrl = "";
+
+    canal.youtubeId = "";
+
+    canal.offset = 0;
+
+    canal.startTime = 0;
+
+    canal.playing = false;
+
+    canal.pausando = false;
+
+    canal.fileName = "";
+
+    canal.effects = {
+
+        gate: false,
+
+        compressor: false,
+
+        reverb: false,
+
+        delay: false
+
+    };
+
+    canal.effectNodes = {};
+
+
+    /* =====================================================
+       METER
+    ===================================================== */
+
+    canal.querySelector(
+        ".meter-area"
+    ).appendChild(
         criarMeter()
     );
 
 
-    /* ESTADO */
+    /* =====================================================
+       ARQUIVO
+    ===================================================== */
 
-    canal.audioBuffer = null;
-    canal.source = null;
-
-    canal.preampGain = null;
-    canal.channelGain = null;
-
-    canal.highFilter = null;
-    canal.midFilter = null;
-    canal.lowFilter = null;
-
-    canal.panner = null;
-    canal.analyser = null;
-
-    canal.delay = null;
-canal.delayFeedback = null;
-canal.delayMix = null;
-
-    canal.offset = 0;
-canal.startTime = 0;
-canal.playing = false;
-canal.pausando = false;
-
-    canal.fileName = "";
- 
-    canal.youtubeUrl = "";
-    canal.youtubeId = "";
-
-    /* ARQUIVO */
-
-    const campoAudio =
-    canal.querySelector(".audio-file");
-
-if (campoAudio) {
-
-    campoAudio.addEventListener(
+    canal.querySelector(
+        ".audio-file"
+    ).addEventListener(
         "change",
         function() {
 
@@ -1597,24 +2034,14 @@ if (campoAudio) {
         }
     );
 
-}
 
-     /* EFEITOS */
+    /* =====================================================
+       YOUTUBE
+    ===================================================== */
 
-canal.querySelector(".efeitos")
-    .addEventListener(
-        "click",
-        function() {
-
-            abrirEfeitos(canal);
-
-        }
-    );
-
-    /* YOUTUBE */
-
-canal.querySelector(".youtube-btn")
-    .addEventListener(
+    canal.querySelector(
+        ".youtube-btn"
+    ).addEventListener(
         "click",
         function() {
 
@@ -1625,8 +2052,10 @@ canal.querySelector(".youtube-btn")
         }
     );
 
-canal.querySelector(".youtube-url")
-    .addEventListener(
+
+    canal.querySelector(
+        ".youtube-url"
+    ).addEventListener(
         "change",
         function() {
 
@@ -1638,119 +2067,253 @@ canal.querySelector(".youtube-url")
         }
     );
 
-    /* PLAY */
 
-    canal.querySelector(".play")
-        .addEventListener(
-            "click",
-            function() {
+    /* =====================================================
+       EFEITOS
+    ===================================================== */
 
-                alternarPlay(canal);
+    canal.querySelector(
+        ".efeitos"
+    ).addEventListener(
+        "click",
+        function() {
 
-            }
-        );
+            abrirEfeitos(
+                canal
+            );
+
+        }
+    );
 
 
-    /* SEEK / AGULHA */
+    /* =====================================================
+       PLAY
+    ===================================================== */
 
-    canal.querySelector(".seek")
-    .addEventListener(
+    canal.querySelector(
+        ".play"
+    ).addEventListener(
+        "click",
+        function() {
+
+            alternarPlay(
+                canal
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       FADER
+    ===================================================== */
+
+    canal.querySelector(
+        ".fader"
+    ).addEventListener(
         "input",
         function() {
 
-            const novaPosicao =
-                Number(this.value);
-
-
-            /* =====================
-               YOUTUBE
-            ===================== */
-
-            if (canal.ytPlayer) {
-
-                canal.offset =
-                    novaPosicao;
-
-                canal.ytPlayer.seekTo(
-                    novaPosicao,
-                    true
+            const valor =
+                Number(
+                    this.value
                 );
 
-                atualizarTempoCanal(
-                    canal,
-                    novaPosicao
-                );
-
-                salvarAutomaticamente();
-
-                return;
-            }
+            canal.querySelector(
+                ".valor-fader"
+            ).textContent =
+                valor + "%";
 
 
-            /* =====================
-               ÁUDIO LOCAL
-            ===================== */
+            if (
+                canal.channelGain
+            ) {
 
-            canal.offset =
-                novaPosicao;
-
-            atualizarTempoCanal(
-                canal,
-                novaPosicao
-            );
-
-            if (canal.playing) {
-
-                reiniciarCanalNaPosicao(
-                    canal,
-                    novaPosicao
+                atualizarVolumeCanal(
+                    canal
                 );
 
             }
+
+
+            if (
+                canal.ytPlayer
+            ) {
+
+                try {
+
+                    canal.ytPlayer.setVolume(
+                        valor
+                    );
+
+                } catch(e) {}
+
+            }
+
 
             salvarAutomaticamente();
 
         }
     );
 
-                
 
-    /* FADER */
+    /* =====================================================
+       MUTE
+    ===================================================== */
 
-    canal.querySelector(".fader")
-        .addEventListener(
-            "input",
-            function() {
+    canal.querySelector(
+        ".mute"
+    ).addEventListener(
+        "click",
+        function() {
 
-                canal.querySelector(
-                    ".valor-fader"
-                ).textContent =
-                    this.value + "%";
+            this.classList.toggle(
+                "ativo"
+            );
+
+
+            const mutado =
+                this.classList.contains(
+                    "ativo"
+                );
+
+
+            canal.classList.toggle(
+                "mutado",
+                mutado
+            );
+
+
+            if (
+                canal.ytPlayer
+            ) {
+
+                try {
+
+                    if (mutado) {
+
+                        canal.ytPlayer.mute();
+
+                    } else {
+
+                        canal.ytPlayer.unMute();
+
+                        canal.ytPlayer.setVolume(
+                            Number(
+                                canal.querySelector(
+                                    ".fader"
+                                ).value
+                            )
+                        );
+
+                    }
+
+                } catch(e) {}
+
+            }
+
+
+            if (
+                canal.channelGain
+            ) {
 
                 atualizarVolumeCanal(
                     canal
                 );
 
-                salvarAutomaticamente();
+            }
+
+
+            salvarAutomaticamente();
+
+        }
+    );
+
+
+    /* =====================================================
+       SEEK
+    ===================================================== */
+
+    canal.querySelector(
+        ".seek"
+    ).addEventListener(
+        "input",
+        function() {
+
+            const posicao =
+                Number(
+                    this.value
+                );
+
+
+            canal.offset =
+                posicao;
+
+
+            if (
+                canal.ytPlayer
+            ) {
+
+                try {
+
+                    canal.ytPlayer.seekTo(
+                        posicao,
+                        true
+                    );
+
+                } catch(e) {}
 
             }
-        );
-     /* DELAY */
 
-canal.querySelector(".delay-time")
-    .addEventListener(
+
+            else if (
+                canal.audioBuffer &&
+                canal.playing
+            ) {
+
+                reiniciarCanalNaPosicao(
+                    canal,
+                    posicao
+                );
+
+            }
+
+
+            atualizarTempoCanal(
+                canal,
+                posicao
+            );
+
+            salvarAutomaticamente();
+
+        }
+    );
+
+
+    /* =====================================================
+       DELAY TIME
+    ===================================================== */
+
+    canal.querySelector(
+        ".delay-time"
+    ).addEventListener(
         "input",
         function() {
 
             const valor =
-                Number(this.value);
+                Number(
+                    this.value
+                );
 
             canal.querySelector(
                 ".delay-time-value"
             ).textContent =
                 valor + " ms";
 
-            if (canal.delay) {
+
+            if (
+                canal.delay
+            ) {
 
                 canal.delay.delayTime.value =
                     valor / 1000;
@@ -1763,324 +2326,246 @@ canal.querySelector(".delay-time")
     );
 
 
-canal.querySelector(".delay-mix")
-    .addEventListener(
+    /* =====================================================
+       DELAY MIX
+    ===================================================== */
+
+    canal.querySelector(
+        ".delay-mix"
+    ).addEventListener(
         "input",
         function() {
 
             const valor =
-                Number(this.value);
+                Number(
+                    this.value
+                );
+
 
             canal.querySelector(
                 ".delay-mix-value"
             ).textContent =
                 valor + "%";
 
-            if (canal.delayMix) {
+
+            if (
+                canal.delayMix
+            ) {
 
                 canal.delayMix.gain.value =
                     valor / 100;
 
             }
 
+
             salvarAutomaticamente();
 
         }
     );
 
 
-canal.querySelector(".delay-feedback")
-    .addEventListener(
+    /* =====================================================
+       DELAY FEEDBACK
+    ===================================================== */
+
+    canal.querySelector(
+        ".delay-feedback"
+    ).addEventListener(
         "input",
         function() {
 
             const valor =
-                Number(this.value);
+                Number(
+                    this.value
+                );
+
 
             canal.querySelector(
                 ".delay-feedback-value"
             ).textContent =
                 valor + "%";
 
-            if (canal.delayFeedback) {
+
+            if (
+                canal.delayFeedback
+            ) {
 
                 canal.delayFeedback.gain.value =
                     valor / 100;
 
             }
 
+
             salvarAutomaticamente();
 
         }
     );
 
-    /* PAN */
 
-    canal.querySelector(".pan")
-        .addEventListener(
-            "input",
-            function() {
+    /* =====================================================
+       PAN
+    ===================================================== */
 
-                if (canal.panner) {
+    canal.querySelector(
+        ".pan"
+    ).addEventListener(
+        "input",
+        function() {
 
-                    canal.panner.pan.value =
-                        Number(this.value) / 100;
-                }
+            if (
+                canal.panner
+            ) {
 
-                salvarAutomaticamente();
+                canal.panner.pan.value =
+                    Number(
+                        this.value
+                    ) / 100;
 
             }
-        );
 
 
-    /* MUTE */
+            salvarAutomaticamente();
 
-    canal.querySelector(".mute")
-        .addEventListener(
-            "click",
-            function() {
+        }
+    );
 
-                this.classList.toggle(
+
+    /* =====================================================
+       SOLO
+    ===================================================== */
+
+    canal.querySelector(
+        ".solo"
+    ).addEventListener(
+        "click",
+        function() {
+
+            this.classList.toggle(
+                "ativo"
+            );
+
+
+            canal.classList.toggle(
+                "solo-canal",
+                this.classList.contains(
                     "ativo"
-                );
-
-                canal.classList.toggle(
-                    "mutado",
-                    this.classList.contains(
-                        "ativo"
-                    )
-                );
-
-                atualizarVolumeCanal(
-                    canal
-                );
-
-                salvarAutomaticamente();
-
-            }
-        );
+                )
+            );
 
 
-    /* SOLO */
+            atualizarSolos();
 
-    canal.querySelector(".solo")
-        .addEventListener(
-            "click",
-            function() {
+            salvarAutomaticamente();
 
-                this.classList.toggle(
-                    "ativo"
-                );
-
-                canal.classList.toggle(
-                    "solo-canal",
-                    this.classList.contains(
-                        "ativo"
-                    )
-                );
-
-                atualizarSolos();
-
-                salvarAutomaticamente();
-
-            }
-        );
+        }
+    );
 
 
-    /* COPIAR */
+    /* =====================================================
+       COPIAR
+    ===================================================== */
 
-    canal.querySelector(".copy")
-        .addEventListener(
-            "click",
-            function() {
+    canal.querySelector(
+        ".copy"
+    ).addEventListener(
+        "click",
+        function() {
 
-                copiarCanal(canal);
+            copiarCanal(
+                canal
+            );
 
-            }
-        );
-
-
-    /* COLAR */
-
-    canal.querySelector(".paste")
-        .addEventListener(
-            "click",
-            function() {
-
-                colarCanal(canal);
-
-            }
-        );
+        }
+    );
 
 
-    /* REMOVER */
+    /* =====================================================
+       COLAR
+    ===================================================== */
 
-    canal.querySelector(".remove")
-        .addEventListener(
-            "click",
-            function() {
+    canal.querySelector(
+        ".paste"
+    ).addEventListener(
+        "click",
+        function() {
 
-                removerCanal(canal);
+            colarCanal(
+                canal
+            );
 
-            }
-        );
-
-
-    /* NOME */
-
-    canal.querySelector(".nome")
-        .addEventListener(
-            "input",
-            function() {
-
-                salvarAutomaticamente();
-
-            }
-        );
+        }
+    );
 
 
-    /* KNOBS */
+    /* =====================================================
+       REMOVER
+    ===================================================== */
 
-    canal.querySelectorAll(".knob")
-        .forEach(
-            knob => configurarKnob(knob)
-        );
+    canal.querySelector(
+        ".remove"
+    ).addEventListener(
+        "click",
+        function() {
+
+            removerCanal(
+                canal
+            );
+
+        }
+    );
 
 
-    canais.push(canal);
+    /* =====================================================
+       NOME
+    ===================================================== */
+
+    canal.querySelector(
+        ".nome"
+    ).addEventListener(
+        "input",
+        salvarAutomaticamente
+    );
+
+
+    /* =====================================================
+       KNOBS
+    ===================================================== */
+
+    canal.querySelectorAll(
+        ".knob"
+    ).forEach(
+        configurarKnob
+    );
+
+
+    canais.push(
+        canal
+    );
+
 
     atualizarContador();
+
 
     return canal;
 }
 
-/* =====================================================
-   COMPARTILHAR MESA
-===================================================== */
-
-function compartilharMesa() {
-
-    try {
-
-        const estado =
-            obterEstado();
-
-        const dados =
-            encodeURIComponent(
-                JSON.stringify(estado)
-            );
-
-        const link =
-            window.location.origin +
-            window.location.pathname +
-            "#mesa=" +
-            dados;
-
-        if (
-            navigator.clipboard &&
-            navigator.clipboard.writeText
-        ) {
-
-            navigator.clipboard.writeText(
-                link
-            ).then(
-                function() {
-
-                    alert(
-                        "Link da mesa copiado!\n\nAgora você pode enviar esse link pelo WhatsApp, Telegram ou onde quiser."
-                    );
-
-                }
-            );
-
-        } else {
-
-            prompt(
-                "Copie este link:",
-                link
-            );
-
-        }
-
-    } catch(e) {
-
-        console.error(e);
-
-        alert(
-            "Não foi possível criar o link de compartilhamento."
-        );
-
-    }
-
-}
-
 
 /* =====================================================
-   ABRIR MESA COMPARTILHADA
-===================================================== */
-
-function carregarMesaCompartilhada() {
-
-    if (
-        !window.location.hash.startsWith(
-            "#mesa="
-        )
-    ) {
-
-        return false;
-
-    }
-
-    try {
-
-        const dados =
-            window.location.hash.substring(
-                6
-            );
-
-        const estado =
-            JSON.parse(
-                decodeURIComponent(
-                    dados
-                )
-            );
-
-        aplicarEstado(
-            estado
-        );
-
-        alert(
-            "Mesa compartilhada carregada!"
-        );
-
-        return true;
-
-    } catch(e) {
-
-        console.error(e);
-
-        alert(
-            "Não foi possível abrir a mesa compartilhada."
-        );
-
-        return false;
-
-    }
-
-}
-/* =====================================================
-   YOUTUBE
+   YOUTUBE ID
 ===================================================== */
 
 function obterYoutubeId(url) {
 
-    if (!url)
+    if (!url) {
         return null;
+    }
+
 
     try {
 
         const endereco =
             new URL(url);
+
 
         if (
             endereco.hostname.includes(
@@ -2091,7 +2576,9 @@ function obterYoutubeId(url) {
             return endereco.searchParams.get(
                 "v"
             );
+
         }
+
 
         if (
             endereco.hostname.includes(
@@ -2101,6 +2588,7 @@ function obterYoutubeId(url) {
 
             return endereco.pathname
                 .substring(1);
+
         }
 
     } catch(e) {
@@ -2109,137 +2597,248 @@ function obterYoutubeId(url) {
 
     }
 
+
     return null;
 }
 
 
+/* =====================================================
+   CARREGAR YOUTUBE
+===================================================== */
+
 function carregarYouTube(canal) {
 
-    const campo = canal.querySelector(".youtube-url");
+    if (!youtubeAPIPronta) {
 
-    const url = campo.value.trim();
+        alert(
+            "A API do YouTube ainda está carregando. Aguarde alguns segundos."
+        );
+
+        return;
+    }
+
+
+    const campo =
+        canal.querySelector(
+            ".youtube-url"
+        );
+
+
+    const url =
+        campo.value.trim();
+
 
     if (!url) {
-        alert("Cole primeiro um link do YouTube.");
+
+        alert(
+            "Cole primeiro um link do YouTube."
+        );
+
         return;
     }
 
-    const id = obterYoutubeId(url);
+
+    const id =
+        obterYoutubeId(
+            url
+        );
+
 
     if (!id) {
-        alert("Esse link não parece ser um link válido do YouTube.");
+
+        alert(
+            "Link do YouTube inválido."
+        );
+
         return;
     }
 
-    canal.youtubeUrl = url;
-    canal.youtubeId = id;
 
-    canal.audioBuffer = null;
+    canal.youtubeUrl =
+        url;
 
-    if (canal.source) {
+    canal.youtubeId =
+        id;
+
+
+    if (
+        canal.source
+    ) {
+
         try {
+
             canal.source.stop();
+
         } catch(e) {}
 
-        canal.source = null;
+        canal.source =
+            null;
     }
 
+
+    canal.audioBuffer =
+        null;
+
+
     const playerDiv =
-        canal.querySelector(".youtube-player");
+        canal.querySelector(
+            ".youtube-player"
+        );
 
-    playerDiv.innerHTML = "";
 
-    playerDiv.style.display = "block";
+    playerDiv.innerHTML =
+        "";
+
 
     const playerElement =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    playerDiv.appendChild(playerElement);
 
-    canal.ytPlayer =
-        new YT.Player(playerElement, {
+    playerDiv.appendChild(
+        playerElement
+    );
 
-            width: "1",
-            height: "1",
 
-            videoId: id,
+    try {
 
-            playerVars: {
-                autoplay: 0,
-                controls: 0,
-                modestbranding: 1,
-                rel: 0
-            },
+        canal.ytPlayer =
+            new YT.Player(
+                playerElement,
+                {
 
-            events: {
+                    width: "1",
 
-                onReady: function() {
+                    height: "1",
 
-                    atualizarYouTubeCanal(canal);
+                    videoId: id,
 
-                    const duracao =
-                        canal.ytPlayer.getDuration();
+                    playerVars: {
 
-                    const seek =
-                        canal.querySelector(".seek");
+                        autoplay: 0,
 
-                    seek.max = duracao;
-                    seek.value = 0;
+                        controls: 0,
 
-                    canal.querySelector(
-                        ".tempo-total"
-                    ).textContent =
-                        formatarTempo(duracao);
+                        modestbranding: 1,
 
-                },
+                        rel: 0
 
-                onStateChange: function(event) {
+                    },
 
-                    if (
-                        event.data ===
-                        YT.PlayerState.PLAYING
-                    ) {
+                    events: {
 
-                        canal.playing = true;
+                        onReady:
+                        function() {
 
-                        atualizarBotaoPlay(canal);
+                            const duracao =
+                                canal.ytPlayer
+                                    .getDuration();
 
-                    }
 
-                    else if (
-                        event.data ===
-                        YT.PlayerState.PAUSED
-                    ) {
+                            const seek =
+                                canal.querySelector(
+                                    ".seek"
+                                );
 
-                        canal.playing = false;
 
-                        atualizarBotaoPlay(canal);
+                            seek.max =
+                                duracao;
 
-                    }
 
-                    else if (
-                        event.data ===
-                        YT.PlayerState.ENDED
-                    ) {
+                            seek.value =
+                                0;
 
-                        canal.playing = false;
 
-                        canal.offset = 0;
+                            canal.querySelector(
+                                ".tempo-total"
+                            ).textContent =
+                                formatarTempo(
+                                    duracao
+                                );
 
-                        atualizarBotaoPlay(canal);
+
+                            const volume =
+                                Number(
+                                    canal.querySelector(
+                                        ".fader"
+                                    ).value
+                                );
+
+
+                            canal.ytPlayer.setVolume(
+                                volume
+                            );
+
+
+                            canal.querySelector(
+                                ".info-arquivo"
+                            ).textContent =
+                                "YouTube carregado";
+
+                        },
+
+
+                        onStateChange:
+                        function(event) {
+
+                            if (
+                                event.data ===
+                                YT.PlayerState.PLAYING
+                            ) {
+
+                                canal.playing =
+                                    true;
+
+                            }
+
+
+                            if (
+                                event.data ===
+                                YT.PlayerState.PAUSED
+                            ) {
+
+                                canal.playing =
+                                    false;
+
+                            }
+
+
+                            if (
+                                event.data ===
+                                YT.PlayerState.ENDED
+                            ) {
+
+                                canal.playing =
+                                    false;
+
+                                canal.offset =
+                                    0;
+
+                            }
+
+
+                            atualizarBotaoPlay(
+                                canal
+                            );
+
+                        }
 
                     }
 
                 }
+            );
 
-            }
+    } catch(e) {
 
-        });
+        console.error(e);
 
-    canal.querySelector(
-        ".info-arquivo"
-    ).textContent =
-        "YouTube carregado";
+        alert(
+            "Não foi possível criar o player do YouTube."
+        );
+
+    }
+
 
     salvarAutomaticamente();
 }
@@ -2254,79 +2853,117 @@ async function carregarArquivo(
     canal
 ) {
 
-    if (!arquivo)
+    if (!arquivo) {
         return;
-
-    await iniciarAudio();
-
-    const dados =
-        await arquivo.arrayBuffer();
-
-    canal.audioBuffer =
-        await audioContext.decodeAudioData(
-            dados
-        );
-
-    canal.fileName =
-        arquivo.name;
-
-    canal.offset = 0;
-
-    const seek =
-        canal.querySelector(".seek");
-
-    seek.max =
-        canal.audioBuffer.duration;
-
-    seek.value = 0;
-
-    canal.querySelector(
-        ".tempo-total"
-    ).textContent =
-        formatarTempo(
-            canal.audioBuffer.duration
-        );
-
-    canal.querySelector(
-        ".tempo-atual"
-    ).textContent =
-        "00:00";
-
-    canal.querySelector(
-        ".info-arquivo"
-    ).textContent =
-        arquivo.name;
-
-
-    if (canal.source) {
-
-        try {
-            canal.source.stop();
-        } catch(e) {}
-
     }
 
-    canal.playing = false;
 
-    atualizarBotaoPlay(canal);
+    try {
 
-    criarAudioCanal(canal);
+        await iniciarAudio();
+
+
+        const dados =
+            await arquivo.arrayBuffer();
+
+
+        canal.audioBuffer =
+            await audioContext.decodeAudioData(
+                dados
+            );
+
+
+        canal.fileName =
+            arquivo.name;
+
+
+        canal.youtubeUrl =
+            "";
+
+        canal.youtubeId =
+            "";
+
+        canal.ytPlayer =
+            null;
+
+
+        canal.offset =
+            0;
+
+
+        const seek =
+            canal.querySelector(
+                ".seek"
+            );
+
+
+        seek.max =
+            canal.audioBuffer.duration;
+
+
+        seek.value =
+            0;
+
+
+        canal.querySelector(
+            ".tempo-total"
+        ).textContent =
+            formatarTempo(
+                canal.audioBuffer.duration
+            );
+
+
+        canal.querySelector(
+            ".tempo-atual"
+        ).textContent =
+            "00:00";
+
+
+        canal.querySelector(
+            ".info-arquivo"
+        ).textContent =
+            arquivo.name;
+
+
+        criarAudioCanal(
+            canal
+        );
+
+
+    } catch(e) {
+
+        console.error(e);
+
+        alert(
+            "Não foi possível carregar esse arquivo de áudio."
+        );
+
+    }
 }
 
 
 /* =====================================================
-   CRIAR CADEIA DE ÁUDIO
+   CADEIA DE ÁUDIO
 ===================================================== */
 
 function criarAudioCanal(canal) {
 
-    if (!canal.audioBuffer)
+    if (
+        !canal.audioBuffer ||
+        !audioContext
+    ) {
         return;
+    }
 
-    if (canal.source) {
+
+    if (
+        canal.source
+    ) {
 
         try {
+
             canal.source.stop();
+
         } catch(e) {}
 
     }
@@ -2334,6 +2971,7 @@ function criarAudioCanal(canal) {
 
     const source =
         audioContext.createBufferSource();
+
 
     source.buffer =
         canal.audioBuffer;
@@ -2350,23 +2988,34 @@ function criarAudioCanal(canal) {
     const high =
         audioContext.createBiquadFilter();
 
-    high.type = "highshelf";
-    high.frequency.value = 6000;
+    high.type =
+        "highshelf";
+
+    high.frequency.value =
+        6000;
 
 
     const mid =
         audioContext.createBiquadFilter();
 
-    mid.type = "peaking";
-    mid.frequency.value = 1000;
-    mid.Q.value = 1;
+    mid.type =
+        "peaking";
+
+    mid.frequency.value =
+        1000;
+
+    mid.Q.value =
+        1;
 
 
     const low =
         audioContext.createBiquadFilter();
 
-    low.type = "lowshelf";
-    low.frequency.value = 120;
+    low.type =
+        "lowshelf";
+
+    low.frequency.value =
+        120;
 
 
     const panner =
@@ -2376,87 +3025,181 @@ function criarAudioCanal(canal) {
     const analyser =
         audioContext.createAnalyser();
 
-    analyser.fftSize = 256;
+    analyser.fftSize =
+        256;
+
 
     const delay =
-    audioContext.createDelay(2.0);
-
-const delayFeedback =
-    audioContext.createGain();
-
-const delayMix =
-    audioContext.createGain();
-
-delay.delayTime.value = 0.3;
-
-delayFeedback.gain.value = 0.2;
-
-delayMix.gain.value = 0;
-
-    source.connect(preamp);
-
-preamp.connect(high);
-high.connect(mid);
-mid.connect(low);
-
-low.connect(channelGain);
-
-channelGain.connect(panner);
-
-/* ÁUDIO DIRETO */
-panner.connect(analyser);
-
-/* DELAY */
-panner.connect(delay);
-
-delay.connect(delayFeedback);
-delayFeedback.connect(delay);
-
-delay.connect(delayMix);
-delayMix.connect(analyser);
-
-analyser.connect(masterHigh);
+        audioContext.createDelay(
+            2
+        );
 
 
-    canal.source = source;
-
-    canal.preampGain = preamp;
-    canal.highFilter = high;
-    canal.midFilter = mid;
-    canal.lowFilter = low;
-    canal.channelGain = channelGain;
-    canal.panner = panner;
-    canal.analyser = analyser;
-
-    canal.delay = delay;
-    canal.delayFeedback = delayFeedback;
-    canal.delayMix = delayMix;
+    const delayFeedback =
+        audioContext.createGain();
 
 
-    aplicarControlesCanal(canal);
+    const delayMix =
+        audioContext.createGain();
 
-    iniciarMeter(canal);
+
+    delay.delayTime.value =
+        Number(
+            canal.querySelector(
+                ".delay-time"
+            ).value
+        ) / 1000;
 
 
-    source.onended = function() {
+    delayFeedback.gain.value =
+        Number(
+            canal.querySelector(
+                ".delay-feedback"
+            ).value
+        ) / 100;
 
-    if (canal.pausando) {
-        return;
-    }
 
-    if (canal.playing) {
+    delayMix.gain.value =
+        Number(
+            canal.querySelector(
+                ".delay-mix"
+            ).value
+        ) / 100;
 
-        canal.playing = false;
 
-        canal.offset = 0;
+    source.connect(
+        preamp
+    );
 
-        atualizarBotaoPlay(canal);
+    preamp.connect(
+        high
+    );
 
-        atualizarSeekVisual(canal);
-    }
-};
+    high.connect(
+        mid
+    );
 
+    mid.connect(
+        low
+    );
+
+    low.connect(
+        channelGain
+    );
+
+    channelGain.connect(
+        panner
+    );
+
+
+    /* SOM DIRETO */
+
+    panner.connect(
+        analyser
+    );
+
+
+    /* DELAY */
+
+    panner.connect(
+        delay
+    );
+
+    delay.connect(
+        delayFeedback
+    );
+
+    delayFeedback.connect(
+        delay
+    );
+
+    delay.connect(
+        delayMix
+    );
+
+    delayMix.connect(
+        analyser
+    );
+
+
+    analyser.connect(
+        masterHigh
+    );
+
+
+    canal.source =
+        source;
+
+    canal.preampGain =
+        preamp;
+
+    canal.highFilter =
+        high;
+
+    canal.midFilter =
+        mid;
+
+    canal.lowFilter =
+        low;
+
+    canal.channelGain =
+        channelGain;
+
+    canal.panner =
+        panner;
+
+    canal.analyser =
+        analyser;
+
+    canal.delay =
+        delay;
+
+    canal.delayFeedback =
+        delayFeedback;
+
+    canal.delayMix =
+        delayMix;
+
+
+    aplicarControlesCanal(
+        canal
+    );
+
+
+    iniciarMeter(
+        canal
+    );
+
+
+    source.onended =
+        function() {
+
+            if (
+                canal.pausando
+            ) {
+                return;
+            }
+
+
+            if (
+                canal.playing
+            ) {
+
+                canal.playing =
+                    false;
+
+                canal.offset =
+                    0;
+
+                atualizarBotaoPlay(
+                    canal
+                );
+
+            }
+
+        };
 }
+
 
 /* =====================================================
    PLAY / PAUSE
@@ -2464,25 +3207,35 @@ analyser.connect(masterHigh);
 
 async function alternarPlay(canal) {
 
-    /* =========================
-       YOUTUBE
-    ========================= */
+    /* YOUTUBE */
 
-    if (canal.ytPlayer) {
+    if (
+        canal.ytPlayer
+    ) {
 
-        const estado =
-            canal.ytPlayer.getPlayerState();
+        try {
 
-        if (
-            estado ===
-            YT.PlayerState.PLAYING
-        ) {
+            const estado =
+                canal.ytPlayer
+                    .getPlayerState();
 
-            canal.ytPlayer.pauseVideo();
 
-        } else {
+            if (
+                estado ===
+                YT.PlayerState.PLAYING
+            ) {
 
-            canal.ytPlayer.playVideo();
+                canal.ytPlayer.pauseVideo();
+
+            } else {
+
+                canal.ytPlayer.playVideo();
+
+            }
+
+        } catch(e) {
+
+            console.error(e);
 
         }
 
@@ -2490,32 +3243,36 @@ async function alternarPlay(canal) {
     }
 
 
-    /* =========================
-       ARQUIVO LOCAL
-    ========================= */
+    /* LOCAL */
 
-    if (!canal.audioBuffer) {
+    if (
+        !canal.audioBuffer
+    ) {
 
         alert(
-            "Primeiro escolha um arquivo de áudio ou carregue um link do YouTube."
+            "Escolha um áudio ou carregue um YouTube."
         );
 
         return;
     }
 
+
     await iniciarAudio();
 
 
-    if (!canal.playing) {
+    if (
+        !canal.playing
+    ) {
 
         if (
             canal.offset >=
             canal.audioBuffer.duration
         ) {
 
-            canal.offset = 0;
-
+            canal.offset =
+                0;
         }
+
 
         iniciarCanalNaPosicao(
             canal,
@@ -2524,50 +3281,16 @@ async function alternarPlay(canal) {
 
     } else {
 
-        pausarCanal(canal);
-
-    }
-
-    atualizarBotaoPlay(canal);
-}
-
-function atualizarYouTubeCanal(canal) {
-
-    if (!canal.ytPlayer)
-        return;
-
-    try {
-
-        const atual =
-            canal.ytPlayer.getCurrentTime();
-
-        const duracao =
-            canal.ytPlayer.getDuration();
-
-        canal.offset = atual;
-
-        const seek =
-            canal.querySelector(".seek");
-
-        if (seek) {
-
-            seek.max = duracao;
-            seek.value = atual;
-
-        }
-
-        atualizarTempoCanal(
-            canal,
-            atual
+        pausarCanal(
+            canal
         );
 
-    } catch(e) {}
-
+    }
 }
 
 
 /* =====================================================
-   INICIAR CANAL NA POSIÇÃO
+   INICIAR CANAL
 ===================================================== */
 
 function iniciarCanalNaPosicao(
@@ -2575,11 +3298,16 @@ function iniciarCanalNaPosicao(
     posicao
 ) {
 
-    if (!canal.audioBuffer)
+    if (
+        !canal.audioBuffer
+    ) {
         return;
+    }
 
 
-    criarAudioCanal(canal);
+    criarAudioCanal(
+        canal
+    );
 
 
     canal.offset =
@@ -2593,8 +3321,8 @@ function iniciarCanalNaPosicao(
 
 
     canal.startTime =
-    audioContext.currentTime -
-    canal.offset;
+        audioContext.currentTime -
+        canal.offset;
 
 
     canal.source.start(
@@ -2603,23 +3331,27 @@ function iniciarCanalNaPosicao(
     );
 
 
-    canal.playing = true;
+    canal.playing =
+        true;
 
 
-    atualizarBotaoPlay(canal);
-
-    atualizarSeekVisual(canal);
+    atualizarBotaoPlay(
+        canal
+    );
 }
 
 
 /* =====================================================
-   PAUSAR CANAL
+   PAUSAR
 ===================================================== */
 
 function pausarCanal(canal) {
 
-    if (!canal.playing)
+    if (
+        !canal.playing
+    ) {
         return;
+    }
 
 
     const decorrido =
@@ -2627,7 +3359,8 @@ function pausarCanal(canal) {
         canal.startTime;
 
 
-    canal.offset += decorrido;
+    canal.offset +=
+        decorrido;
 
 
     canal.offset =
@@ -2640,38 +3373,38 @@ function pausarCanal(canal) {
         );
 
 
-    /*
-       Avisa ao onended que foi uma pausa
-       e não o fim da música.
-    */
-
-    canal.pausando = true;
+    canal.pausando =
+        true;
 
 
     try {
 
-        canal.source.onended = null;
+        canal.source.onended =
+            null;
 
         canal.source.stop();
 
     } catch(e) {}
 
 
-    canal.source = null;
+    canal.source =
+        null;
 
-    canal.playing = false;
+    canal.playing =
+        false;
 
-    canal.pausando = false;
+    canal.pausando =
+        false;
 
 
-    atualizarSeekVisual(canal);
-
-    atualizarBotaoPlay(canal);
+    atualizarBotaoPlay(
+        canal
+    );
 }
 
 
 /* =====================================================
-   REINICIAR NA POSIÇÃO
+   REINICIAR
 ===================================================== */
 
 function reiniciarCanalNaPosicao(
@@ -2679,12 +3412,12 @@ function reiniciarCanalNaPosicao(
     posicao
 ) {
 
-    if (!canal.audioBuffer)
+    if (
+        !canal.audioBuffer ||
+        !canal.playing
+    ) {
         return;
-
-
-    if (!canal.playing)
-        return;
+    }
 
 
     canal.offset =
@@ -2699,18 +3432,22 @@ function reiniciarCanalNaPosicao(
 
     try {
 
-        canal.source.onended = null;
+        canal.source.onended =
+            null;
 
         canal.source.stop();
 
     } catch(e) {}
 
 
-    criarAudioCanal(canal);
+    criarAudioCanal(
+        canal
+    );
 
 
     canal.startTime =
-        audioContext.currentTime;
+        audioContext.currentTime -
+        canal.offset;
 
 
     canal.source.start(
@@ -2719,11 +3456,15 @@ function reiniciarCanalNaPosicao(
     );
 
 
-    canal.playing = true;
+    canal.playing =
+        true;
 
 
-    atualizarSeekVisual(canal);
+    atualizarBotaoPlay(
+        canal
+    );
 }
+
 
 /* =====================================================
    BOTÃO PLAY
@@ -2732,9 +3473,14 @@ function reiniciarCanalNaPosicao(
 function atualizarBotaoPlay(canal) {
 
     const botao =
-        canal.querySelector(".play");
+        canal.querySelector(
+            ".play"
+        );
 
-    if (canal.playing) {
+
+    if (
+        canal.playing
+    ) {
 
         botao.textContent =
             "⏸ PAUSE";
@@ -2751,404 +3497,9 @@ function atualizarBotaoPlay(canal) {
         botao.classList.remove(
             "ativo"
         );
+
     }
 }
-
-
-/* =====================================================
-   PLAY TODOS
-===================================================== */
-
-async function playTodos() {
-
-    const canaisComAudio =
-        canais.filter(
-            canal => canal.audioBuffer
-        );
-
-    if (
-        canaisComAudio.length === 0
-    ) {
-
-        alert(
-            "Nenhum canal possui arquivo de áudio."
-        );
-
-        return;
-    }
-
-    await iniciarAudio();
-
-
-    const agora =
-        audioContext.currentTime;
-
-
-    canaisComAudio.forEach(
-        canal => {
-
-            if (canal.playing)
-                return;
-
-            let posicao =
-                canal.offset || 0;
-
-            if (
-                posicao >=
-                canal.audioBuffer.duration
-            ) {
-                posicao = 0;
-            }
-
-            criarAudioCanal(canal);
-
-            canal.offset =
-                posicao;
-
-            canal.startTime =
-                agora - posicao;
-
-            canal.source.start(
-                0,
-                posicao
-            );
-
-            canal.playing = true;
-
-            atualizarBotaoPlay(
-                canal
-            );
-        }
-    );
-}
-
-
-/* =====================================================
-   PAUSAR TODOS
-===================================================== */
-
-function pausarTodos() {
-
-    if (!audioContext)
-        return;
-
-    canais.forEach(
-        canal => {
-
-            if (canal.playing) {
-                pausarCanal(canal);
-            }
-
-        }
-    );
-
-    salvarAutomaticamente();
-}
-
-
-/* =====================================================
-   PARAR TODOS
-===================================================== */
-
-function pararTodos() {
-
-    canais.forEach(
-        canal => {
-
-            if (canal.source) {
-
-                try {
-                    canal.source.stop();
-                } catch(e) {}
-
-            }
-
-            canal.playing = false;
-            canal.offset = 0;
-
-            const seek =
-                canal.querySelector(
-                    ".seek"
-                );
-
-            if (seek) {
-                seek.value = 0;
-            }
-
-            atualizarTempoCanal(
-                canal,
-                0
-            );
-
-            atualizarBotaoPlay(
-                canal
-            );
-
-        }
-    );
-
-    salvarAutomaticamente();
-}
-
-
-/* =====================================================
-   SINCRONIZAR TODOS
-===================================================== */
-
-function sincronizarTodos() {
-
-    const canaisComAudio =
-        canais.filter(
-            canal => canal.audioBuffer
-        );
-
-    if (
-        canaisComAudio.length === 0
-    ) {
-
-        alert(
-            "Nenhum canal possui áudio."
-        );
-
-        return;
-    }
-
-
-    let menorDuracao =
-        Infinity;
-
-    canaisComAudio.forEach(
-        canal => {
-
-            menorDuracao =
-                Math.min(
-                    menorDuracao,
-                    canal.audioBuffer.duration
-                );
-
-        }
-    );
-
-
-    let posicao = 0;
-
-    canaisComAudio.forEach(
-        canal => {
-
-            if (
-                canal.playing &&
-                audioContext
-            ) {
-
-                posicao =
-                    audioContext.currentTime -
-                    canal.startTime;
-
-            }
-
-        }
-    );
-
-
-    posicao =
-        Math.max(
-            0,
-            Math.min(
-                posicao,
-                menorDuracao
-            )
-        );
-
-
-    canaisComAudio.forEach(
-        canal => {
-
-            if (canal.playing) {
-
-                try {
-                    canal.source.stop();
-                } catch(e) {}
-
-                canal.playing = false;
-            }
-
-            canal.offset =
-                posicao;
-
-            canal.querySelector(
-                ".seek"
-            ).value =
-                posicao;
-
-            atualizarTempoCanal(
-                canal,
-                posicao
-            );
-
-        }
-    );
-
-
-    salvarAutomaticamente();
-
-    alert(
-        "Todos os canais foram sincronizados em " +
-        formatarTempo(posicao)
-    );
-}
-
-
-/* =====================================================
-   TEMPO
-===================================================== */
-
-function formatarTempo(segundos) {
-
-    if (
-        !isFinite(segundos) ||
-        segundos < 0
-    ) {
-        return "00:00";
-    }
-
-
-    segundos =
-        Math.floor(segundos);
-
-
-    const minutos =
-        Math.floor(
-            segundos / 60
-        );
-
-    const segundosRestantes =
-        segundos % 60;
-
-
-    return String(minutos)
-        .padStart(2, "0")
-        +
-        ":" +
-        String(segundosRestantes)
-            .padStart(2, "0");
-}
-
-
-/* =====================================================
-   ATUALIZAR TEMPO
-===================================================== */
-
-function atualizarTempoCanal(
-    canal,
-    posicao
-) {
-
-    const tempo =
-        canal.querySelector(
-            ".tempo-atual"
-        );
-
-    if (tempo) {
-
-        tempo.textContent =
-            formatarTempo(posicao);
-    }
-}
-
-
-/* =====================================================
-   ATUALIZAR AGULHA
-===================================================== */
-
-function atualizarSeekVisual(canal) {
-
-    if (!canal.audioBuffer)
-        return;
-
-
-    let posicao =
-        canal.offset || 0;
-
-
-    if (canal.playing) {
-
-        posicao =
-            audioContext.currentTime -
-            canal.startTime;
-
-    }
-
-
-    if (
-        posicao >
-        canal.audioBuffer.duration
-    ) {
-
-        posicao =
-            canal.audioBuffer.duration;
-    }
-
-
-    const seek =
-        canal.querySelector(
-            ".seek"
-        );
-
-
-    if (seek) {
-
-        seek.value =
-            posicao;
-    }
-
-
-    atualizarTempoCanal(
-        canal,
-        posicao
-    );
-}
-
-
-/* =====================================================
-   RELÓGIO DOS CANAIS
-===================================================== */
-
-function atualizarRelogio() {
-
-    canais.forEach(
-        canal => {
-
-            if (
-                canal.ytPlayer &&
-                canal.playing
-            ) {
-
-                atualizarYouTubeCanal(
-                    canal
-                );
-
-            }
-
-            else if (
-                canal.audioBuffer &&
-                canal.playing
-            ) {
-
-                atualizarSeekVisual(
-                    canal
-                );
-
-            }
-
-        }
-    );
-
-    requestAnimationFrame(
-        atualizarRelogio
-    );
-}
-
-atualizarRelogio();
 
 
 /* =====================================================
@@ -3157,8 +3508,11 @@ atualizarRelogio();
 
 function atualizarVolumeCanal(canal) {
 
-    if (!canal.channelGain)
+    if (
+        !canal.channelGain
+    ) {
         return;
+    }
 
 
     const fader =
@@ -3177,7 +3531,7 @@ function atualizarVolumeCanal(canal) {
         );
 
 
-    const soloExiste =
+    const existeSolo =
         canais.some(
             c =>
                 c.querySelector(
@@ -3201,15 +3555,19 @@ function atualizarVolumeCanal(canal) {
         canal.channelGain.gain.value =
             0;
 
-    } else if (
-        soloExiste &&
+    }
+
+    else if (
+        existeSolo &&
         !esteSolo
     ) {
 
         canal.channelGain.gain.value =
             0;
 
-    } else {
+    }
+
+    else {
 
         canal.channelGain.gain.value =
             fader / 100;
@@ -3219,7 +3577,7 @@ function atualizarVolumeCanal(canal) {
 
 
 /* =====================================================
-   GAIN
+   PREAMP
 ===================================================== */
 
 function aplicarPreamp(
@@ -3227,8 +3585,12 @@ function aplicarPreamp(
     valor
 ) {
 
-    if (!canal.preampGain)
+    if (
+        !canal.preampGain
+    ) {
         return;
+    }
+
 
     canal.preampGain.gain.value =
         Math.pow(
@@ -3239,24 +3601,21 @@ function aplicarPreamp(
 
 
 /* =====================================================
-   CONTROLES DO CANAL
+   CONTROLES
 ===================================================== */
 
 function aplicarControlesCanal(
     canal
 ) {
 
-    const knobs =
-        canal.querySelectorAll(
-            ".knob"
-        );
-
-
-    knobs.forEach(
+    canal.querySelectorAll(
+        ".knob"
+    ).forEach(
         knob => {
 
             const tipo =
                 knob.dataset.tipo;
+
 
             const valor =
                 Number(
@@ -3264,12 +3623,15 @@ function aplicarControlesCanal(
                 );
 
 
-            if (tipo === "gain") {
+            if (
+                tipo === "gain"
+            ) {
 
                 aplicarPreamp(
                     canal,
                     valor
                 );
+
             }
 
 
@@ -3280,6 +3642,7 @@ function aplicarControlesCanal(
 
                 canal.highFilter.gain.value =
                     valor;
+
             }
 
 
@@ -3290,6 +3653,7 @@ function aplicarControlesCanal(
 
                 canal.midFilter.gain.value =
                     valor;
+
             }
 
 
@@ -3300,6 +3664,7 @@ function aplicarControlesCanal(
 
                 canal.lowFilter.gain.value =
                     valor;
+
             }
 
         }
@@ -3312,10 +3677,14 @@ function aplicarControlesCanal(
         );
 
 
-    if (canal.panner) {
+    if (
+        canal.panner
+    ) {
 
         canal.panner.pan.value =
-            Number(pan.value) / 100;
+            Number(
+                pan.value
+            ) / 100;
 
     }
 
@@ -3355,8 +3724,12 @@ function configurarKnob(knob) {
             knob.dataset.valor
         );
 
-    let inicioY = 0;
-    let inicioValor = 0;
+
+    let inicioY =
+        0;
+
+    let inicioValor =
+        0;
 
 
     function atualizar() {
@@ -3381,21 +3754,34 @@ function configurarKnob(knob) {
 
 
         const canal =
-    knob.closest(".canal");
+            knob.closest(
+                ".canal"
+            );
 
-if (canal && canal.classList.contains("master")) {
 
-    aplicarMasterKnob(
-        knob,
-        valor
-    );
+        if (
+            canal &&
+            canal.classList.contains(
+                "master"
+            )
+        ) {
 
-} else if (canal) {
+            aplicarMasterKnob(
+                knob,
+                valor
+            );
 
-    aplicarControlesCanal(
-        canal
-    );
-}
+        }
+
+        else if (
+            canal
+        ) {
+
+            aplicarControlesCanal(
+                canal
+            );
+
+        }
 
 
         salvarAutomaticamente();
@@ -3459,44 +3845,6 @@ if (canal && canal.classList.contains("master")) {
     );
 
 
-    knob.addEventListener(
-        "touchstart",
-        function(e) {
-
-            inicioY =
-                e.touches[0].clientY;
-
-            inicioValor =
-                valor;
-
-        },
-        { passive: true }
-    );
-
-
-    knob.addEventListener(
-        "touchmove",
-        function(e) {
-
-            const diferenca =
-                inicioY -
-                e.touches[0].clientY;
-
-
-            valor =
-                inicioValor +
-                Math.round(
-                    diferenca / 5
-                );
-
-
-            atualizar();
-
-        },
-        { passive: true }
-    );
-
-
     atualizarVisualKnob(
         knob
     );
@@ -3520,7 +3868,8 @@ function atualizarVisualKnob(
     const graus =
         -135 +
         (
-            (valor + 12) / 24
+            (valor + 12) /
+            24
         ) * 270;
 
 
@@ -3531,13 +3880,14 @@ function atualizarVisualKnob(
 
 
     const texto =
-        knob.parentElement
-            .querySelector(
-                ".valor-knob"
-            );
+        knob.parentElement.querySelector(
+            ".valor-knob"
+        );
 
 
-    if (texto) {
+    if (
+        texto
+    ) {
 
         texto.textContent =
             valor > 0
@@ -3549,7 +3899,7 @@ function atualizarVisualKnob(
 
 
 /* =====================================================
-   MASTER KNOBS
+   MASTER KNOB
 ===================================================== */
 
 function aplicarMasterKnob(
@@ -3557,8 +3907,11 @@ function aplicarMasterKnob(
     valor
 ) {
 
-    if (!audioContext)
+    if (
+        !audioContext
+    ) {
         return;
+    }
 
 
     const tipo =
@@ -3572,6 +3925,7 @@ function aplicarMasterKnob(
 
         masterHigh.gain.value =
             valor;
+
     }
 
 
@@ -3582,6 +3936,7 @@ function aplicarMasterKnob(
 
         masterMid.gain.value =
             valor;
+
     }
 
 
@@ -3592,6 +3947,7 @@ function aplicarMasterKnob(
 
         masterLow.gain.value =
             valor;
+
     }
 }
 
@@ -3600,32 +3956,37 @@ function aplicarMasterKnob(
    MASTER FADER
 ===================================================== */
 
-document
-    .getElementById(
-        "masterFader"
-    )
-    .addEventListener(
-        "input",
-        function() {
+document.getElementById(
+    "masterFader"
+).addEventListener(
+    "input",
+    function() {
 
-            document.getElementById(
-                "masterValor"
-            ).textContent =
-                this.value + "%";
+        document.getElementById(
+            "masterValor"
+        ).textContent =
+            this.value + "%";
 
 
-            aplicarVolumeMaster();
+        aplicarVolumeMaster();
 
-            salvarAutomaticamente();
+        salvarAutomaticamente();
 
-        }
-    );
+    }
+);
 
+
+/* =====================================================
+   MASTER VOLUME
+===================================================== */
 
 function aplicarVolumeMaster() {
 
-    if (!masterGain)
+    if (
+        !masterGain
+    ) {
         return;
+    }
 
 
     const fader =
@@ -3647,7 +4008,7 @@ function aplicarVolumeMaster() {
         ? 0
         : Number(
             fader.value
-          ) / 100;
+        ) / 100;
 }
 
 
@@ -3680,8 +4041,11 @@ function toggleMasterMute() {
 
 function iniciarMeter(canal) {
 
-    if (!canal.analyser)
+    if (
+        !canal.analyser
+    ) {
         return;
+    }
 
 
     const meter =
@@ -3690,8 +4054,11 @@ function iniciarMeter(canal) {
         );
 
 
-    if (!meter)
+    if (
+        !meter
+    ) {
         return;
+    }
 
 
     const leds =
@@ -3708,8 +4075,11 @@ function iniciarMeter(canal) {
 
     function atualizar() {
 
-        if (!canal.analyser)
+        if (
+            !canal.analyser
+        ) {
             return;
+        }
 
 
         canal.analyser
@@ -3718,7 +4088,8 @@ function iniciarMeter(canal) {
             );
 
 
-        let soma = 0;
+        let soma =
+            0;
 
 
         for (
@@ -3728,11 +4099,15 @@ function iniciarMeter(canal) {
         ) {
 
             const v =
-                (dados[i] - 128) /
-                128;
+                (
+                    dados[i] -
+                    128
+                ) / 128;
+
 
             soma +=
                 v * v;
+
         }
 
 
@@ -3759,15 +4134,21 @@ function iniciarMeter(canal) {
                     "led";
 
 
-                if (i < nivel) {
+                if (
+                    i < nivel
+                ) {
 
-                    if (i < 13) {
+                    if (
+                        i < 13
+                    ) {
 
                         led.classList.add(
                             "verde"
                         );
 
-                    } else if (
+                    }
+
+                    else if (
                         i < 17
                     ) {
 
@@ -3775,13 +4156,18 @@ function iniciarMeter(canal) {
                             "amarelo"
                         );
 
-                    } else {
+                    }
+
+                    else {
 
                         led.classList.add(
                             "vermelho"
                         );
+
                     }
+
                 }
+
             }
         );
 
@@ -3794,6 +4180,173 @@ function iniciarMeter(canal) {
 
     atualizar();
 }
+
+
+/* =====================================================
+   TEMPO
+===================================================== */
+
+function formatarTempo(
+    segundos
+) {
+
+    if (
+        !isFinite(
+            segundos
+        ) ||
+        segundos < 0
+    ) {
+
+        return "00:00";
+    }
+
+
+    segundos =
+        Math.floor(
+            segundos
+        );
+
+
+    const minutos =
+        Math.floor(
+            segundos / 60
+        );
+
+
+    const segundosRestantes =
+        segundos % 60;
+
+
+    return String(
+        minutos
+    ).padStart(
+        2,
+        "0"
+    )
+    +
+    ":"
+    +
+    String(
+        segundosRestantes
+    ).padStart(
+        2,
+        "0"
+    );
+}
+
+
+function atualizarTempoCanal(
+    canal,
+    posicao
+) {
+
+    const tempo =
+        canal.querySelector(
+            ".tempo-atual"
+        );
+
+
+    if (
+        tempo
+    ) {
+
+        tempo.textContent =
+            formatarTempo(
+                posicao
+            );
+
+    }
+}
+
+
+/* =====================================================
+   RELÓGIO
+===================================================== */
+
+function atualizarRelogio() {
+
+    canais.forEach(
+        canal => {
+
+            if (
+                canal.ytPlayer &&
+                canal.playing
+            ) {
+
+                try {
+
+                    const atual =
+                        canal.ytPlayer
+                            .getCurrentTime();
+
+
+                    canal.offset =
+                        atual;
+
+
+                    const seek =
+                        canal.querySelector(
+                            ".seek"
+                        );
+
+
+                    seek.value =
+                        atual;
+
+
+                    atualizarTempoCanal(
+                        canal,
+                        atual
+                    );
+
+                } catch(e) {}
+
+            }
+
+
+            else if (
+                canal.audioBuffer &&
+                canal.playing &&
+                audioContext
+            ) {
+
+                const posicao =
+                    audioContext.currentTime -
+                    canal.startTime;
+
+
+                canal.offset =
+                    posicao;
+
+
+                const seek =
+                    canal.querySelector(
+                        ".seek"
+                    );
+
+
+                seek.value =
+                    posicao;
+
+
+                atualizarTempoCanal(
+                    canal,
+                    posicao
+                );
+
+            }
+
+        }
+    );
+
+
+    requestAnimationFrame(
+        atualizarRelogio
+    );
+}
+
+
+atualizarRelogio();
 
 
 /* =====================================================
@@ -3832,7 +4385,9 @@ function adicionarCanal() {
    REMOVER CANAL
 ===================================================== */
 
-function removerCanal(canal) {
+function removerCanal(
+    canal
+) {
 
     const nome =
         canal.querySelector(
@@ -3851,10 +4406,14 @@ function removerCanal(canal) {
     }
 
 
-    if (canal.source) {
+    if (
+        canal.source
+    ) {
 
         try {
+
             canal.source.stop();
+
         } catch(e) {}
 
     }
@@ -3866,7 +4425,9 @@ function removerCanal(canal) {
         );
 
 
-    if (indice !== -1) {
+    if (
+        indice !== -1
+    ) {
 
         canais.splice(
             indice,
@@ -3878,6 +4439,7 @@ function removerCanal(canal) {
 
     canal.remove();
 
+
     atualizarContador();
 
     atualizarSolos();
@@ -3887,17 +4449,27 @@ function removerCanal(canal) {
 
 
 /* =====================================================
-   COPIAR CANAL
+   CONTADOR
 ===================================================== */
 
-function copiarCanal(canal) {
+function atualizarContador() {
+
+    document.getElementById(
+        "contador"
+    ).textContent =
+        canais.length;
+}
+
+
+/* =====================================================
+   COPIAR
+===================================================== */
+
+function copiarCanal(
+    canal
+) {
 
     canalCopiado = {
-
-        nome:
-            canal.querySelector(
-                ".nome"
-            ).value,
 
         fader:
             canal.querySelector(
@@ -3939,6 +4511,7 @@ function copiarCanal(canal) {
                         k.dataset.valor
                     )
             )
+
     };
 
 
@@ -3949,12 +4522,16 @@ function copiarCanal(canal) {
 
 
 /* =====================================================
-   COLAR CANAL
+   COLAR
 ===================================================== */
 
-function colarCanal(canal) {
+function colarCanal(
+    canal
+) {
 
-    if (!canalCopiado) {
+    if (
+        !canalCopiado
+    ) {
 
         alert(
             "Primeiro copie um canal."
@@ -4019,12 +4596,6 @@ function colarCanal(canal) {
     );
 
 
-    canal.classList.toggle(
-        "solo-canal",
-        canalCopiado.solo
-    );
-
-
     const knobs =
         canal.querySelectorAll(
             ".knob"
@@ -4034,7 +4605,9 @@ function colarCanal(canal) {
     canalCopiado.knobs.forEach(
         (valor, i) => {
 
-            if (knobs[i]) {
+            if (
+                knobs[i]
+            ) {
 
                 knobs[i].dataset.valor =
                     valor;
@@ -4042,6 +4615,7 @@ function colarCanal(canal) {
                 atualizarVisualKnob(
                     knobs[i]
                 );
+
             }
 
         }
@@ -4052,9 +4626,11 @@ function colarCanal(canal) {
         canal
     );
 
+
     atualizarSolos();
 
     salvarAutomaticamente();
+
 
     alert(
         "Configuração colada neste canal."
@@ -4063,20 +4639,463 @@ function colarCanal(canal) {
 
 
 /* =====================================================
-   CONTADOR
+   PLAY TODOS
 ===================================================== */
 
-function atualizarContador() {
+async function playTodos() {
 
-    document.getElementById(
-        "contador"
-    ).textContent =
-        canais.length;
+    await iniciarAudio();
+
+
+    canais.forEach(
+        canal => {
+
+            if (
+                canal.ytPlayer
+            ) {
+
+                try {
+
+                    canal.ytPlayer.playVideo();
+
+                } catch(e) {}
+
+                return;
+            }
+
+
+            if (
+                canal.audioBuffer &&
+                !canal.playing
+            ) {
+
+                iniciarCanalNaPosicao(
+                    canal,
+                    canal.offset || 0
+                );
+
+            }
+
+        }
+    );
+
+
+    salvarAutomaticamente();
 }
 
 
 /* =====================================================
-   ESTADO DA MESA
+   PAUSAR TODOS
+===================================================== */
+
+function pausarTodos() {
+
+    canais.forEach(
+        canal => {
+
+            if (
+                canal.ytPlayer
+            ) {
+
+                try {
+
+                    canal.ytPlayer.pauseVideo();
+
+                } catch(e) {}
+
+            }
+
+
+            if (
+                canal.audioBuffer &&
+                canal.playing
+            ) {
+
+                pausarCanal(
+                    canal
+                );
+
+            }
+
+        }
+    );
+
+
+    salvarAutomaticamente();
+}
+
+
+/* =====================================================
+   PARAR TODOS
+===================================================== */
+
+function pararTodos() {
+
+    canais.forEach(
+        canal => {
+
+            if (
+                canal.ytPlayer
+            ) {
+
+                try {
+
+                    canal.ytPlayer.stopVideo();
+
+                } catch(e) {}
+
+            }
+
+
+            if (
+                canal.source
+            ) {
+
+                try {
+
+                    canal.source.stop();
+
+                } catch(e) {}
+
+            }
+
+
+            canal.source =
+                null;
+
+            canal.playing =
+                false;
+
+            canal.offset =
+                0;
+
+
+            const seek =
+                canal.querySelector(
+                    ".seek"
+                );
+
+
+            if (
+                seek
+            ) {
+
+                seek.value =
+                    0;
+
+            }
+
+
+            atualizarTempoCanal(
+                canal,
+                0
+            );
+
+
+            atualizarBotaoPlay(
+                canal
+            );
+
+        }
+    );
+
+
+    salvarAutomaticamente();
+}
+
+
+/* =====================================================
+   SINCRONIZAR TODOS
+===================================================== */
+
+function sincronizarTodos() {
+
+    canais.forEach(
+        canal => {
+
+            canal.offset =
+                0;
+
+
+            const seek =
+                canal.querySelector(
+                    ".seek"
+                );
+
+
+            if (
+                seek
+            ) {
+
+                seek.value =
+                    0;
+
+            }
+
+
+            atualizarTempoCanal(
+                canal,
+                0
+            );
+
+
+            if (
+                canal.ytPlayer
+            ) {
+
+                try {
+
+                    canal.ytPlayer.seekTo(
+                        0,
+                        true
+                    );
+
+                } catch(e) {}
+
+            }
+
+        }
+    );
+
+
+    salvarAutomaticamente();
+
+
+    alert(
+        "Todos os canais foram sincronizados no início."
+    );
+}
+
+
+/* =====================================================
+   EFEITOS
+===================================================== */
+
+function abrirEfeitos(
+    canal
+) {
+
+    canalEfeitosAtual =
+        canal;
+
+
+    document.getElementById(
+        "modalEfeitos"
+    ).classList.add(
+        "aberto"
+    );
+
+
+    atualizarInterfaceEfeitos();
+}
+
+
+function fecharEfeitos() {
+
+    document.getElementById(
+        "modalEfeitos"
+    ).classList.remove(
+        "aberto"
+    );
+
+
+    canalEfeitosAtual =
+        null;
+}
+
+
+function toggleEfeito(
+    tipo
+) {
+
+    if (
+        !canalEfeitosAtual
+    ) {
+        return;
+    }
+
+
+    canalEfeitosAtual.effects[tipo] =
+        !canalEfeitosAtual.effects[tipo];
+
+
+    const ativo =
+        canalEfeitosAtual.effects[tipo];
+
+
+    const botaoId = {
+
+        gate: "btnGate",
+
+        compressor: "btnCompressor",
+
+        reverb: "btnReverb",
+
+        delay: "btnDelay"
+
+    }[tipo];
+
+
+    const botao =
+        document.getElementById(
+            botaoId
+        );
+
+
+    if (
+        botao
+    ) {
+
+        botao.classList.toggle(
+            "efeito-ativo",
+            ativo
+        );
+
+    }
+
+
+    aplicarEfeitos(
+        canalEfeitosAtual
+    );
+
+
+    salvarAutomaticamente();
+}
+
+
+function atualizarInterfaceEfeitos() {
+
+    if (
+        !canalEfeitosAtual
+    ) {
+        return;
+    }
+
+
+    const efeitos =
+        canalEfeitosAtual.effects;
+
+
+    document.getElementById(
+        "btnGate"
+    ).classList.toggle(
+        "efeito-ativo",
+        efeitos.gate
+    );
+
+
+    document.getElementById(
+        "btnCompressor"
+    ).classList.toggle(
+        "efeito-ativo",
+        efeitos.compressor
+    );
+
+
+    document.getElementById(
+        "btnReverb"
+    ).classList.toggle(
+        "efeito-ativo",
+        efeitos.reverb
+    );
+
+
+    document.getElementById(
+        "btnDelay"
+    ).classList.toggle(
+        "efeito-ativo",
+        efeitos.delay
+    );
+}
+
+
+/* =====================================================
+   APLICAÇÃO DE EFEITOS
+===================================================== */
+
+function aplicarEfeitos(
+    canal
+) {
+
+    /*
+       Os efeitos avançados são aplicados
+       somente quando existe cadeia Web Audio.
+    */
+
+    if (
+        !audioContext ||
+        !canal.channelGain
+    ) {
+        return;
+    }
+
+
+    /* COMPRESSOR */
+
+    if (
+        canal.effects.compressor
+    ) {
+
+        if (
+            !canal.effectNodes.compressor
+        ) {
+
+            const compressor =
+                audioContext.createDynamicsCompressor();
+
+
+            compressor.threshold.value =
+                -24;
+
+            compressor.knee.value =
+                30;
+
+            compressor.ratio.value =
+                4;
+
+            compressor.attack.value =
+                0.003;
+
+            compressor.release.value =
+                0.25;
+
+
+            canal.effectNodes.compressor =
+                compressor;
+
+        }
+
+    }
+
+
+    /*
+       O delay já existe na cadeia principal.
+       Aqui apenas habilitamos/desabilitamos o mix.
+    */
+
+    if (
+        canal.delayMix
+    ) {
+
+        const mix =
+            Number(
+                canal.querySelector(
+                    ".delay-mix"
+                ).value
+            ) / 100;
+
+
+        canal.delayMix.gain.value =
+            canal.effects.delay
+            ? mix
+            : 0;
+
+    }
+}
+
+
+/* =====================================================
+   CENAS
 ===================================================== */
 
 function obterEstado() {
@@ -4087,6 +5106,7 @@ function obterEstado() {
             document.getElementById(
                 "masterFader"
             ).value,
+
 
         masterMute:
             document.getElementById(
@@ -4111,356 +5131,96 @@ function obterEstado() {
 
         canais:
             canais.map(
-                canal => {
+                canal => ({
 
-                    return {
+                    numero:
+                        canal.dataset.numero,
 
-                        nome:
-                            canal.querySelector(
-                                ".nome"
-                            ).value,
+                    nome:
+                        canal.querySelector(
+                            ".nome"
+                        ).value,
 
-                        fader:
-                            canal.querySelector(
-                                ".fader"
-                            ).value,
+                    fader:
+                        canal.querySelector(
+                            ".fader"
+                        ).value,
 
-                        pan:
-                            canal.querySelector(
-                                ".pan"
-                            ).value,
+                    pan:
+                        canal.querySelector(
+                            ".pan"
+                        ).value,
 
-                        aux:
-                            canal.querySelector(
-                                ".aux"
-                            ).value,
+                    aux:
+                        canal.querySelector(
+                            ".aux"
+                        ).value,
 
-                        mute:
-                            canal.querySelector(
-                                ".mute"
-                            ).classList.contains(
-                                "ativo"
-                            ),
+                    mute:
+                        canal.querySelector(
+                            ".mute"
+                        ).classList.contains(
+                            "ativo"
+                        ),
 
-                        solo:
-                            canal.querySelector(
-                                ".solo"
-                            ).classList.contains(
-                                "ativo"
-                            ),
+                    solo:
+                        canal.querySelector(
+                            ".solo"
+                        ).classList.contains(
+                            "ativo"
+                        ),
 
-                        offset:
-                            canal.offset || 0,
+                    offset:
+                        canal.offset || 0,
 
-                        fileName:
-                            canal.fileName || "",
+                    fileName:
+                        canal.fileName || "",
 
-                        youtubeUrl:
+                    youtubeUrl:
                         canal.youtubeUrl || "",
 
-                        youtubeId:
+                    youtubeId:
                         canal.youtubeId || "",
 
-                        knobs:
-                            Array.from(
-                                canal.querySelectorAll(
-                                    ".knob"
-                                )
-                            ).map(
-                                k =>
-                                    Number(
-                                        k.dataset.valor
-                                    )
+                    knobs:
+                        Array.from(
+                            canal.querySelectorAll(
+                                ".knob"
                             )
-                    };
+                        ).map(
+                            k =>
+                                Number(
+                                    k.dataset.valor
+                                )
+                        ),
 
-                }
+                    delayTime:
+                        canal.querySelector(
+                            ".delay-time"
+                        ).value,
+
+                    delayMix:
+                        canal.querySelector(
+                            ".delay-mix"
+                        ).value,
+
+                    delayFeedback:
+                        canal.querySelector(
+                            ".delay-feedback"
+                        ).value,
+
+                    effects:
+                        canal.effects
+
+                })
             )
+
     };
 }
 
 
 /* =====================================================
-   APLICAR ESTADO
-===================================================== */
-
-function aplicarEstado(estado) {
-
-    if (!estado)
-        return;
-
-
-    /* QUANTIDADE */
-
-    while (
-        canais.length <
-        estado.canais.length
-    ) {
-
-        adicionarCanal();
-    }
-
-
-    while (
-        canais.length >
-        estado.canais.length
-    ) {
-
-        const canal =
-            canais[
-                canais.length - 1
-            ];
-
-
-        if (canal.source) {
-
-            try {
-                canal.source.stop();
-            } catch(e) {}
-
-        }
-
-
-        canal.remove();
-
-        canais.pop();
-    }
-
-
-    /* MASTER */
-
-    const masterFader =
-        document.getElementById(
-            "masterFader"
-        );
-
-
-    masterFader.value =
-        estado.masterFader || 80;
-
-
-    document.getElementById(
-        "masterValor"
-    ).textContent =
-        masterFader.value + "%";
-
-
-    const masterMute =
-        document.getElementById(
-            "masterMute"
-        );
-
-
-    masterMute.classList.toggle(
-        "ativo",
-        !!estado.masterMute
-    );
-
-
-    if (estado.masterEQ) {
-
-        const knobs =
-            document.querySelectorAll(
-                ".master .knob"
-            );
-
-
-        estado.masterEQ.forEach(
-            (valor, i) => {
-
-                if (knobs[i]) {
-
-                    knobs[i].dataset.valor =
-                        valor;
-
-                    atualizarVisualKnob(
-                        knobs[i]
-                    );
-
-                    aplicarMasterKnob(
-                        knobs[i],
-                        valor
-                    );
-
-                }
-
-            }
-        );
-    }
-
-
-    /* CANAIS */
-
-    estado.canais.forEach(
-        (dados, i) => {
-
-            const canal =
-                canais[i];
-
-
-            if (!canal)
-                return;
-
-
-            canal.querySelector(
-                ".nome"
-            ).value =
-                dados.nome || "Canal";
-
-
-            canal.querySelector(
-                ".fader"
-            ).value =
-                dados.fader || 75;
-
-
-            canal.querySelector(
-                ".pan"
-            ).value =
-                dados.pan || 0;
-
-
-            canal.querySelector(
-                ".aux"
-            ).value =
-                dados.aux || 0;
-
-
-            canal.querySelector(
-                ".valor-fader"
-            ).textContent =
-                (
-                    dados.fader || 75
-                ) + "%";
-
-
-            const mute =
-                canal.querySelector(
-                    ".mute"
-                );
-
-
-            mute.classList.toggle(
-                "ativo",
-                !!dados.mute
-            );
-
-
-            canal.classList.toggle(
-                "mutado",
-                !!dados.mute
-            );
-
-
-            const solo =
-                canal.querySelector(
-                    ".solo"
-                );
-
-
-            solo.classList.toggle(
-                "ativo",
-                !!dados.solo
-            );
-
-
-            canal.classList.toggle(
-                "solo-canal",
-                !!dados.solo
-            );
-
-
-            const knobs =
-                canal.querySelectorAll(
-                    ".knob"
-                );
-
-
-            if (dados.knobs) {
-
-                dados.knobs.forEach(
-                    (valor, j) => {
-
-                        if (knobs[j]) {
-
-                            knobs[j].dataset.valor =
-                                valor;
-
-                            atualizarVisualKnob(
-                                knobs[j]
-                            );
-                        }
-
-                    }
-                );
-            }
-
-
-            canal.offset =
-                dados.offset || 0;
-
-            canal.fileName =
-                dados.fileName || "";
-   
-            canal.youtubeUrl =
-    dados.youtubeUrl || "";
-
-canal.youtubeId =
-    dados.youtubeId || "";
-
-const campoYoutube =
-    canal.querySelector(
-        ".youtube-url"
-    );
-
-if (campoYoutube) {
-
-    campoYoutube.value =
-        canal.youtubeUrl;
-
-}
-
-if (canal.youtubeUrl) {
-
-    carregarYouTube(canal);
-
-}
-
-
-            if (
-                canal.audioBuffer
-            ) {
-
-                canal.querySelector(
-                    ".seek"
-                ).value =
-                    canal.offset;
-
-                atualizarTempoCanal(
-                    canal,
-                    canal.offset
-                );
-            }
-
-
-            aplicarControlesCanal(
-                canal
-            );
-
-        }
-    );
-
-
-    aplicarVolumeMaster();
-
-    atualizarSolos();
-
-    atualizarContador();
-}
-
-
-/* =====================================================
-   SALVAMENTO AUTOMÁTICO
+   SALVAR AUTOMATICAMENTE
 ===================================================== */
 
 function salvarAutomaticamente() {
@@ -4476,69 +5236,17 @@ function salvarAutomaticamente() {
 
     } catch(e) {
 
-        console.log(e);
+        console.warn(
+            "Não foi possível salvar:",
+            e
+        );
+
     }
 }
 
 
 /* =====================================================
-   CENAS
-===================================================== */
-
-function salvarCena() {
-
-    const nome =
-        document.getElementById(
-            "nomeCena"
-        ).value.trim();
-
-
-    if (!nome) {
-
-        alert(
-            "Digite um nome para a cena."
-        );
-
-        return;
-    }
-
-
-    const cenas =
-        JSON.parse(
-            localStorage.getItem(
-                "mesaSomCenas"
-            ) || "{}"
-        );
-
-
-    cenas[nome] =
-        obterEstado();
-
-
-    localStorage.setItem(
-        "mesaSomCenas",
-        JSON.stringify(
-            cenas
-        )
-    );
-
-
-    document.getElementById(
-        "nomeCena"
-    ).value = "";
-
-
-    atualizarListaCenas();
-
-
-    alert(
-        "Cena salva com sucesso!"
-    );
-}
-
-
-/* =====================================================
-   SALVAR RÁPIDO
+   CENA RÁPIDA
 ===================================================== */
 
 function salvarCenaRapida() {
@@ -4586,14 +5294,14 @@ function salvarCenaRapida() {
 
 function abrirCenas() {
 
-    atualizarListaCenas();
-
-
     document.getElementById(
         "modalCenas"
     ).classList.add(
         "aberto"
     );
+
+
+    atualizarListaCenas();
 }
 
 
@@ -4603,6 +5311,65 @@ function fecharCenas() {
         "modalCenas"
     ).classList.remove(
         "aberto"
+    );
+}
+
+
+/* =====================================================
+   SALVAR CENA
+===================================================== */
+
+function salvarCena() {
+
+    const nome =
+        document.getElementById(
+            "nomeCena"
+        ).value.trim();
+
+
+    if (
+        !nome
+    ) {
+
+        alert(
+            "Digite um nome para a cena."
+        );
+
+        return;
+    }
+
+
+    const cenas =
+        JSON.parse(
+            localStorage.getItem(
+                "mesaSomCenas"
+            ) || "{}"
+        );
+
+
+    cenas[nome] =
+        obterEstado();
+
+
+    localStorage.setItem(
+        "mesaSomCenas",
+        JSON.stringify(
+            cenas
+        )
+    );
+
+
+    document.getElementById(
+        "nomeCena"
+    ).value =
+        "";
+
+
+    atualizarListaCenas();
+
+
+    alert(
+        "Cena salva com sucesso!"
     );
 }
 
@@ -4619,6 +5386,10 @@ function atualizarListaCenas() {
         );
 
 
+    lista.innerHTML =
+        "";
+
+
     const cenas =
         JSON.parse(
             localStorage.getItem(
@@ -4627,21 +5398,26 @@ function atualizarListaCenas() {
         );
 
 
-    lista.innerHTML = "";
-
-
     const nomes =
-        Object.keys(cenas);
+        Object.keys(
+            cenas
+        );
 
 
     if (
         nomes.length === 0
     ) {
 
-        lista.innerHTML =
-            "<p style='color:#777;text-align:center'>" +
-            "Nenhuma cena salva." +
-            "</p>";
+        lista.innerHTML = `
+            <div style="
+                color:#666;
+                text-align:center;
+                padding:15px;
+                font-size:9px;
+            ">
+                Nenhuma cena salva.
+            </div>
+        `;
 
         return;
     }
@@ -4660,33 +5436,33 @@ function atualizarListaCenas() {
                 "item-cena";
 
 
-            const texto =
-                document.createElement(
-                    "span"
-                );
+            item.innerHTML = `
 
+                <span>
+                    ${escaparHTML(nome)}
+                </span>
 
-            texto.textContent =
-                nome;
+                <span>
+
+                    <button>
+                        CARREGAR
+                    </button>
+
+                    <button>
+                        EXCLUIR
+                    </button>
+
+                </span>
+            `;
 
 
             const botoes =
-                document.createElement(
-                    "span"
-                );
-
-
-            const carregar =
-                document.createElement(
+                item.querySelectorAll(
                     "button"
                 );
 
 
-            carregar.textContent =
-                "CARREGAR";
-
-
-            carregar.onclick =
+            botoes[0].onclick =
                 function() {
 
                     carregarCena(
@@ -4696,17 +5472,7 @@ function atualizarListaCenas() {
                 };
 
 
-            const excluir =
-                document.createElement(
-                    "button"
-                );
-
-
-            excluir.textContent =
-                "🗑";
-
-
-            excluir.onclick =
+            botoes[1].onclick =
                 function() {
 
                     excluirCena(
@@ -4714,24 +5480,6 @@ function atualizarListaCenas() {
                     );
 
                 };
-
-
-            botoes.appendChild(
-                carregar
-            );
-
-            botoes.appendChild(
-                excluir
-            );
-
-
-            item.appendChild(
-                texto
-            );
-
-            item.appendChild(
-                botoes
-            );
 
 
             lista.appendChild(
@@ -4747,7 +5495,9 @@ function atualizarListaCenas() {
    CARREGAR CENA
 ===================================================== */
 
-function carregarCena(nome) {
+function carregarCena(
+    nome
+) {
 
     const cenas =
         JSON.parse(
@@ -4757,26 +5507,26 @@ function carregarCena(nome) {
         );
 
 
-    if (!cenas[nome])
+    const estado =
+        cenas[nome];
+
+
+    if (
+        !estado
+    ) {
         return;
+    }
 
 
     aplicarEstado(
-        cenas[nome]
+        estado
     );
 
 
-    salvarAutomaticamente();
-
-    fecharCenas();
-
-
     alert(
-        "Cena carregada:\n" +
+        "Cena '" +
         nome +
-        "\n\n" +
-        "Se os arquivos de áudio não estiverem carregados, " +
-        "selecione novamente os arquivos nos respectivos canais."
+        "' carregada."
     );
 }
 
@@ -4785,7 +5535,9 @@ function carregarCena(nome) {
    EXCLUIR CENA
 ===================================================== */
 
-function excluirCena(nome) {
+function excluirCena(
+    nome
+) {
 
     if (
         !confirm(
@@ -4820,45 +5572,497 @@ function excluirCena(nome) {
     atualizarListaCenas();
 }
 
+
 /* =====================================================
-   EFEITOS
+   APLICAR ESTADO
 ===================================================== */
 
-let canalEfeitosAtual = null;
+function aplicarEstado(
+    estado
+) {
+
+    /* MASTER */
+
+    if (
+        estado.masterFader !==
+        undefined
+    ) {
+
+        const fader =
+            document.getElementById(
+                "masterFader"
+            );
 
 
-function abrirEfeitos(canal) {
+        fader.value =
+            estado.masterFader;
 
-    canalEfeitosAtual = canal;
 
-    const modal =
         document.getElementById(
-            "modalEfeitos"
+            "masterValor"
+        ).textContent =
+            estado.masterFader +
+            "%";
+
+    }
+
+
+    const masterMute =
+        document.getElementById(
+            "masterMute"
         );
 
-    modal.classList.add(
-        "aberto"
+
+    masterMute.classList.toggle(
+        "ativo",
+        !!estado.masterMute
     );
 
-}
 
+    /* MASTER EQ */
 
-function fecharEfeitos() {
-
-    document
-        .getElementById(
-            "modalEfeitos"
+    if (
+        Array.isArray(
+            estado.masterEQ
         )
-        .classList.remove(
-            "aberto"
+    ) {
+
+        const knobs =
+            document.querySelectorAll(
+                ".master .knob"
+            );
+
+
+        estado.masterEQ.forEach(
+            (valor, i) => {
+
+                if (
+                    knobs[i]
+                ) {
+
+                    knobs[i].dataset.valor =
+                        valor;
+
+                    atualizarVisualKnob(
+                        knobs[i]
+                    );
+
+                    aplicarMasterKnob(
+                        knobs[i],
+                        valor
+                    );
+
+                }
+
+            }
         );
 
-    canalEfeitosAtual = null;
+    }
 
+
+    /* CANAIS */
+
+    if (
+        Array.isArray(
+            estado.canais
+        )
+    ) {
+
+        while (
+            canais.length <
+            estado.canais.length
+        ) {
+
+            adicionarCanal();
+
+        }
+
+
+        estado.canais.forEach(
+            (dados, i) => {
+
+                const canal =
+                    canais[i];
+
+
+                if (
+                    !canal
+                ) {
+                    return;
+                }
+
+
+                canal.querySelector(
+                    ".nome"
+                ).value =
+                    dados.nome || "";
+
+
+                canal.querySelector(
+                    ".fader"
+                ).value =
+                    dados.fader ??
+                    75;
+
+
+                canal.querySelector(
+                    ".valor-fader"
+                ).textContent =
+                    (
+                        dados.fader ??
+                        75
+                    ) +
+                    "%";
+
+
+                canal.querySelector(
+                    ".pan"
+                ).value =
+                    dados.pan ??
+                    0;
+
+
+                canal.querySelector(
+                    ".aux"
+                ).value =
+                    dados.aux ??
+                    0;
+
+
+                canal.querySelector(
+                    ".mute"
+                ).classList.toggle(
+                    "ativo",
+                    !!dados.mute
+                );
+
+
+                canal.classList.toggle(
+                    "mutado",
+                    !!dados.mute
+                );
+
+
+                canal.querySelector(
+                    ".solo"
+                ).classList.toggle(
+                    "ativo",
+                    !!dados.solo
+                );
+
+
+                canal.classList.toggle(
+                    "solo-canal",
+                    !!dados.solo
+                );
+
+
+                if (
+                    Array.isArray(
+                        dados.knobs
+                    )
+                ) {
+
+                    const knobs =
+                        canal.querySelectorAll(
+                            ".knob"
+                        );
+
+
+                    dados.knobs.forEach(
+                        (valor, k) => {
+
+                            if (
+                                knobs[k]
+                            ) {
+
+                                knobs[k].dataset.valor =
+                                    valor;
+
+                                atualizarVisualKnob(
+                                    knobs[k]
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+
+
+                if (
+                    dados.delayTime !==
+                    undefined
+                ) {
+
+                    canal.querySelector(
+                        ".delay-time"
+                    ).value =
+                        dados.delayTime;
+
+                    canal.querySelector(
+                        ".delay-time-value"
+                    ).textContent =
+                        dados.delayTime +
+                        " ms";
+
+                }
+
+
+                if (
+                    dados.delayMix !==
+                    undefined
+                ) {
+
+                    canal.querySelector(
+                        ".delay-mix"
+                    ).value =
+                        dados.delayMix;
+
+                    canal.querySelector(
+                        ".delay-mix-value"
+                    ).textContent =
+                        dados.delayMix +
+                        "%";
+
+                }
+
+
+                if (
+                    dados.delayFeedback !==
+                    undefined
+                ) {
+
+                    canal.querySelector(
+                        ".delay-feedback"
+                    ).value =
+                        dados.delayFeedback;
+
+                    canal.querySelector(
+                        ".delay-feedback-value"
+                    ).textContent =
+                        dados.delayFeedback +
+                        "%";
+
+                }
+
+
+                if (
+                    dados.youtubeUrl
+                ) {
+
+                    canal.querySelector(
+                        ".youtube-url"
+                    ).value =
+                        dados.youtubeUrl;
+
+                }
+
+
+                canal.offset =
+                    dados.offset ||
+                    0;
+
+
+                if (
+                    dados.effects
+                ) {
+
+                    canal.effects =
+                        {
+                            gate:
+                                !!dados.effects.gate,
+
+                            compressor:
+                                !!dados.effects.compressor,
+
+                            reverb:
+                                !!dados.effects.reverb,
+
+                            delay:
+                                !!dados.effects.delay
+                        };
+
+                }
+
+
+                if (
+                    canal.audioBuffer
+                ) {
+
+                    criarAudioCanal(
+                        canal
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    atualizarSolos();
+
+    aplicarVolumeMaster();
+
+    salvarAutomaticamente();
 }
 
+
 /* =====================================================
-   CRIAR OS 10 CANAIS
+   COMPARTILHAR MESA
+===================================================== */
+
+async function compartilharMesa() {
+
+    const estado =
+        obterEstado();
+
+
+    const texto =
+        JSON.stringify(
+            estado
+        );
+
+
+    const dados =
+        btoa(
+            unescape(
+                encodeURIComponent(
+                    texto
+                )
+            )
+        );
+
+
+    const url =
+        window.location.href.split(
+            "#"
+        )[0]
+        +
+        "#mesa="
+        +
+        dados;
+
+
+    try {
+
+        await navigator.clipboard.writeText(
+            url
+        );
+
+
+        alert(
+            "Link da mesa copiado para a área de transferência."
+        );
+
+    } catch(e) {
+
+        prompt(
+            "Copie o link abaixo:",
+            url
+        );
+
+    }
+}
+
+
+/* =====================================================
+   RESTAURAR MESA COMPARTILHADA
+===================================================== */
+
+function carregarMesaDoHash() {
+
+    if (
+        !window.location.hash.startsWith(
+            "#mesa="
+        )
+    ) {
+        return false;
+    }
+
+
+    try {
+
+        const dados =
+            window.location.hash.substring(
+                6
+            );
+
+
+        const texto =
+            decodeURIComponent(
+                escape(
+                    atob(
+                        dados
+                    )
+                )
+            );
+
+
+        const estado =
+            JSON.parse(
+                texto
+            );
+
+
+        aplicarEstado(
+            estado
+        );
+
+
+        return true;
+
+    } catch(e) {
+
+        console.error(
+            "Erro ao abrir mesa compartilhada:",
+            e
+        );
+
+        return false;
+    }
+}
+
+
+/* =====================================================
+   ESCAPAR HTML
+===================================================== */
+
+function escaparHTML(
+    texto
+) {
+
+    return String(
+        texto
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+}
+
+
+/* =====================================================
+   CRIAR 10 CANAIS
 ===================================================== */
 
 for (
@@ -4887,88 +6091,83 @@ for (
 
 
 /* =====================================================
-   KNOBS MASTER
+   MASTER KNOBS
 ===================================================== */
 
-document
-    .querySelectorAll(
-        ".master .knob"
-    )
-    .forEach(
-        configurarKnob
-    );
+document.querySelectorAll(
+    ".master .knob"
+).forEach(
+    configurarKnob
+);
 
 
 /* =====================================================
-   CONFIGURAÇÃO AUTOMÁTICA
+   RESTAURAR SALVAMENTO AUTOMÁTICO
 ===================================================== */
 
 try {
 
-    const abriuCompartilhada =
-        carregarMesaCompartilhada();
+    const salvo =
+        localStorage.getItem(
+            "mesaSomAuto"
+        );
 
-    if (!abriuCompartilhada) {
 
-        const salvo =
-            localStorage.getItem(
-                "mesaSomAuto"
+    if (
+        salvo
+    ) {
+
+        const estado =
+            JSON.parse(
+                salvo
             );
 
-        if (salvo) {
 
-            const estado =
-                JSON.parse(
-                    salvo
-                );
+        /*
+           Restauramos os controles depois
+           que os canais já foram criados.
+        */
 
-            aplicarEstado(
-                estado
-            );
-
-        }
+        aplicarEstado(
+            estado
+        );
 
     }
 
 } catch(e) {
 
-    console.log(
-        "Não foi possível restaurar a mesa."
+    console.warn(
+        "Não foi possível restaurar a mesa.",
+        e
     );
+}
+
+
+/* =====================================================
+   MESA COMPARTILHADA
+===================================================== */
+
+if (
+    !carregarMesaDoHash()
+) {
+
+    atualizarContador();
 
 }
 
 
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+
 atualizarContador();
 
+console.log(
+    "MIXER PRO iniciado corretamente."
+);
+
 </script>
 
 </body>
+
 </html>
-
-<script>
-console.log("Funcionando!");
-  
-</script>
-
-</body>
-</html>
-  
-
-<script>
-console.log("Funcionando!");
-  
-</script>
-
-</body>
-</html>
-  
-
-<script>
-console.log("Funcionando!");
-  
-</script>
-
-</body>
-</html>
-  
