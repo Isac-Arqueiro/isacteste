@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Player</title>
+
+<meta name="theme-color" content="#000000">
+
+
+<style>
+
+/* ---------------- PLAYER MODERNO RESPONSIVO ---------------- */
+
+body{
+    font-family:Arial, sans-serif;
+    margin:0;
+    padding:10px;
+    background:#f4f4f4;
+}
+
+.player{
+    margin-top:30px;
+    width:95%;
+    max-width:800px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:25px;
+    border-radius:20px;
+    background: linear-gradient(135deg,#141e30,#243b55);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    color:white;
+    transition: 0.3s;
+}
+
+/* Inputs */
+
+.player input[type="file"],
+.player input[type="text"]{
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    margin-bottom:10px;
+    font-size:15px;
+}
+
+/* Botões */
+
+.player button{
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.player button:hover{
+    transform:scale(1.05);
+    background:#00c3ff;
+}
+
+/* Controles organizados */
+
+.player-controles{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin:15px 0;
+}
+
+.player-controles{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.player button{
+    background:#444;
+    color:white;
+}
+
+.player button:hover{
+    background:#0080ff;
+}
+
+#barraProgresso{
+    width:100%;
+    height:15px;
+    cursor:pointer;
+}
+
+/* RESPONSIVO PARA PC */
+
+@media (min-width: 768px){
+
+    .player{
+        max-width:1000px;
+        padding:35px;
+    }
+
+    #barraProgresso{
+        height:22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ----------------------- PLAYER UNIFICADO ----------------------- -->
+
+<div class="player">
+
+  <input type="file" id="audioFile" accept="audio/*">
+
+  <input type="text" id="youtubeURL" placeholder="Cole link do YouTube">
+
+  <button onclick="tocarYoutube()">▶️ Tocar YouTube</button>
+
+  <div class="player-controles">
+
+    <button onclick="voltar5()">⏪ 5s</button>
+
+    <button onclick="playPause()" id="btnPlay">▶</button>
+
+    <button onclick="avancar5()">5s ⏩</button>
+
+    <select id="velocidade" onchange="mudarVelocidade()">
+
+      <option value="0.5">0.5x</option>
+
+      <option value="0.75">0.75x</option>
+
+      <option value="1" selected>1x</option>
+
+      <option value="1.25">1.25x</option>
+
+      <option value="1.5">1.5x</option>
+
+    </select>
+
+    <button onclick="marcarInicioLoop()">A</button>
+
+    <button onclick="marcarFimLoop()">B</button>
+
+    <button onclick="desativarLoop()">Loop Off</button>
+
+    <span id="tempoAtual">0:00</span>
+
+  </div>
+
+  <input type="range" id="barraProgresso" value="0" min="0" max="100">
+
+  <div id="youtubePlayer" style="display:none;"></div>
+
+</div>
+
+
+<!-- ----------------------- API DO YOUTUBE ----------------------- -->
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+
+<script>
+
+/* ----------------------- PLAYER UNIFICADO ----------------------- */
+
+let ytPlayer = null; 
+let audioPlayer = new Audio(); 
+let currentSource = null; 
+let loopStart = 0, loopEnd = null; 
+let isPlaying = false; 
+
+
+const fileInput = document.getElementById("audioFile"); 
+
+fileInput.addEventListener("change", function() { 
+
+    const file = this.files[0]; 
+
+    if(!file) return; 
+
+    currentSource = "local"; 
+
+    ytPlayer && ytPlayer.pauseVideo(); 
+
+    audioPlayer.src = URL.createObjectURL(file); 
+
+    audioPlayer.load(); 
+
+    audioPlayer.play(); 
+
+    isPlaying = true; 
+
+    document.getElementById("btnPlay").textContent = "⏸"; 
+
+}); 
+
+
+function onYouTubeIframeAPIReady() { 
+
+    ytPlayer = new YT.Player('youtubePlayer', { 
+
+        height:'0', width:'0', 
+
+        videoId:'', 
+
+        playerVars:{ 
+            autoplay:0, 
+            controls:0, 
+            modestbranding:1 
+        }, 
+
+        events:{ 
+            'onStateChange': onPlayerStateChange 
+        } 
+
+    }); 
+
+} 
+
+
+function tocarYoutube() { 
+
+    const url = document.getElementById("youtubeURL").value; 
+
+    if(!url) return alert("Insira link do YouTube!"); 
+
+    const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/); 
+
+    if(!match) return alert("URL inválida!"); 
+
+    const videoId = match[1]; 
+
+    currentSource = "youtube"; 
+
+    audioPlayer.pause(); 
+
+    ytPlayer.loadVideoById(videoId); 
+
+    isPlaying = true; 
+
+    document.getElementById("btnPlay").textContent = "⏸"; 
+
+} 
+
+
+function onPlayerStateChange(event){ 
+
+    const btnPlay = document.getElementById("btnPlay"); 
+
+    if(event.data === YT.PlayerState.PLAYING) isPlaying = true; 
+    else isPlaying = false; 
+
+    btnPlay.textContent = isPlaying?"⏸":"▶"; 
+
+} 
+
+
+function playPause(){ 
+
+    if(currentSource==="local"){ 
+
+        if(audioPlayer.paused){ 
+
+            audioPlayer.play(); 
+            isPlaying=true; 
+
+        } 
+        else{ 
+
+            audioPlayer.pause(); 
+            isPlaying=false; 
+
+        } 
+
+    } 
+
+    else if(currentSource==="youtube"){ 
+
+        if(isPlaying) ytPlayer.pauseVideo(); 
+
+        else ytPlayer.playVideo(); 
+
+    } 
+
+    document.getElementById("btnPlay").textContent = isPlaying?"⏸":"▶"; 
+
+} 
+
+
+function avancar5(){ 
+
+    if(currentSource==="local") 
+
+        audioPlayer.currentTime+=5; 
+
+    else if(currentSource==="youtube") 
+
+        ytPlayer.seekTo(
+            ytPlayer.getCurrentTime()+5,
+            true
+        );
+
+} 
+
+
+function voltar5(){ 
+
+    if(currentSource==="local") 
+
+        audioPlayer.currentTime=Math.max(
+            0,
+            audioPlayer.currentTime-5
+        ); 
+
+    else if(currentSource==="youtube") 
+
+        ytPlayer.seekTo(
+            Math.max(
+                0,
+                ytPlayer.getCurrentTime()-5
+            ),
+            true
+        );
+
+} 
+
+
+function mudarVelocidade(){ 
+
+    const rate =
+        parseFloat(
+            document.getElementById("velocidade").value
+        ); 
+
+    if(currentSource==="local") 
+
+        audioPlayer.playbackRate=rate; 
+
+    else if(currentSource==="youtube") 
+
+        ytPlayer.setPlaybackRate(rate); 
+
+} 
+
+
+function marcarInicioLoop(){ 
+
+    loopStart =
+        currentSource==="local"
+        ? audioPlayer.currentTime
+        : ytPlayer.getCurrentTime();
+
+} 
+
+
+function marcarFimLoop(){ 
+
+    loopEnd =
+        currentSource==="local"
+        ? audioPlayer.currentTime
+        : ytPlayer.getCurrentTime();
+
+} 
+
+
+function desativarLoop(){ 
+
+    loopStart=0; 
+    loopEnd=null; 
+
+} 
+
+
+const barra=document.getElementById("barraProgresso"); 
+
+const tempoAtual=document.getElementById("tempoAtual"); 
+
+
+setInterval(()=>{ 
+
+    let current=0,duration=0; 
+
+    if(currentSource==="local"&&audioPlayer.src){ 
+
+        current=audioPlayer.currentTime; 
+
+        duration=audioPlayer.duration||0; 
+
+        if(loopEnd && current>=loopEnd) 
+
+            audioPlayer.currentTime=loopStart; 
+
+    } 
+
+    else if(
+        currentSource==="youtube" &&
+        ytPlayer &&
+        ytPlayer.getCurrentTime
+    ){ 
+
+        current=ytPlayer.getCurrentTime(); 
+
+        duration=ytPlayer.getDuration(); 
+
+        if(loopEnd && current>=loopEnd) 
+
+            ytPlayer.seekTo(loopStart,true); 
+
+    } 
+
+    if(duration){ 
+
+        barra.value=(current/duration)*100; 
+
+        tempoAtual.textContent=formatTime(current); 
+
+    } 
+
+},200); 
+
+
+barra.addEventListener("input",()=>{ 
+
+    const val=barra.value; 
+
+    if(currentSource==="local") 
+
+        audioPlayer.currentTime=
+            (val/100)*audioPlayer.duration; 
+
+    else if(currentSource==="youtube") 
+
+        ytPlayer.seekTo(
+            (val/100)*ytPlayer.getDuration(),
+            true
+        ); 
+
+}); 
+
+
+function formatTime(t){ 
+
+    const min=Math.floor(t/60); 
+
+    const sec=Math.floor(t%60); 
+
+    return `${min}:${sec.toString().padStart(2,"0")}`; 
+
+}
+
+</script>
+
+</body>
+
+</html>
