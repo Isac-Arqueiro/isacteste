@@ -5,16 +5,18 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>MIXER PRO</title>
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -33,9 +35,10 @@ body {
     overflow-x: auto;
 }
 
-/* =====================================================
-   HEADER
-===================================================== */
+
+/* =========================================================
+   TOPO
+========================================================= */
 
 header {
 
@@ -66,6 +69,7 @@ header {
     flex-wrap: wrap;
 }
 
+
 .logo {
 
     color: #00ff88;
@@ -78,6 +82,7 @@ header {
 
     margin-right: 10px;
 }
+
 
 .top-btn {
 
@@ -98,10 +103,12 @@ header {
     font-weight: bold;
 }
 
+
 .top-btn:hover {
 
     background: #333;
 }
+
 
 .top-btn.green {
 
@@ -110,6 +117,7 @@ header {
     border-color: #00ff88;
 }
 
+
 .top-btn.red {
 
     color: #ff5555;
@@ -117,12 +125,14 @@ header {
     border-color: #aa3333;
 }
 
+
 .top-btn.blue {
 
     color: #55aaff;
 
     border-color: #336699;
 }
+
 
 .status {
 
@@ -133,19 +143,22 @@ header {
     font-size: 10px;
 }
 
+
 .status span {
 
     color: #00ff88;
 }
 
-/* =====================================================
+
+/* =========================================================
    MESA
-===================================================== */
+========================================================= */
 
 .mesa-area {
 
     padding: 15px;
 }
+
 
 .mesa {
 
@@ -158,15 +171,16 @@ header {
     min-width: max-content;
 }
 
-/* =====================================================
+
+/* =========================================================
    CANAL
-===================================================== */
+========================================================= */
 
 .canal {
 
     width: 155px;
 
-    min-height: 930px;
+    min-height: 900px;
 
     background:
         linear-gradient(
@@ -189,10 +203,12 @@ header {
     position: relative;
 }
 
+
 .canal.mutado {
 
     opacity: .45;
 }
+
 
 .canal.solo-canal {
 
@@ -203,9 +219,10 @@ header {
         inset 0 0 15px #000;
 }
 
-/* =====================================================
+
+/* =========================================================
    CABEÇALHO
-===================================================== */
+========================================================= */
 
 .cabecalho-canal {
 
@@ -222,12 +239,14 @@ header {
     margin-bottom: 7px;
 }
 
+
 .cabecalho-canal strong {
 
     color: #00ff88;
 
     font-size: 12px;
 }
+
 
 .cabecalho-canal small {
 
@@ -239,6 +258,7 @@ header {
 
     margin-top: 3px;
 }
+
 
 .nome {
 
@@ -263,14 +283,16 @@ header {
     font-size: 10px;
 }
 
+
 .nome:focus {
 
     border-color: #00ff88;
 }
 
-/* =====================================================
+
+/* =========================================================
    SEÇÕES
-===================================================== */
+========================================================= */
 
 .secao {
 
@@ -278,6 +300,7 @@ header {
 
     padding: 8px 0;
 }
+
 
 .titulo {
 
@@ -292,9 +315,10 @@ header {
     margin-bottom: 7px;
 }
 
-/* =====================================================
+
+/* =========================================================
    BOTÕES
-===================================================== */
+========================================================= */
 
 .botoes {
 
@@ -302,6 +326,7 @@ header {
 
     gap: 4px;
 }
+
 
 .btn {
 
@@ -324,15 +349,18 @@ header {
     font-weight: bold;
 }
 
+
 .btn:hover {
 
     background: #333;
 }
 
+
 .btn.play {
 
     color: #00ff88;
 }
+
 
 .btn.play.ativo {
 
@@ -341,8 +369,10 @@ header {
     color: white;
 
     box-shadow:
-        0 0 8px rgba(0,255,136,.4);
+        0 0 8px
+        rgba(0,255,136,.4);
 }
+
 
 .btn.mute.ativo {
 
@@ -351,6 +381,7 @@ header {
     color: white;
 }
 
+
 .btn.solo.ativo {
 
     background: #ffd400;
@@ -358,31 +389,30 @@ header {
     color: black;
 }
 
+
 .btn.copy {
 
     color: #55aaff;
 }
+
 
 .btn.paste {
 
     color: #ffbb55;
 }
 
-.btn.efeitos {
 
-    color: #cc99ff;
+.remove {
+
+    width: 100%;
+
+    color: #ff5555;
 }
 
-.btn.efeito-ativo {
 
-    background: #00aa55;
-
-    color: white;
-}
-
-/* =====================================================
+/* =========================================================
    KNOBS
-===================================================== */
+========================================================= */
 
 .knobs {
 
@@ -391,12 +421,14 @@ header {
     justify-content: space-around;
 }
 
+
 .knob-box {
 
     width: 42px;
 
     text-align: center;
 }
+
 
 .knob {
 
@@ -427,9 +459,8 @@ header {
     box-shadow:
         0 3px 5px #000,
         inset 0 1px 3px #aaa;
-
-    transform-origin: center center;
 }
+
 
 .knob::after {
 
@@ -456,6 +487,7 @@ header {
         0 0 6px #00ff88;
 }
 
+
 .knob-box label {
 
     display: block;
@@ -467,6 +499,7 @@ header {
     margin-top: 3px;
 }
 
+
 .valor-knob {
 
     color: #00ff88;
@@ -474,9 +507,10 @@ header {
     font-size: 7px;
 }
 
-/* =====================================================
+
+/* =========================================================
    SLIDERS
-===================================================== */
+========================================================= */
 
 .slider {
 
@@ -487,38 +521,10 @@ header {
     cursor: pointer;
 }
 
-.seek {
-
-    width: 100%;
-
-    height: 5px;
-
-    accent-color: #00ff88;
-
-    cursor: pointer;
-}
-
-.player-tempo {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    color: #777;
-
-    font-size: 7px;
-
-    margin-bottom: 4px;
-}
-
-.tempo-atual {
-
-    color: #00ff88;
-}
 
 .fader-area {
 
-    height: 190px;
+    height: 180px;
 
     display: flex;
 
@@ -527,14 +533,16 @@ header {
     align-items: center;
 }
 
+
 .fader {
 
-    width: 175px;
+    width: 165px;
 
     transform: rotate(-90deg);
 
     accent-color: #00ff88;
 }
+
 
 .valor-fader {
 
@@ -549,78 +557,10 @@ header {
     margin-top: 4px;
 }
 
-/* =====================================================
-   METER
-===================================================== */
 
-.meter-area {
-
-    height: 150px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-}
-
-.meter {
-
-    width: 17px;
-
-    height: 140px;
-
-    background: #080808;
-
-    border: 1px solid #333;
-
-    padding: 3px;
-
-    display: flex;
-
-    flex-direction: column-reverse;
-
-    gap: 2px;
-}
-
-.led {
-
-    width: 100%;
-
-    height: 5px;
-
-    background: #171717;
-
-    border-radius: 2px;
-}
-
-.led.verde {
-
-    background: #00ff44;
-
-    box-shadow:
-        0 0 6px #00ff44;
-}
-
-.led.amarelo {
-
-    background: #ffff00;
-
-    box-shadow:
-        0 0 6px #ffff00;
-}
-
-.led.vermelho {
-
-    background: #ff2222;
-
-    box-shadow:
-        0 0 7px red;
-}
-
-/* =====================================================
+/* =========================================================
    ARQUIVO
-===================================================== */
+========================================================= */
 
 .audio-file {
 
@@ -630,6 +570,7 @@ header {
 
     font-size: 7px;
 }
+
 
 .audio-file::file-selector-button {
 
@@ -642,9 +583,30 @@ header {
     border-radius: 4px;
 
     padding: 4px;
-
-    cursor: pointer;
 }
+
+
+.info-arquivo {
+
+    color: #666;
+
+    font-size: 7px;
+
+    text-align: center;
+
+    margin-top: 4px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   YOUTUBE
+========================================================= */
 
 .youtube-url {
 
@@ -665,6 +627,17 @@ header {
     font-size: 8px;
 }
 
+
+.youtube-btn {
+
+    width: 100%;
+
+    margin-top: 5px;
+
+    color: #ff5555;
+}
+
+
 .youtube-player {
 
     width: 1px;
@@ -680,32 +653,127 @@ header {
     overflow: hidden;
 }
 
-.info-arquivo {
 
-    color: #666;
+/* =========================================================
+   SEEK
+========================================================= */
+
+.player-tempo {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #777;
 
     font-size: 7px;
 
-    text-align: center;
-
-    margin-top: 4px;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
+    margin-bottom: 4px;
 }
 
-/* =====================================================
-   ADD CANAL
-===================================================== */
+
+.tempo-atual {
+
+    color: #00ff88;
+}
+
+
+.seek {
+
+    width: 100%;
+
+    height: 5px;
+
+    accent-color: #00ff88;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   METER
+========================================================= */
+
+.meter-area {
+
+    height: 145px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.meter {
+
+    width: 17px;
+
+    height: 135px;
+
+    background: #080808;
+
+    border: 1px solid #333;
+
+    padding: 3px;
+
+    display: flex;
+
+    flex-direction: column-reverse;
+
+    gap: 2px;
+}
+
+
+.led {
+
+    width: 100%;
+
+    height: 5px;
+
+    background: #171717;
+
+    border-radius: 2px;
+}
+
+
+.led.verde {
+
+    background: #00ff44;
+
+    box-shadow:
+        0 0 6px #00ff44;
+}
+
+
+.led.amarelo {
+
+    background: #ffff00;
+
+    box-shadow:
+        0 0 6px #ffff00;
+}
+
+
+.led.vermelho {
+
+    background: #ff2222;
+
+    box-shadow:
+        0 0 7px red;
+}
+
+
+/* =========================================================
+   ADICIONAR
+========================================================= */
 
 .add-canal {
 
     width: 155px;
 
-    min-height: 930px;
+    min-height: 900px;
 
     border: 2px dashed #444;
 
@@ -724,6 +792,7 @@ header {
     cursor: pointer;
 }
 
+
 .add-canal:hover {
 
     color: #00ff88;
@@ -731,44 +800,38 @@ header {
     border-color: #00ff88;
 }
 
+
 .add-icon {
 
     font-size: 45px;
 }
 
-/* =====================================================
+
+/* =========================================================
    MASTER
-===================================================== */
+========================================================= */
 
 .master {
 
     width: 180px;
 }
 
+
 .master .cabecalho-canal {
 
     border-color: #ff9900;
 }
+
 
 .master .cabecalho-canal strong {
 
     color: #ff9900;
 }
 
-/* =====================================================
-   REMOVE
-===================================================== */
 
-.remove {
-
-    width: 100%;
-
-    color: #ff5555;
-}
-
-/* =====================================================
+/* =========================================================
    MODAIS
-===================================================== */
+========================================================= */
 
 .modal {
 
@@ -776,7 +839,8 @@ header {
 
     inset: 0;
 
-    background: rgba(0,0,0,.8);
+    background:
+        rgba(0,0,0,.8);
 
     display: none;
 
@@ -787,20 +851,18 @@ header {
     z-index: 500;
 }
 
+
 .modal.aberto {
 
     display: flex;
 }
 
+
 .caixa-modal {
 
-    width: 400px;
+    width: 370px;
 
     max-width: 90%;
-
-    max-height: 90vh;
-
-    overflow-y: auto;
 
     background:
         linear-gradient(
@@ -818,14 +880,14 @@ header {
         0 10px 40px #000;
 }
 
+
 .caixa-modal h2 {
 
     color: #00ff88;
 
     text-align: center;
-
-    margin-top: 0;
 }
+
 
 .input-cena {
 
@@ -844,6 +906,7 @@ header {
     margin-bottom: 10px;
 }
 
+
 .lista-cenas {
 
     max-height: 250px;
@@ -852,6 +915,7 @@ header {
 
     margin-top: 15px;
 }
+
 
 .item-cena {
 
@@ -870,6 +934,7 @@ header {
     font-size: 10px;
 }
 
+
 .item-cena button {
 
     background: #333;
@@ -883,68 +948,19 @@ header {
     cursor: pointer;
 
     margin-left: 3px;
-
-    border-radius: 3px;
-}
-
-/* =====================================================
-   EFEITOS
-===================================================== */
-
-.efeito-controles {
-
-    margin-top: 10px;
-}
-
-.efeito-bloco {
-
-    background: #151515;
-
-    border: 1px solid #333;
-
-    padding: 8px;
-
-    margin-bottom: 7px;
-
-    border-radius: 4px;
-}
-
-.efeito-bloco strong {
-
-    display: block;
-
-    color: #00ff88;
-
-    font-size: 9px;
-
-    margin-bottom: 5px;
-}
-
-/* =====================================================
-   RESPONSIVO
-===================================================== */
-
-@media(max-width:700px) {
-
-    header {
-
-        position: relative;
-    }
-
-    .status {
-
-        width: 100%;
-
-        margin-left: 0;
-    }
-
 }
 
 </style>
 
 </head>
 
+
 <body>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
 
 <header>
 
@@ -952,72 +968,83 @@ header {
         MIXER PRO
     </div>
 
-    <button
-        class="top-btn green"
-        onclick="iniciarAudio()"
-    >
-        🔊 ÁUDIO
-    </button>
 
     <button
         class="top-btn green"
-        onclick="playTodos()"
-    >
-        ▶ PLAY TODOS
+        onclick="iniciarAudio()">
+
+        🔊 ÁUDIO
+
     </button>
+
+
+    <button
+        class="top-btn green"
+        onclick="playTodos()">
+
+        ▶ PLAY TODOS
+
+    </button>
+
 
     <button
         class="top-btn"
-        onclick="pausarTodos()"
-    >
+        onclick="pausarTodos()">
+
         ⏸ PAUSAR TODOS
+
     </button>
+
 
     <button
         class="top-btn red"
-        onclick="pararTodos()"
-    >
+        onclick="pararTodos()">
+
         ⏹ PARAR TODOS
+
     </button>
+
 
     <button
         class="top-btn blue"
-        onclick="sincronizarTodos()"
-    >
+        onclick="sincronizarTodos()">
+
         🔄 SINCRONIZAR
+
     </button>
+
 
     <button
         class="top-btn"
-        onclick="adicionarCanal()"
-    >
+        onclick="adicionarCanal()">
+
         ＋ CANAL
+
     </button>
+
 
     <button
         class="top-btn"
-        onclick="abrirCenas()"
-    >
+        onclick="abrirCenas()">
+
         💾 CENAS
+
     </button>
+
 
     <button
         class="top-btn"
-        onclick="salvarCenaRapida()"
-    >
+        onclick="salvarCenaRapida()">
+
         💾 SALVAR
+
     </button>
 
-    <button
-        class="top-btn blue"
-        onclick="compartilharMesa()"
-    >
-        🔗 COMPARTILHAR
-    </button>
 
     <div class="status">
 
         ÁUDIO:
+
         <span id="statusAudio">
             DESLIGADO
         </span>
@@ -1025,6 +1052,7 @@ header {
         &nbsp; | &nbsp;
 
         CANAIS:
+
         <span id="contador">
             0
         </span>
@@ -1034,18 +1062,23 @@ header {
 </header>
 
 
+<!-- =======================================================
+     MESA
+======================================================= -->
+
 <div class="mesa-area">
 
     <div
         class="mesa"
-        id="mesa"
-    >
+        id="mesa">
+
+
+        <!-- BOTÃO ADICIONAR -->
 
         <div
             class="add-canal"
             id="botaoAdicionar"
-            onclick="adicionarCanal()"
-        >
+            onclick="adicionarCanal()">
 
             <div class="add-icon">
                 ＋
@@ -1064,9 +1097,10 @@ header {
 
         <!-- =================================================
              MASTER
-        ================================================== -->
+        ================================================= -->
 
         <div class="canal master">
+
 
             <div class="cabecalho-canal">
 
@@ -1081,21 +1115,25 @@ header {
             </div>
 
 
+            <!-- MASTER EQ -->
+
             <div class="secao">
 
                 <div class="titulo">
                     MASTER EQ
                 </div>
 
+
                 <div class="knobs">
+
 
                     <div class="knob-box">
 
                         <div
                             class="knob"
                             data-tipo="masterHigh"
-                            data-valor="0"
-                        ></div>
+                            data-valor="0">
+                        </div>
 
                         <label>
                             AGUDO
@@ -1113,8 +1151,8 @@ header {
                         <div
                             class="knob"
                             data-tipo="masterMid"
-                            data-valor="0"
-                        ></div>
+                            data-valor="0">
+                        </div>
 
                         <label>
                             MÉDIO
@@ -1132,8 +1170,8 @@ header {
                         <div
                             class="knob"
                             data-tipo="masterLow"
-                            data-valor="0"
-                        ></div>
+                            data-valor="0">
+                        </div>
 
                         <label>
                             GRAVE
@@ -1145,16 +1183,20 @@ header {
 
                     </div>
 
+
                 </div>
 
             </div>
 
+
+            <!-- MASTER FADER -->
 
             <div class="secao">
 
                 <div class="titulo">
                     MASTER LEVEL
                 </div>
+
 
                 <div class="fader-area">
 
@@ -1164,20 +1206,23 @@ header {
                         type="range"
                         min="0"
                         max="100"
-                        value="80"
-                    >
+                        value="80">
 
                 </div>
 
+
                 <span
                     class="valor-fader"
-                    id="masterValor"
-                >
+                    id="masterValor">
+
                     80%
+
                 </span>
 
             </div>
 
+
+            <!-- MASTER MUTE -->
 
             <div class="secao">
 
@@ -1185,148 +1230,100 @@ header {
                     MASTER
                 </div>
 
+
                 <button
                     class="btn mute"
                     id="masterMute"
-                    onclick="toggleMasterMute()"
-                >
+                    onclick="toggleMasterMute()">
+
                     MUTE
+
                 </button>
 
             </div>
 
-        </div>
 
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     MODAL EFEITOS
-===================================================== -->
-
-<div
-    class="modal"
-    id="modalEfeitos"
->
-
-    <div class="caixa-modal">
-
-        <h2>
-            🎛️ EFEITOS
-        </h2>
-
-        <div id="efeitosCanal">
+            <!-- TRANSPORTE -->
 
             <div class="secao">
 
                 <div class="titulo">
-                    SELECIONAR EFEITOS
+                    TRANSPORTE
                 </div>
 
-                <div class="botoes">
 
-                    <button
-                        class="btn"
-                        id="btnGate"
-                        onclick="toggleEfeito('gate')"
-                    >
-                        GATE
-                    </button>
+                <div
+                    style="
+                        color:#777;
+                        font-size:8px;
+                        text-align:center;
+                        line-height:1.6;
+                    ">
 
-                    <button
-                        class="btn"
-                        id="btnCompressor"
-                        onclick="toggleEfeito('compressor')"
-                    >
-                        COMP
-                    </button>
-
-                    <button
-                        class="btn"
-                        id="btnReverb"
-                        onclick="toggleEfeito('reverb')"
-                    >
-                        REVERB
-                    </button>
-
-                    <button
-                        class="btn"
-                        id="btnDelay"
-                        onclick="toggleEfeito('delay')"
-                    >
-                        DELAY
-                    </button>
+                    PLAY TODOS<br>
+                    PAUSAR TODOS<br>
+                    PARAR TODOS
 
                 </div>
 
             </div>
 
-            <div
-                class="efeito-controles"
-                id="controlesEfeitos"
-            ></div>
-
         </div>
-
-        <br>
-
-        <button
-            class="top-btn"
-            style="width:100%"
-            onclick="fecharEfeitos()"
-        >
-            FECHAR
-        </button>
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
+<!-- =======================================================
      MODAL CENAS
-===================================================== -->
+======================================================= -->
 
 <div
     class="modal"
-    id="modalCenas"
->
+    id="modalCenas">
+
 
     <div class="caixa-modal">
+
 
         <h2>
             💾 CENAS
         </h2>
 
+
         <input
             class="input-cena"
             id="nomeCena"
-            placeholder="Nome da cena"
-        >
+            placeholder="Nome da cena">
+
 
         <button
             class="top-btn green"
             style="width:100%"
-            onclick="salvarCena()"
-        >
+            onclick="salvarCena()">
+
             SALVAR CENA
+
         </button>
+
 
         <div
             class="lista-cenas"
-            id="listaCenas"
-        ></div>
+            id="listaCenas">
+        </div>
+
 
         <br>
+
 
         <button
             class="top-btn"
             style="width:100%"
-            onclick="fecharCenas()"
-        >
+            onclick="fecharCenas()">
+
             FECHAR
+
         </button>
 
     </div>
@@ -1334,17 +1331,25 @@ header {
 </div>
 
 
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
 <script>
 
-/* =====================================================
-   MIXER PRO
-===================================================== */
+
+/* =========================================================
+   VARIÁVEIS
+========================================================= */
 
 let audioContext = null;
 
 let masterGain = null;
+
 let masterHigh = null;
+
 let masterMid = null;
+
 let masterLow = null;
 
 let canais = [];
@@ -1353,14 +1358,12 @@ let numeroCanal = 0;
 
 let canalCopiado = null;
 
-let canalEfeitosAtual = null;
-
 let youtubeAPIPronta = false;
 
 
-/* =====================================================
+/* =========================================================
    YOUTUBE API
-===================================================== */
+========================================================= */
 
 function onYouTubeIframeAPIReady() {
 
@@ -1372,30 +1375,22 @@ function onYouTubeIframeAPIReady() {
 }
 
 
-/* =====================================================
-   INICIAR ÁUDIO
-===================================================== */
+/* =========================================================
+   INICIAR AUDIO
+========================================================= */
 
 async function iniciarAudio() {
 
     if (!audioContext) {
 
-        const AudioContext =
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-        if (!AudioContext) {
-
-            alert(
-                "Seu navegador não suporta Web Audio API."
-            );
-
-            return;
-        }
-
         audioContext =
-            new AudioContext();
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
 
+
+        /* MASTER EQ */
 
         masterHigh =
             audioContext.createBiquadFilter();
@@ -1450,6 +1445,7 @@ async function iniciarAudio() {
             audioContext.destination
         );
 
+
         aplicarVolumeMaster();
     }
 
@@ -1470,9 +1466,9 @@ async function iniciarAudio() {
 }
 
 
-/* =====================================================
+/* =========================================================
    METER
-===================================================== */
+========================================================= */
 
 function criarMeter() {
 
@@ -1509,9 +1505,9 @@ function criarMeter() {
 }
 
 
-/* =====================================================
+/* =========================================================
    CRIAR CANAL
-===================================================== */
+========================================================= */
 
 function criarCanal() {
 
@@ -1529,6 +1525,7 @@ function criarCanal() {
     canal.className =
         "canal";
 
+
     canal.dataset.numero =
         numero;
 
@@ -1541,11 +1538,13 @@ function criarCanal() {
                 ÁUDIO / YOUTUBE
             </div>
 
+
             <input
                 type="file"
                 class="audio-file"
                 accept="audio/*"
             >
+
 
             <input
                 type="text"
@@ -1553,21 +1552,22 @@ function criarCanal() {
                 placeholder="Cole aqui o link do YouTube"
             >
 
+
             <button
-                class="btn youtube-btn"
-                style="
-                    width:100%;
-                    margin-top:5px;
-                    color:#ff5555;
-                "
-            >
+                class="btn youtube-btn">
+
                 ▶ CARREGAR YOUTUBE
+
             </button>
+
 
             <div class="youtube-player"></div>
 
+
             <div class="info-arquivo">
+
                 Nenhum áudio selecionado
+
             </div>
 
         </div>
@@ -1594,119 +1594,9 @@ function criarCanal() {
         <div class="secao">
 
             <div class="titulo">
-                DELAY
+                PLAYBACK
             </div>
 
-            <label style="
-                font-size:7px;
-                color:#aaa;
-            ">
-                TEMPO
-            </label>
-
-            <input
-                class="slider delay-time"
-                type="range"
-                min="0"
-                max="1000"
-                value="300"
-            >
-
-            <div
-                class="delay-time-value"
-                style="
-                    text-align:center;
-                    color:#00ff88;
-                    font-size:7px;
-                "
-            >
-                300 ms
-            </div>
-
-
-            <label style="
-                font-size:7px;
-                color:#aaa;
-            ">
-                MIX
-            </label>
-
-            <input
-                class="slider delay-mix"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
-
-            <div
-                class="delay-mix-value"
-                style="
-                    text-align:center;
-                    color:#00ff88;
-                    font-size:7px;
-                "
-            >
-                0%
-            </div>
-
-
-            <label style="
-                font-size:7px;
-                color:#aaa;
-            ">
-                FEEDBACK
-            </label>
-
-            <input
-                class="slider delay-feedback"
-                type="range"
-                min="0"
-                max="90"
-                value="20"
-            >
-
-            <div
-                class="delay-feedback-value"
-                style="
-                    text-align:center;
-                    color:#00ff88;
-                    font-size:7px;
-                "
-            >
-                20%
-            </div>
-
-        </div>
-
-
-        <div class="secao">
-
-            <button class="btn efeitos">
-                🎛️ EFEITOS
-            </button>
-
-        </div>
-
-
-        <div class="secao">
-
-            <div class="botoes">
-
-                <button class="btn play">
-                    ▶ PLAY
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="secao">
-
-            <div class="titulo">
-                PLAYBACK / AGULHA
-            </div>
 
             <div class="player-tempo">
 
@@ -1719,6 +1609,7 @@ function criarCanal() {
                 </span>
 
             </div>
+
 
             <input
                 class="seek"
@@ -1735,8 +1626,9 @@ function criarCanal() {
         <div class="secao">
 
             <div class="titulo">
-                PREAMP
+                PREAMP / GAIN
             </div>
+
 
             <div class="knobs">
 
@@ -1745,8 +1637,8 @@ function criarCanal() {
                     <div
                         class="knob"
                         data-tipo="gain"
-                        data-valor="0"
-                    ></div>
+                        data-valor="0">
+                    </div>
 
                     <label>
                         GAIN
@@ -1769,15 +1661,17 @@ function criarCanal() {
                 EQUALIZADOR
             </div>
 
+
             <div class="knobs">
+
 
                 <div class="knob-box">
 
                     <div
                         class="knob"
                         data-tipo="high"
-                        data-valor="0"
-                    ></div>
+                        data-valor="0">
+                    </div>
 
                     <label>
                         AGUDO
@@ -1795,8 +1689,8 @@ function criarCanal() {
                     <div
                         class="knob"
                         data-tipo="mid"
-                        data-valor="0"
-                    ></div>
+                        data-valor="0">
+                    </div>
 
                     <label>
                         MÉDIO
@@ -1814,8 +1708,8 @@ function criarCanal() {
                     <div
                         class="knob"
                         data-tipo="low"
-                        data-valor="0"
-                    ></div>
+                        data-valor="0">
+                    </div>
 
                     <label>
                         GRAVE
@@ -1827,24 +1721,8 @@ function criarCanal() {
 
                 </div>
 
+
             </div>
-
-        </div>
-
-
-        <div class="secao">
-
-            <div class="titulo">
-                AUX
-            </div>
-
-            <input
-                class="slider aux"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-            >
 
         </div>
 
@@ -1854,6 +1732,7 @@ function criarCanal() {
             <div class="titulo">
                 PAN
             </div>
+
 
             <input
                 class="slider pan"
@@ -1868,7 +1747,16 @@ function criarCanal() {
 
         <div class="secao">
 
+            <div class="titulo">
+                CONTROLE
+            </div>
+
+
             <div class="botoes">
+
+                <button class="btn play">
+                    ▶ PLAY
+                </button>
 
                 <button class="btn solo">
                     SOLO
@@ -1889,6 +1777,7 @@ function criarCanal() {
                 SIGNAL
             </div>
 
+
             <div class="meter-area"></div>
 
         </div>
@@ -1899,6 +1788,7 @@ function criarCanal() {
             <div class="titulo">
                 CHANNEL LEVEL
             </div>
+
 
             <div class="fader-area">
 
@@ -1911,6 +1801,7 @@ function criarCanal() {
                 >
 
             </div>
+
 
             <span class="valor-fader">
                 75%
@@ -1938,8 +1829,11 @@ function criarCanal() {
 
         <div class="secao">
 
-            <button class="btn remove">
+            <button
+                class="btn remove">
+
                 🗑 REMOVER CANAL
+
             </button>
 
         </div>
@@ -1968,12 +1862,6 @@ function criarCanal() {
 
     canal.analyser = null;
 
-    canal.delay = null;
-
-    canal.delayFeedback = null;
-
-    canal.delayMix = null;
-
     canal.ytPlayer = null;
 
     canal.youtubeUrl = "";
@@ -1989,20 +1877,6 @@ function criarCanal() {
     canal.pausando = false;
 
     canal.fileName = "";
-
-    canal.effects = {
-
-        gate: false,
-
-        compressor: false,
-
-        reverb: false,
-
-        delay: false
-
-    };
-
-    canal.effectNodes = {};
 
 
     /* =====================================================
@@ -2053,39 +1927,6 @@ function criarCanal() {
     );
 
 
-    canal.querySelector(
-        ".youtube-url"
-    ).addEventListener(
-        "change",
-        function() {
-
-            canal.youtubeUrl =
-                this.value.trim();
-
-            salvarAutomaticamente();
-
-        }
-    );
-
-
-    /* =====================================================
-       EFEITOS
-    ===================================================== */
-
-    canal.querySelector(
-        ".efeitos"
-    ).addEventListener(
-        "click",
-        function() {
-
-            abrirEfeitos(
-                canal
-            );
-
-        }
-    );
-
-
     /* =====================================================
        PLAY
     ===================================================== */
@@ -2119,6 +1960,7 @@ function criarCanal() {
                     this.value
                 );
 
+
             canal.querySelector(
                 ".valor-fader"
             ).textContent =
@@ -2132,7 +1974,6 @@ function criarCanal() {
                 atualizarVolumeCanal(
                     canal
                 );
-
             }
 
 
@@ -2185,6 +2026,16 @@ function criarCanal() {
 
 
             if (
+                canal.channelGain
+            ) {
+
+                atualizarVolumeCanal(
+                    canal
+                );
+            }
+
+
+            if (
                 canal.ytPlayer
             ) {
 
@@ -2209,217 +2060,6 @@ function criarCanal() {
                     }
 
                 } catch(e) {}
-
-            }
-
-
-            if (
-                canal.channelGain
-            ) {
-
-                atualizarVolumeCanal(
-                    canal
-                );
-
-            }
-
-
-            salvarAutomaticamente();
-
-        }
-    );
-
-
-    /* =====================================================
-       SEEK
-    ===================================================== */
-
-    canal.querySelector(
-        ".seek"
-    ).addEventListener(
-        "input",
-        function() {
-
-            const posicao =
-                Number(
-                    this.value
-                );
-
-
-            canal.offset =
-                posicao;
-
-
-            if (
-                canal.ytPlayer
-            ) {
-
-                try {
-
-                    canal.ytPlayer.seekTo(
-                        posicao,
-                        true
-                    );
-
-                } catch(e) {}
-
-            }
-
-
-            else if (
-                canal.audioBuffer &&
-                canal.playing
-            ) {
-
-                reiniciarCanalNaPosicao(
-                    canal,
-                    posicao
-                );
-
-            }
-
-
-            atualizarTempoCanal(
-                canal,
-                posicao
-            );
-
-            salvarAutomaticamente();
-
-        }
-    );
-
-
-    /* =====================================================
-       DELAY TIME
-    ===================================================== */
-
-    canal.querySelector(
-        ".delay-time"
-    ).addEventListener(
-        "input",
-        function() {
-
-            const valor =
-                Number(
-                    this.value
-                );
-
-            canal.querySelector(
-                ".delay-time-value"
-            ).textContent =
-                valor + " ms";
-
-
-            if (
-                canal.delay
-            ) {
-
-                canal.delay.delayTime.value =
-                    valor / 1000;
-
-            }
-
-            salvarAutomaticamente();
-
-        }
-    );
-
-
-    /* =====================================================
-       DELAY MIX
-    ===================================================== */
-
-    canal.querySelector(
-        ".delay-mix"
-    ).addEventListener(
-        "input",
-        function() {
-
-            const valor =
-                Number(
-                    this.value
-                );
-
-
-            canal.querySelector(
-                ".delay-mix-value"
-            ).textContent =
-                valor + "%";
-
-
-            if (
-                canal.delayMix
-            ) {
-
-                canal.delayMix.gain.value =
-                    valor / 100;
-
-            }
-
-
-            salvarAutomaticamente();
-
-        }
-    );
-
-
-    /* =====================================================
-       DELAY FEEDBACK
-    ===================================================== */
-
-    canal.querySelector(
-        ".delay-feedback"
-    ).addEventListener(
-        "input",
-        function() {
-
-            const valor =
-                Number(
-                    this.value
-                );
-
-
-            canal.querySelector(
-                ".delay-feedback-value"
-            ).textContent =
-                valor + "%";
-
-
-            if (
-                canal.delayFeedback
-            ) {
-
-                canal.delayFeedback.gain.value =
-                    valor / 100;
-
-            }
-
-
-            salvarAutomaticamente();
-
-        }
-    );
-
-
-    /* =====================================================
-       PAN
-    ===================================================== */
-
-    canal.querySelector(
-        ".pan"
-    ).addEventListener(
-        "input",
-        function() {
-
-            if (
-                canal.panner
-            ) {
-
-                canal.panner.pan.value =
-                    Number(
-                        this.value
-                    ) / 100;
 
             }
 
@@ -2454,6 +2094,98 @@ function criarCanal() {
 
 
             atualizarSolos();
+
+            salvarAutomaticamente();
+
+        }
+    );
+
+
+    /* =====================================================
+       SEEK
+    ===================================================== */
+
+    canal.querySelector(
+        ".seek"
+    ).addEventListener(
+        "input",
+        function() {
+
+            const posicao =
+                Number(
+                    this.value
+                );
+
+
+            if (
+                canal.ytPlayer
+            ) {
+
+                try {
+
+                    canal.offset =
+                        posicao;
+
+                    canal.ytPlayer.seekTo(
+                        posicao,
+                        true
+                    );
+
+                    atualizarTempoCanal(
+                        canal,
+                        posicao
+                    );
+
+                } catch(e) {}
+
+                return;
+            }
+
+
+            canal.offset =
+                posicao;
+
+
+            atualizarTempoCanal(
+                canal,
+                posicao
+            );
+
+
+            if (
+                canal.playing
+            ) {
+
+                reiniciarCanalNaPosicao(
+                    canal,
+                    posicao
+                );
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       PAN
+    ===================================================== */
+
+    canal.querySelector(
+        ".pan"
+    ).addEventListener(
+        "input",
+        function() {
+
+            if (
+                canal.panner
+            ) {
+
+                canal.panner.pan.value =
+                    Number(
+                        this.value
+                    ) / 100;
+            }
+
 
             salvarAutomaticamente();
 
@@ -2550,15 +2282,14 @@ function criarCanal() {
 }
 
 
-/* =====================================================
+/* =========================================================
    YOUTUBE ID
-===================================================== */
+========================================================= */
 
 function obterYoutubeId(url) {
 
-    if (!url) {
+    if (!url)
         return null;
-    }
 
 
     try {
@@ -2594,7 +2325,6 @@ function obterYoutubeId(url) {
     } catch(e) {
 
         return null;
-
     }
 
 
@@ -2602,16 +2332,21 @@ function obterYoutubeId(url) {
 }
 
 
-/* =====================================================
+/* =========================================================
    CARREGAR YOUTUBE
-===================================================== */
+========================================================= */
 
-function carregarYouTube(canal) {
+function carregarYouTube(
+    canal
+) {
 
-    if (!youtubeAPIPronta) {
+    if (
+        !youtubeAPIPronta ||
+        typeof YT === "undefined"
+    ) {
 
         alert(
-            "A API do YouTube ainda está carregando. Aguarde alguns segundos."
+            "A API do YouTube ainda está carregando. Tente novamente."
         );
 
         return;
@@ -2626,16 +2361,6 @@ function carregarYouTube(canal) {
 
     const url =
         campo.value.trim();
-
-
-    if (!url) {
-
-        alert(
-            "Cole primeiro um link do YouTube."
-        );
-
-        return;
-    }
 
 
     const id =
@@ -2654,12 +2379,7 @@ function carregarYouTube(canal) {
     }
 
 
-    canal.youtubeUrl =
-        url;
-
-    canal.youtubeId =
-        id;
-
+    /* Remove áudio local */
 
     if (
         canal.source
@@ -2679,6 +2399,15 @@ function carregarYouTube(canal) {
     canal.audioBuffer =
         null;
 
+    canal.youtubeUrl =
+        url;
+
+    canal.youtubeId =
+        id;
+
+    canal.offset =
+        0;
+
 
     const playerDiv =
         canal.querySelector(
@@ -2686,274 +2415,267 @@ function carregarYouTube(canal) {
         );
 
 
-    playerDiv.innerHTML =
-        "";
+    playerDiv.innerHTML = "";
 
 
-    const playerElement =
+    const elemento =
         document.createElement(
             "div"
         );
 
 
     playerDiv.appendChild(
-        playerElement
+        elemento
     );
 
 
-    try {
+    canal.ytPlayer =
+        new YT.Player(
+            elemento,
+            {
 
-        canal.ytPlayer =
-            new YT.Player(
-                playerElement,
-                {
+                width: "1",
 
-                    width: "1",
+                height: "1",
 
-                    height: "1",
+                videoId: id,
 
-                    videoId: id,
+                playerVars: {
 
-                    playerVars: {
+                    autoplay: 0,
 
-                        autoplay: 0,
+                    controls: 0,
 
-                        controls: 0,
+                    rel: 0,
 
-                        modestbranding: 1,
+                    modestbranding: 1
 
-                        rel: 0
+                },
+
+
+                events: {
+
+                    onReady:
+                    function(event) {
+
+                        const duracao =
+                            event.target
+                                .getDuration();
+
+
+                        const seek =
+                            canal.querySelector(
+                                ".seek"
+                            );
+
+
+                        seek.max =
+                            duracao;
+
+                        seek.value =
+                            0;
+
+
+                        canal.querySelector(
+                            ".tempo-total"
+                        ).textContent =
+                            formatarTempo(
+                                duracao
+                            );
+
+
+                        const volume =
+                            Number(
+                                canal.querySelector(
+                                    ".fader"
+                                ).value
+                            );
+
+
+                        event.target.setVolume(
+                            volume
+                        );
+
+
+                        canal.querySelector(
+                            ".info-arquivo"
+                        ).textContent =
+                            "YouTube carregado";
 
                     },
 
-                    events: {
 
-                        onReady:
-                        function() {
+                    onStateChange:
+                    function(event) {
 
-                            const duracao =
-                                canal.ytPlayer
-                                    .getDuration();
+                        if (
+                            event.data ===
+                            YT.PlayerState.PLAYING
+                        ) {
 
-
-                            const seek =
-                                canal.querySelector(
-                                    ".seek"
-                                );
-
-
-                            seek.max =
-                                duracao;
-
-
-                            seek.value =
-                                0;
-
-
-                            canal.querySelector(
-                                ".tempo-total"
-                            ).textContent =
-                                formatarTempo(
-                                    duracao
-                                );
-
-
-                            const volume =
-                                Number(
-                                    canal.querySelector(
-                                        ".fader"
-                                    ).value
-                                );
-
-
-                            canal.ytPlayer.setVolume(
-                                volume
-                            );
-
-
-                            canal.querySelector(
-                                ".info-arquivo"
-                            ).textContent =
-                                "YouTube carregado";
-
-                        },
-
-
-                        onStateChange:
-                        function(event) {
-
-                            if (
-                                event.data ===
-                                YT.PlayerState.PLAYING
-                            ) {
-
-                                canal.playing =
-                                    true;
-
-                            }
-
-
-                            if (
-                                event.data ===
-                                YT.PlayerState.PAUSED
-                            ) {
-
-                                canal.playing =
-                                    false;
-
-                            }
-
-
-                            if (
-                                event.data ===
-                                YT.PlayerState.ENDED
-                            ) {
-
-                                canal.playing =
-                                    false;
-
-                                canal.offset =
-                                    0;
-
-                            }
-
-
-                            atualizarBotaoPlay(
-                                canal
-                            );
+                            canal.playing =
+                                true;
 
                         }
+
+
+                        if (
+                            event.data ===
+                            YT.PlayerState.PAUSED
+                        ) {
+
+                            canal.playing =
+                                false;
+
+                        }
+
+
+                        if (
+                            event.data ===
+                            YT.PlayerState.ENDED
+                        ) {
+
+                            canal.playing =
+                                false;
+
+                            canal.offset =
+                                0;
+
+                            canal.querySelector(
+                                ".seek"
+                            ).value =
+                                0;
+
+                        }
+
+
+                        atualizarBotaoPlay(
+                            canal
+                        );
 
                     }
 
                 }
-            );
 
-    } catch(e) {
-
-        console.error(e);
-
-        alert(
-            "Não foi possível criar o player do YouTube."
+            }
         );
-
-    }
 
 
     salvarAutomaticamente();
 }
 
 
-/* =====================================================
+/* =========================================================
    CARREGAR ARQUIVO
-===================================================== */
+========================================================= */
 
 async function carregarArquivo(
     arquivo,
     canal
 ) {
 
-    if (!arquivo) {
+    if (!arquivo)
         return;
-    }
+
+
+    await iniciarAudio();
+
+
+    const dados =
+        await arquivo.arrayBuffer();
 
 
     try {
-
-        await iniciarAudio();
-
-
-        const dados =
-            await arquivo.arrayBuffer();
-
 
         canal.audioBuffer =
             await audioContext.decodeAudioData(
                 dados
             );
 
-
-        canal.fileName =
-            arquivo.name;
-
-
-        canal.youtubeUrl =
-            "";
-
-        canal.youtubeId =
-            "";
-
-        canal.ytPlayer =
-            null;
-
-
-        canal.offset =
-            0;
-
-
-        const seek =
-            canal.querySelector(
-                ".seek"
-            );
-
-
-        seek.max =
-            canal.audioBuffer.duration;
-
-
-        seek.value =
-            0;
-
-
-        canal.querySelector(
-            ".tempo-total"
-        ).textContent =
-            formatarTempo(
-                canal.audioBuffer.duration
-            );
-
-
-        canal.querySelector(
-            ".tempo-atual"
-        ).textContent =
-            "00:00";
-
-
-        canal.querySelector(
-            ".info-arquivo"
-        ).textContent =
-            arquivo.name;
-
-
-        criarAudioCanal(
-            canal
-        );
-
-
     } catch(e) {
 
-        console.error(e);
-
         alert(
-            "Não foi possível carregar esse arquivo de áudio."
+            "Não foi possível abrir este arquivo de áudio."
         );
 
+        return;
     }
+
+
+    canal.fileName =
+        arquivo.name;
+
+
+    canal.youtubeUrl =
+        "";
+
+    canal.youtubeId =
+        "";
+
+    canal.ytPlayer =
+        null;
+
+
+    canal.offset =
+        0;
+
+
+    const seek =
+        canal.querySelector(
+            ".seek"
+        );
+
+
+    seek.max =
+        canal.audioBuffer.duration;
+
+
+    seek.value =
+        0;
+
+
+    canal.querySelector(
+        ".tempo-total"
+    ).textContent =
+        formatarTempo(
+            canal.audioBuffer.duration
+        );
+
+
+    canal.querySelector(
+        ".tempo-atual"
+    ).textContent =
+        "00:00";
+
+
+    canal.querySelector(
+        ".info-arquivo"
+    ).textContent =
+        arquivo.name;
+
+
+    criarAudioCanal(
+        canal
+    );
+
+
+    salvarAutomaticamente();
 }
 
 
-/* =====================================================
-   CADEIA DE ÁUDIO
-===================================================== */
+/* =========================================================
+   CRIAR CADEIA LOCAL
+========================================================= */
 
-function criarAudioCanal(canal) {
+function criarAudioCanal(
+    canal
+) {
 
     if (
         !canal.audioBuffer ||
         !audioContext
-    ) {
+    )
         return;
-    }
 
 
     if (
@@ -2981,12 +2703,9 @@ function criarAudioCanal(canal) {
         audioContext.createGain();
 
 
-    const channelGain =
-        audioContext.createGain();
-
-
     const high =
         audioContext.createBiquadFilter();
+
 
     high.type =
         "highshelf";
@@ -2997,6 +2716,7 @@ function criarAudioCanal(canal) {
 
     const mid =
         audioContext.createBiquadFilter();
+
 
     mid.type =
         "peaking";
@@ -3011,11 +2731,16 @@ function criarAudioCanal(canal) {
     const low =
         audioContext.createBiquadFilter();
 
+
     low.type =
         "lowshelf";
 
     low.frequency.value =
         120;
+
+
+    const channelGain =
+        audioContext.createGain();
 
 
     const panner =
@@ -3025,99 +2750,46 @@ function criarAudioCanal(canal) {
     const analyser =
         audioContext.createAnalyser();
 
+
     analyser.fftSize =
         256;
 
 
-    const delay =
-        audioContext.createDelay(
-            2
-        );
-
-
-    const delayFeedback =
-        audioContext.createGain();
-
-
-    const delayMix =
-        audioContext.createGain();
-
-
-    delay.delayTime.value =
-        Number(
-            canal.querySelector(
-                ".delay-time"
-            ).value
-        ) / 1000;
-
-
-    delayFeedback.gain.value =
-        Number(
-            canal.querySelector(
-                ".delay-feedback"
-            ).value
-        ) / 100;
-
-
-    delayMix.gain.value =
-        Number(
-            canal.querySelector(
-                ".delay-mix"
-            ).value
-        ) / 100;
-
+    /* =====================================================
+       CONEXÃO
+    ===================================================== */
 
     source.connect(
         preamp
     );
 
+
     preamp.connect(
         high
     );
+
 
     high.connect(
         mid
     );
 
+
     mid.connect(
         low
     );
 
+
     low.connect(
         channelGain
     );
+
 
     channelGain.connect(
         panner
     );
 
 
-    /* SOM DIRETO */
-
     panner.connect(
-        analyser
-    );
-
-
-    /* DELAY */
-
-    panner.connect(
-        delay
-    );
-
-    delay.connect(
-        delayFeedback
-    );
-
-    delayFeedback.connect(
-        delay
-    );
-
-    delay.connect(
-        delayMix
-    );
-
-    delayMix.connect(
         analyser
     );
 
@@ -3151,15 +2823,6 @@ function criarAudioCanal(canal) {
     canal.analyser =
         analyser;
 
-    canal.delay =
-        delay;
-
-    canal.delayFeedback =
-        delayFeedback;
-
-    canal.delayMix =
-        delayMix;
-
 
     aplicarControlesCanal(
         canal
@@ -3176,9 +2839,8 @@ function criarAudioCanal(canal) {
 
             if (
                 canal.pausando
-            ) {
+            )
                 return;
-            }
 
 
             if (
@@ -3201,11 +2863,13 @@ function criarAudioCanal(canal) {
 }
 
 
-/* =====================================================
+/* =========================================================
    PLAY / PAUSE
-===================================================== */
+========================================================= */
 
-async function alternarPlay(canal) {
+async function alternarPlay(
+    canal
+) {
 
     /* YOUTUBE */
 
@@ -3233,11 +2897,7 @@ async function alternarPlay(canal) {
 
             }
 
-        } catch(e) {
-
-            console.error(e);
-
-        }
+        } catch(e) {}
 
         return;
     }
@@ -3250,7 +2910,7 @@ async function alternarPlay(canal) {
     ) {
 
         alert(
-            "Escolha um áudio ou carregue um YouTube."
+            "Escolha um arquivo de áudio ou carregue um vídeo do YouTube."
         );
 
         return;
@@ -3264,16 +2924,6 @@ async function alternarPlay(canal) {
         !canal.playing
     ) {
 
-        if (
-            canal.offset >=
-            canal.audioBuffer.duration
-        ) {
-
-            canal.offset =
-                0;
-        }
-
-
         iniciarCanalNaPosicao(
             canal,
             canal.offset
@@ -3284,26 +2934,18 @@ async function alternarPlay(canal) {
         pausarCanal(
             canal
         );
-
     }
 }
 
 
-/* =====================================================
+/* =========================================================
    INICIAR CANAL
-===================================================== */
+========================================================= */
 
 function iniciarCanalNaPosicao(
     canal,
     posicao
 ) {
-
-    if (
-        !canal.audioBuffer
-    ) {
-        return;
-    }
-
 
     criarAudioCanal(
         canal
@@ -3341,17 +2983,18 @@ function iniciarCanalNaPosicao(
 }
 
 
-/* =====================================================
+/* =========================================================
    PAUSAR
-===================================================== */
+========================================================= */
 
-function pausarCanal(canal) {
+function pausarCanal(
+    canal
+) {
 
     if (
         !canal.playing
-    ) {
+    )
         return;
-    }
 
 
     const decorrido =
@@ -3379,9 +3022,6 @@ function pausarCanal(canal) {
 
     try {
 
-        canal.source.onended =
-            null;
-
         canal.source.stop();
 
     } catch(e) {}
@@ -3403,9 +3043,9 @@ function pausarCanal(canal) {
 }
 
 
-/* =====================================================
-   REINICIAR
-===================================================== */
+/* =========================================================
+   SEEK LOCAL
+========================================================= */
 
 function reiniciarCanalNaPosicao(
     canal,
@@ -3415,25 +3055,11 @@ function reiniciarCanalNaPosicao(
     if (
         !canal.audioBuffer ||
         !canal.playing
-    ) {
+    )
         return;
-    }
-
-
-    canal.offset =
-        Math.max(
-            0,
-            Math.min(
-                posicao,
-                canal.audioBuffer.duration
-            )
-        );
 
 
     try {
-
-        canal.source.onended =
-            null;
 
         canal.source.stop();
 
@@ -3445,32 +3071,29 @@ function reiniciarCanalNaPosicao(
     );
 
 
+    canal.offset =
+        posicao;
+
+
     canal.startTime =
         audioContext.currentTime -
-        canal.offset;
+        posicao;
 
 
     canal.source.start(
         0,
-        canal.offset
-    );
-
-
-    canal.playing =
-        true;
-
-
-    atualizarBotaoPlay(
-        canal
+        posicao
     );
 }
 
 
-/* =====================================================
+/* =========================================================
    BOTÃO PLAY
-===================================================== */
+========================================================= */
 
-function atualizarBotaoPlay(canal) {
+function atualizarBotaoPlay(
+    canal
+) {
 
     const botao =
         canal.querySelector(
@@ -3497,22 +3120,22 @@ function atualizarBotaoPlay(canal) {
         botao.classList.remove(
             "ativo"
         );
-
     }
 }
 
 
-/* =====================================================
+/* =========================================================
    VOLUME
-===================================================== */
+========================================================= */
 
-function atualizarVolumeCanal(canal) {
+function atualizarVolumeCanal(
+    canal
+) {
 
     if (
         !canal.channelGain
-    ) {
+    )
         return;
-    }
 
 
     const fader =
@@ -3550,14 +3173,14 @@ function atualizarVolumeCanal(canal) {
         );
 
 
-    if (mute) {
+    if (
+        mute
+    ) {
 
         canal.channelGain.gain.value =
             0;
 
-    }
-
-    else if (
+    } else if (
         existeSolo &&
         !esteSolo
     ) {
@@ -3565,20 +3188,17 @@ function atualizarVolumeCanal(canal) {
         canal.channelGain.gain.value =
             0;
 
-    }
-
-    else {
+    } else {
 
         canal.channelGain.gain.value =
             fader / 100;
-
     }
 }
 
 
-/* =====================================================
+/* =========================================================
    PREAMP
-===================================================== */
+========================================================= */
 
 function aplicarPreamp(
     canal,
@@ -3587,9 +3207,8 @@ function aplicarPreamp(
 
     if (
         !canal.preampGain
-    ) {
+    )
         return;
-    }
 
 
     canal.preampGain.gain.value =
@@ -3600,9 +3219,9 @@ function aplicarPreamp(
 }
 
 
-/* =====================================================
-   CONTROLES
-===================================================== */
+/* =========================================================
+   CONTROLES DO CANAL
+========================================================= */
 
 function aplicarControlesCanal(
     canal
@@ -3631,7 +3250,6 @@ function aplicarControlesCanal(
                     canal,
                     valor
                 );
-
             }
 
 
@@ -3642,7 +3260,6 @@ function aplicarControlesCanal(
 
                 canal.highFilter.gain.value =
                     valor;
-
             }
 
 
@@ -3653,7 +3270,6 @@ function aplicarControlesCanal(
 
                 canal.midFilter.gain.value =
                     valor;
-
             }
 
 
@@ -3664,17 +3280,10 @@ function aplicarControlesCanal(
 
                 canal.lowFilter.gain.value =
                     valor;
-
             }
 
         }
     );
-
-
-    const pan =
-        canal.querySelector(
-            ".pan"
-        );
 
 
     if (
@@ -3683,9 +3292,10 @@ function aplicarControlesCanal(
 
         canal.panner.pan.value =
             Number(
-                pan.value
+                canal.querySelector(
+                    ".pan"
+                ).value
             ) / 100;
-
     }
 
 
@@ -3695,9 +3305,9 @@ function aplicarControlesCanal(
 }
 
 
-/* =====================================================
+/* =========================================================
    SOLO
-===================================================== */
+========================================================= */
 
 function atualizarSolos() {
 
@@ -3713,11 +3323,13 @@ function atualizarSolos() {
 }
 
 
-/* =====================================================
+/* =========================================================
    KNOBS
-===================================================== */
+========================================================= */
 
-function configurarKnob(knob) {
+function configurarKnob(
+    knob
+) {
 
     let valor =
         Number(
@@ -3725,11 +3337,9 @@ function configurarKnob(knob) {
         );
 
 
-    let inicioY =
-        0;
+    let inicioY = 0;
 
-    let inicioValor =
-        0;
+    let inicioValor = 0;
 
 
     function atualizar() {
@@ -3771,16 +3381,13 @@ function configurarKnob(knob) {
                 valor
             );
 
-        }
-
-        else if (
+        } else if (
             canal
         ) {
 
             aplicarControlesCanal(
                 canal
             );
-
         }
 
 
@@ -3824,6 +3431,7 @@ function configurarKnob(knob) {
                     mover
                 );
 
+
                 document.removeEventListener(
                     "mouseup",
                     soltar
@@ -3835,6 +3443,7 @@ function configurarKnob(knob) {
                 "mousemove",
                 mover
             );
+
 
             document.addEventListener(
                 "mouseup",
@@ -3851,9 +3460,9 @@ function configurarKnob(knob) {
 }
 
 
-/* =====================================================
+/* =========================================================
    VISUAL KNOB
-===================================================== */
+========================================================= */
 
 function atualizarVisualKnob(
     knob
@@ -3893,14 +3502,13 @@ function atualizarVisualKnob(
             valor > 0
             ? "+" + valor + " dB"
             : valor + " dB";
-
     }
 }
 
 
-/* =====================================================
-   MASTER KNOB
-===================================================== */
+/* =========================================================
+   MASTER EQ
+========================================================= */
 
 function aplicarMasterKnob(
     knob,
@@ -3909,9 +3517,8 @@ function aplicarMasterKnob(
 
     if (
         !audioContext
-    ) {
+    )
         return;
-    }
 
 
     const tipo =
@@ -3925,7 +3532,6 @@ function aplicarMasterKnob(
 
         masterHigh.gain.value =
             valor;
-
     }
 
 
@@ -3936,7 +3542,6 @@ function aplicarMasterKnob(
 
         masterMid.gain.value =
             valor;
-
     }
 
 
@@ -3947,14 +3552,13 @@ function aplicarMasterKnob(
 
         masterLow.gain.value =
             valor;
-
     }
 }
 
 
-/* =====================================================
+/* =========================================================
    MASTER FADER
-===================================================== */
+========================================================= */
 
 document.getElementById(
     "masterFader"
@@ -3976,17 +3580,16 @@ document.getElementById(
 );
 
 
-/* =====================================================
+/* =========================================================
    MASTER VOLUME
-===================================================== */
+========================================================= */
 
 function aplicarVolumeMaster() {
 
     if (
         !masterGain
-    ) {
+    )
         return;
-    }
 
 
     const fader =
@@ -4012,9 +3615,9 @@ function aplicarVolumeMaster() {
 }
 
 
-/* =====================================================
+/* =========================================================
    MASTER MUTE
-===================================================== */
+========================================================= */
 
 function toggleMasterMute() {
 
@@ -4035,17 +3638,18 @@ function toggleMasterMute() {
 }
 
 
-/* =====================================================
+/* =========================================================
    METER
-===================================================== */
+========================================================= */
 
-function iniciarMeter(canal) {
+function iniciarMeter(
+    canal
+) {
 
     if (
         !canal.analyser
-    ) {
+    )
         return;
-    }
 
 
     const meter =
@@ -4056,9 +3660,8 @@ function iniciarMeter(canal) {
 
     if (
         !meter
-    ) {
+    )
         return;
-    }
 
 
     const leds =
@@ -4077,19 +3680,16 @@ function iniciarMeter(canal) {
 
         if (
             !canal.analyser
-        ) {
+        )
             return;
-        }
 
 
-        canal.analyser
-            .getByteTimeDomainData(
-                dados
-            );
+        canal.analyser.getByteTimeDomainData(
+            dados
+        );
 
 
-        let soma =
-            0;
+        let soma = 0;
 
 
         for (
@@ -4107,7 +3707,6 @@ function iniciarMeter(canal) {
 
             soma +=
                 v * v;
-
         }
 
 
@@ -4146,9 +3745,7 @@ function iniciarMeter(canal) {
                             "verde"
                         );
 
-                    }
-
-                    else if (
+                    } else if (
                         i < 17
                     ) {
 
@@ -4156,18 +3753,13 @@ function iniciarMeter(canal) {
                             "amarelo"
                         );
 
-                    }
-
-                    else {
+                    } else {
 
                         led.classList.add(
                             "vermelho"
                         );
-
                     }
-
                 }
-
             }
         );
 
@@ -4182,18 +3774,16 @@ function iniciarMeter(canal) {
 }
 
 
-/* =====================================================
+/* =========================================================
    TEMPO
-===================================================== */
+========================================================= */
 
 function formatarTempo(
     segundos
 ) {
 
     if (
-        !isFinite(
-            segundos
-        ) ||
+        !isFinite(segundos) ||
         segundos < 0
     ) {
 
@@ -4235,6 +3825,10 @@ function formatarTempo(
 }
 
 
+/* =========================================================
+   ATUALIZAR TEMPO
+========================================================= */
+
 function atualizarTempoCanal(
     canal,
     posicao
@@ -4254,19 +3848,21 @@ function atualizarTempoCanal(
             formatarTempo(
                 posicao
             );
-
     }
 }
 
 
-/* =====================================================
+/* =========================================================
    RELÓGIO
-===================================================== */
+========================================================= */
 
 function atualizarRelogio() {
 
     canais.forEach(
         canal => {
+
+
+            /* YOUTUBE */
 
             if (
                 canal.ytPlayer &&
@@ -4304,6 +3900,8 @@ function atualizarRelogio() {
             }
 
 
+            /* ÁUDIO LOCAL */
+
             else if (
                 canal.audioBuffer &&
                 canal.playing &&
@@ -4333,7 +3931,6 @@ function atualizarRelogio() {
                     canal,
                     posicao
                 );
-
             }
 
         }
@@ -4349,9 +3946,9 @@ function atualizarRelogio() {
 atualizarRelogio();
 
 
-/* =====================================================
+/* =========================================================
    ADICIONAR CANAL
-===================================================== */
+========================================================= */
 
 function adicionarCanal() {
 
@@ -4381,9 +3978,9 @@ function adicionarCanal() {
 }
 
 
-/* =====================================================
+/* =========================================================
    REMOVER CANAL
-===================================================== */
+========================================================= */
 
 function removerCanal(
     canal
@@ -4401,9 +3998,8 @@ function removerCanal(
             nome +
             "'?"
         )
-    ) {
+    )
         return;
-    }
 
 
     if (
@@ -4415,7 +4011,18 @@ function removerCanal(
             canal.source.stop();
 
         } catch(e) {}
+    }
 
+
+    if (
+        canal.ytPlayer
+    ) {
+
+        try {
+
+            canal.ytPlayer.stopVideo();
+
+        } catch(e) {}
     }
 
 
@@ -4433,7 +4040,6 @@ function removerCanal(
             indice,
             1
         );
-
     }
 
 
@@ -4448,9 +4054,9 @@ function removerCanal(
 }
 
 
-/* =====================================================
+/* =========================================================
    CONTADOR
-===================================================== */
+========================================================= */
 
 function atualizarContador() {
 
@@ -4461,9 +4067,9 @@ function atualizarContador() {
 }
 
 
-/* =====================================================
+/* =========================================================
    COPIAR
-===================================================== */
+========================================================= */
 
 function copiarCanal(
     canal
@@ -4479,11 +4085,6 @@ function copiarCanal(
         pan:
             canal.querySelector(
                 ".pan"
-            ).value,
-
-        aux:
-            canal.querySelector(
-                ".aux"
             ).value,
 
         mute:
@@ -4511,19 +4112,18 @@ function copiarCanal(
                         k.dataset.valor
                     )
             )
-
     };
 
 
     alert(
-        "Configuração do canal copiada."
+        "Configuração copiada."
     );
 }
 
 
-/* =====================================================
+/* =========================================================
    COLAR
-===================================================== */
+========================================================= */
 
 function colarCanal(
     canal
@@ -4548,31 +4148,21 @@ function colarCanal(
 
 
     canal.querySelector(
-        ".pan"
-    ).value =
-        canalCopiado.pan;
-
-
-    canal.querySelector(
-        ".aux"
-    ).value =
-        canalCopiado.aux;
-
-
-    canal.querySelector(
         ".valor-fader"
     ).textContent =
         canalCopiado.fader +
         "%";
 
 
-    const mute =
-        canal.querySelector(
-            ".mute"
-        );
+    canal.querySelector(
+        ".pan"
+    ).value =
+        canalCopiado.pan;
 
 
-    mute.classList.toggle(
+    canal.querySelector(
+        ".mute"
+    ).classList.toggle(
         "ativo",
         canalCopiado.mute
     );
@@ -4584,13 +4174,9 @@ function colarCanal(
     );
 
 
-    const solo =
-        canal.querySelector(
-            ".solo"
-        );
-
-
-    solo.classList.toggle(
+    canal.querySelector(
+        ".solo"
+    ).classList.toggle(
         "ativo",
         canalCopiado.solo
     );
@@ -4612,12 +4198,11 @@ function colarCanal(
                 knobs[i].dataset.valor =
                     valor;
 
+
                 atualizarVisualKnob(
                     knobs[i]
                 );
-
             }
-
         }
     );
 
@@ -4629,18 +4214,46 @@ function colarCanal(
 
     atualizarSolos();
 
+
+    if (
+        canal.ytPlayer
+    ) {
+
+        try {
+
+            if (
+                canalCopiado.mute
+            ) {
+
+                canal.ytPlayer.mute();
+
+            } else {
+
+                canal.ytPlayer.unMute();
+
+                canal.ytPlayer.setVolume(
+                    Number(
+                        canalCopiado.fader
+                    )
+                );
+            }
+
+        } catch(e) {}
+    }
+
+
     salvarAutomaticamente();
 
 
     alert(
-        "Configuração colada neste canal."
+        "Configuração colada."
     );
 }
 
 
-/* =====================================================
+/* =========================================================
    PLAY TODOS
-===================================================== */
+========================================================= */
 
 async function playTodos() {
 
@@ -4673,20 +4286,16 @@ async function playTodos() {
                     canal,
                     canal.offset || 0
                 );
-
             }
 
         }
     );
-
-
-    salvarAutomaticamente();
 }
 
 
-/* =====================================================
+/* =========================================================
    PAUSAR TODOS
-===================================================== */
+========================================================= */
 
 function pausarTodos() {
 
@@ -4702,7 +4311,6 @@ function pausarTodos() {
                     canal.ytPlayer.pauseVideo();
 
                 } catch(e) {}
-
             }
 
 
@@ -4714,7 +4322,6 @@ function pausarTodos() {
                 pausarCanal(
                     canal
                 );
-
             }
 
         }
@@ -4725,9 +4332,9 @@ function pausarTodos() {
 }
 
 
-/* =====================================================
+/* =========================================================
    PARAR TODOS
-===================================================== */
+========================================================= */
 
 function pararTodos() {
 
@@ -4756,15 +4363,12 @@ function pararTodos() {
                     canal.source.stop();
 
                 } catch(e) {}
-
             }
 
 
-            canal.source =
-                null;
-
             canal.playing =
                 false;
+
 
             canal.offset =
                 0;
@@ -4782,7 +4386,6 @@ function pararTodos() {
 
                 seek.value =
                     0;
-
             }
 
 
@@ -4804,40 +4407,33 @@ function pararTodos() {
 }
 
 
-/* =====================================================
-   SINCRONIZAR TODOS
-===================================================== */
+/* =========================================================
+   SINCRONIZAR
+========================================================= */
 
 function sincronizarTodos() {
+
+    let maiorPosicao = 0;
+
 
     canais.forEach(
         canal => {
 
-            canal.offset =
-                0;
-
-
-            const seek =
-                canal.querySelector(
-                    ".seek"
-                );
-
-
             if (
-                seek
+                canal.playing &&
+                canal.offset > maiorPosicao
             ) {
 
-                seek.value =
-                    0;
-
+                maiorPosicao =
+                    canal.offset;
             }
 
+        }
+    );
 
-            atualizarTempoCanal(
-                canal,
-                0
-            );
 
+    canais.forEach(
+        canal => {
 
             if (
                 canal.ytPlayer
@@ -4846,7 +4442,7 @@ function sincronizarTodos() {
                 try {
 
                     canal.ytPlayer.seekTo(
-                        0,
+                        maiorPosicao,
                         true
                     );
 
@@ -4854,249 +4450,40 @@ function sincronizarTodos() {
 
             }
 
+
+            else if (
+                canal.audioBuffer
+            ) {
+
+                canal.offset =
+                    Math.min(
+                        maiorPosicao,
+                        canal.audioBuffer.duration
+                    );
+
+
+                if (
+                    canal.playing
+                ) {
+
+                    reiniciarCanalNaPosicao(
+                        canal,
+                        canal.offset
+                    );
+                }
+            }
+
         }
     );
 
 
     salvarAutomaticamente();
-
-
-    alert(
-        "Todos os canais foram sincronizados no início."
-    );
 }
 
 
-/* =====================================================
-   EFEITOS
-===================================================== */
-
-function abrirEfeitos(
-    canal
-) {
-
-    canalEfeitosAtual =
-        canal;
-
-
-    document.getElementById(
-        "modalEfeitos"
-    ).classList.add(
-        "aberto"
-    );
-
-
-    atualizarInterfaceEfeitos();
-}
-
-
-function fecharEfeitos() {
-
-    document.getElementById(
-        "modalEfeitos"
-    ).classList.remove(
-        "aberto"
-    );
-
-
-    canalEfeitosAtual =
-        null;
-}
-
-
-function toggleEfeito(
-    tipo
-) {
-
-    if (
-        !canalEfeitosAtual
-    ) {
-        return;
-    }
-
-
-    canalEfeitosAtual.effects[tipo] =
-        !canalEfeitosAtual.effects[tipo];
-
-
-    const ativo =
-        canalEfeitosAtual.effects[tipo];
-
-
-    const botaoId = {
-
-        gate: "btnGate",
-
-        compressor: "btnCompressor",
-
-        reverb: "btnReverb",
-
-        delay: "btnDelay"
-
-    }[tipo];
-
-
-    const botao =
-        document.getElementById(
-            botaoId
-        );
-
-
-    if (
-        botao
-    ) {
-
-        botao.classList.toggle(
-            "efeito-ativo",
-            ativo
-        );
-
-    }
-
-
-    aplicarEfeitos(
-        canalEfeitosAtual
-    );
-
-
-    salvarAutomaticamente();
-}
-
-
-function atualizarInterfaceEfeitos() {
-
-    if (
-        !canalEfeitosAtual
-    ) {
-        return;
-    }
-
-
-    const efeitos =
-        canalEfeitosAtual.effects;
-
-
-    document.getElementById(
-        "btnGate"
-    ).classList.toggle(
-        "efeito-ativo",
-        efeitos.gate
-    );
-
-
-    document.getElementById(
-        "btnCompressor"
-    ).classList.toggle(
-        "efeito-ativo",
-        efeitos.compressor
-    );
-
-
-    document.getElementById(
-        "btnReverb"
-    ).classList.toggle(
-        "efeito-ativo",
-        efeitos.reverb
-    );
-
-
-    document.getElementById(
-        "btnDelay"
-    ).classList.toggle(
-        "efeito-ativo",
-        efeitos.delay
-    );
-}
-
-
-/* =====================================================
-   APLICAÇÃO DE EFEITOS
-===================================================== */
-
-function aplicarEfeitos(
-    canal
-) {
-
-    /*
-       Os efeitos avançados são aplicados
-       somente quando existe cadeia Web Audio.
-    */
-
-    if (
-        !audioContext ||
-        !canal.channelGain
-    ) {
-        return;
-    }
-
-
-    /* COMPRESSOR */
-
-    if (
-        canal.effects.compressor
-    ) {
-
-        if (
-            !canal.effectNodes.compressor
-        ) {
-
-            const compressor =
-                audioContext.createDynamicsCompressor();
-
-
-            compressor.threshold.value =
-                -24;
-
-            compressor.knee.value =
-                30;
-
-            compressor.ratio.value =
-                4;
-
-            compressor.attack.value =
-                0.003;
-
-            compressor.release.value =
-                0.25;
-
-
-            canal.effectNodes.compressor =
-                compressor;
-
-        }
-
-    }
-
-
-    /*
-       O delay já existe na cadeia principal.
-       Aqui apenas habilitamos/desabilitamos o mix.
-    */
-
-    if (
-        canal.delayMix
-    ) {
-
-        const mix =
-            Number(
-                canal.querySelector(
-                    ".delay-mix"
-                ).value
-            ) / 100;
-
-
-        canal.delayMix.gain.value =
-            canal.effects.delay
-            ? mix
-            : 0;
-
-    }
-}
-
-
-/* =====================================================
-   CENAS
-===================================================== */
+/* =========================================================
+   ESTADO
+========================================================= */
 
 function obterEstado() {
 
@@ -5133,9 +4520,6 @@ function obterEstado() {
             canais.map(
                 canal => ({
 
-                    numero:
-                        canal.dataset.numero,
-
                     nome:
                         canal.querySelector(
                             ".nome"
@@ -5149,11 +4533,6 @@ function obterEstado() {
                     pan:
                         canal.querySelector(
                             ".pan"
-                        ).value,
-
-                    aux:
-                        canal.querySelector(
-                            ".aux"
                         ).value,
 
                     mute:
@@ -5192,36 +4571,17 @@ function obterEstado() {
                                 Number(
                                     k.dataset.valor
                                 )
-                        ),
-
-                    delayTime:
-                        canal.querySelector(
-                            ".delay-time"
-                        ).value,
-
-                    delayMix:
-                        canal.querySelector(
-                            ".delay-mix"
-                        ).value,
-
-                    delayFeedback:
-                        canal.querySelector(
-                            ".delay-feedback"
-                        ).value,
-
-                    effects:
-                        canal.effects
+                        )
 
                 })
             )
-
     };
 }
 
 
-/* =====================================================
+/* =========================================================
    SALVAR AUTOMATICAMENTE
-===================================================== */
+========================================================= */
 
 function salvarAutomaticamente() {
 
@@ -5237,17 +4597,43 @@ function salvarAutomaticamente() {
     } catch(e) {
 
         console.warn(
-            "Não foi possível salvar:",
+            "Não foi possível salvar.",
             e
         );
-
     }
 }
 
 
-/* =====================================================
-   CENA RÁPIDA
-===================================================== */
+/* =========================================================
+   CENAS
+========================================================= */
+
+function abrirCenas() {
+
+    document.getElementById(
+        "modalCenas"
+    ).classList.add(
+        "aberto"
+    );
+
+
+    atualizarListaCenas();
+}
+
+
+function fecharCenas() {
+
+    document.getElementById(
+        "modalCenas"
+    ).classList.remove(
+        "aberto"
+    );
+}
+
+
+/* =========================================================
+   SALVAR CENA RÁPIDA
+========================================================= */
 
 function salvarCenaRapida() {
 
@@ -5285,46 +4671,26 @@ function salvarCenaRapida() {
     alert(
         "Cena salva!"
     );
-}
-
-
-/* =====================================================
-   ABRIR CENAS
-===================================================== */
-
-function abrirCenas() {
-
-    document.getElementById(
-        "modalCenas"
-    ).classList.add(
-        "aberto"
-    );
 
 
     atualizarListaCenas();
 }
 
 
-function fecharCenas() {
-
-    document.getElementById(
-        "modalCenas"
-    ).classList.remove(
-        "aberto"
-    );
-}
-
-
-/* =====================================================
+/* =========================================================
    SALVAR CENA
-===================================================== */
+========================================================= */
 
 function salvarCena() {
 
-    const nome =
+    const campo =
         document.getElementById(
             "nomeCena"
-        ).value.trim();
+        );
+
+
+    const nome =
+        campo.value.trim();
 
 
     if (
@@ -5359,9 +4725,7 @@ function salvarCena() {
     );
 
 
-    document.getElementById(
-        "nomeCena"
-    ).value =
+    campo.value =
         "";
 
 
@@ -5374,9 +4738,9 @@ function salvarCena() {
 }
 
 
-/* =====================================================
-   LISTA DE CENAS
-===================================================== */
+/* =========================================================
+   LISTAR CENAS
+========================================================= */
 
 function atualizarListaCenas() {
 
@@ -5398,32 +4762,9 @@ function atualizarListaCenas() {
         );
 
 
-    const nomes =
-        Object.keys(
-            cenas
-        );
-
-
-    if (
-        nomes.length === 0
-    ) {
-
-        lista.innerHTML = `
-            <div style="
-                color:#666;
-                text-align:center;
-                padding:15px;
-                font-size:9px;
-            ">
-                Nenhuma cena salva.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    nomes.forEach(
+    Object.keys(
+        cenas
+    ).forEach(
         nome => {
 
             const item =
@@ -5439,7 +4780,7 @@ function atualizarListaCenas() {
             item.innerHTML = `
 
                 <span>
-                    ${escaparHTML(nome)}
+                    ${nome}
                 </span>
 
                 <span>
@@ -5453,6 +4794,7 @@ function atualizarListaCenas() {
                     </button>
 
                 </span>
+
             `;
 
 
@@ -5466,7 +4808,7 @@ function atualizarListaCenas() {
                 function() {
 
                     carregarCena(
-                        nome
+                        cenas[nome]
                     );
 
                 };
@@ -5475,9 +4817,25 @@ function atualizarListaCenas() {
             botoes[1].onclick =
                 function() {
 
-                    excluirCena(
-                        nome
-                    );
+                    if (
+                        confirm(
+                            "Excluir esta cena?"
+                        )
+                    ) {
+
+                        delete cenas[nome];
+
+
+                        localStorage.setItem(
+                            "mesaSomCenas",
+                            JSON.stringify(
+                                cenas
+                            )
+                        );
+
+
+                        atualizarListaCenas();
+                    }
 
                 };
 
@@ -5491,120 +4849,35 @@ function atualizarListaCenas() {
 }
 
 
-/* =====================================================
+/* =========================================================
    CARREGAR CENA
-===================================================== */
+========================================================= */
 
 function carregarCena(
-    nome
-) {
-
-    const cenas =
-        JSON.parse(
-            localStorage.getItem(
-                "mesaSomCenas"
-            ) || "{}"
-        );
-
-
-    const estado =
-        cenas[nome];
-
-
-    if (
-        !estado
-    ) {
-        return;
-    }
-
-
-    aplicarEstado(
-        estado
-    );
-
-
-    alert(
-        "Cena '" +
-        nome +
-        "' carregada."
-    );
-}
-
-
-/* =====================================================
-   EXCLUIR CENA
-===================================================== */
-
-function excluirCena(
-    nome
-) {
-
-    if (
-        !confirm(
-            "Excluir a cena '" +
-            nome +
-            "'?"
-        )
-    ) {
-        return;
-    }
-
-
-    const cenas =
-        JSON.parse(
-            localStorage.getItem(
-                "mesaSomCenas"
-            ) || "{}"
-        );
-
-
-    delete cenas[nome];
-
-
-    localStorage.setItem(
-        "mesaSomCenas",
-        JSON.stringify(
-            cenas
-        )
-    );
-
-
-    atualizarListaCenas();
-}
-
-
-/* =====================================================
-   APLICAR ESTADO
-===================================================== */
-
-function aplicarEstado(
     estado
 ) {
 
+    if (!estado)
+        return;
+
+
     /* MASTER */
 
-    if (
-        estado.masterFader !==
-        undefined
-    ) {
-
-        const fader =
-            document.getElementById(
-                "masterFader"
-            );
-
-
-        fader.value =
-            estado.masterFader;
-
-
+    const masterFader =
         document.getElementById(
-            "masterValor"
-        ).textContent =
-            estado.masterFader +
-            "%";
+            "masterFader"
+        );
 
-    }
+
+    masterFader.value =
+        estado.masterFader;
+
+
+    document.getElementById(
+        "masterValor"
+    ).textContent =
+        estado.masterFader +
+        "%";
 
 
     const masterMute =
@@ -5615,16 +4888,12 @@ function aplicarEstado(
 
     masterMute.classList.toggle(
         "ativo",
-        !!estado.masterMute
+        estado.masterMute
     );
 
 
-    /* MASTER EQ */
-
     if (
-        Array.isArray(
-            estado.masterEQ
-        )
+        estado.masterEQ
     ) {
 
         const knobs =
@@ -5643,427 +4912,151 @@ function aplicarEstado(
                     knobs[i].dataset.valor =
                         valor;
 
+
                     atualizarVisualKnob(
                         knobs[i]
                     );
+
 
                     aplicarMasterKnob(
                         knobs[i],
                         valor
                     );
-
                 }
-
             }
         );
-
     }
 
 
     /* CANAIS */
 
-    if (
-        Array.isArray(
-            estado.canais
-        )
-    ) {
+    estado.canais.forEach(
+        (dados, i) => {
 
-        while (
-            canais.length <
-            estado.canais.length
-        ) {
-
-            adicionarCanal();
-
-        }
+            if (
+                !canais[i]
+            )
+                return;
 
 
-        estado.canais.forEach(
-            (dados, i) => {
-
-                const canal =
-                    canais[i];
+            const canal =
+                canais[i];
 
 
-                if (
-                    !canal
-                ) {
-                    return;
-                }
+            canal.querySelector(
+                ".nome"
+            ).value =
+                dados.nome;
 
 
-                canal.querySelector(
-                    ".nome"
-                ).value =
-                    dados.nome || "";
+            canal.querySelector(
+                ".fader"
+            ).value =
+                dados.fader;
 
 
-                canal.querySelector(
-                    ".fader"
-                ).value =
-                    dados.fader ??
-                    75;
+            canal.querySelector(
+                ".valor-fader"
+            ).textContent =
+                dados.fader +
+                "%";
 
 
-                canal.querySelector(
-                    ".valor-fader"
-                ).textContent =
-                    (
-                        dados.fader ??
-                        75
-                    ) +
-                    "%";
+            canal.querySelector(
+                ".pan"
+            ).value =
+                dados.pan;
 
 
-                canal.querySelector(
-                    ".pan"
-                ).value =
-                    dados.pan ??
-                    0;
+            canal.querySelector(
+                ".mute"
+            ).classList.toggle(
+                "ativo",
+                dados.mute
+            );
 
 
-                canal.querySelector(
-                    ".aux"
-                ).value =
-                    dados.aux ??
-                    0;
+            canal.classList.toggle(
+                "mutado",
+                dados.mute
+            );
 
 
-                canal.querySelector(
-                    ".mute"
-                ).classList.toggle(
-                    "ativo",
-                    !!dados.mute
+            canal.querySelector(
+                ".solo"
+            ).classList.toggle(
+                "ativo",
+                dados.solo
+            );
+
+
+            const knobs =
+                canal.querySelectorAll(
+                    ".knob"
                 );
 
 
-                canal.classList.toggle(
-                    "mutado",
-                    !!dados.mute
-                );
+            if (
+                dados.knobs
+            ) {
+
+                dados.knobs.forEach(
+                    (valor, k) => {
+
+                        if (
+                            knobs[k]
+                        ) {
+
+                            knobs[k].dataset.valor =
+                                valor;
 
 
-                canal.querySelector(
-                    ".solo"
-                ).classList.toggle(
-                    "ativo",
-                    !!dados.solo
-                );
-
-
-                canal.classList.toggle(
-                    "solo-canal",
-                    !!dados.solo
-                );
-
-
-                if (
-                    Array.isArray(
-                        dados.knobs
-                    )
-                ) {
-
-                    const knobs =
-                        canal.querySelectorAll(
-                            ".knob"
-                        );
-
-
-                    dados.knobs.forEach(
-                        (valor, k) => {
-
-                            if (
+                            atualizarVisualKnob(
                                 knobs[k]
-                            ) {
-
-                                knobs[k].dataset.valor =
-                                    valor;
-
-                                atualizarVisualKnob(
-                                    knobs[k]
-                                );
-
-                            }
+                            );
 
                         }
-                    );
 
-                }
-
-
-                if (
-                    dados.delayTime !==
-                    undefined
-                ) {
-
-                    canal.querySelector(
-                        ".delay-time"
-                    ).value =
-                        dados.delayTime;
-
-                    canal.querySelector(
-                        ".delay-time-value"
-                    ).textContent =
-                        dados.delayTime +
-                        " ms";
-
-                }
-
-
-                if (
-                    dados.delayMix !==
-                    undefined
-                ) {
-
-                    canal.querySelector(
-                        ".delay-mix"
-                    ).value =
-                        dados.delayMix;
-
-                    canal.querySelector(
-                        ".delay-mix-value"
-                    ).textContent =
-                        dados.delayMix +
-                        "%";
-
-                }
-
-
-                if (
-                    dados.delayFeedback !==
-                    undefined
-                ) {
-
-                    canal.querySelector(
-                        ".delay-feedback"
-                    ).value =
-                        dados.delayFeedback;
-
-                    canal.querySelector(
-                        ".delay-feedback-value"
-                    ).textContent =
-                        dados.delayFeedback +
-                        "%";
-
-                }
-
-
-                if (
-                    dados.youtubeUrl
-                ) {
-
-                    canal.querySelector(
-                        ".youtube-url"
-                    ).value =
-                        dados.youtubeUrl;
-
-                }
-
-
-                canal.offset =
-                    dados.offset ||
-                    0;
-
-
-                if (
-                    dados.effects
-                ) {
-
-                    canal.effects =
-                        {
-                            gate:
-                                !!dados.effects.gate,
-
-                            compressor:
-                                !!dados.effects.compressor,
-
-                            reverb:
-                                !!dados.effects.reverb,
-
-                            delay:
-                                !!dados.effects.delay
-                        };
-
-                }
-
-
-                if (
-                    canal.audioBuffer
-                ) {
-
-                    criarAudioCanal(
-                        canal
-                    );
-
-                }
-
+                    }
+                );
             }
-        );
-
-    }
 
 
-    atualizarSolos();
+            aplicarControlesCanal(
+                canal
+            );
+
+
+            if (
+                canal.ytPlayer &&
+                dados.youtubeUrl
+            ) {
+
+                try {
+
+                    canal.ytPlayer.seekTo(
+                        dados.offset || 0,
+                        true
+                    );
+
+                } catch(e) {}
+            }
+
+        }
+    );
+
 
     aplicarVolumeMaster();
+
+    atualizarSolos();
 
     salvarAutomaticamente();
 }
 
 
-/* =====================================================
-   COMPARTILHAR MESA
-===================================================== */
-
-async function compartilharMesa() {
-
-    const estado =
-        obterEstado();
-
-
-    const texto =
-        JSON.stringify(
-            estado
-        );
-
-
-    const dados =
-        btoa(
-            unescape(
-                encodeURIComponent(
-                    texto
-                )
-            )
-        );
-
-
-    const url =
-        window.location.href.split(
-            "#"
-        )[0]
-        +
-        "#mesa="
-        +
-        dados;
-
-
-    try {
-
-        await navigator.clipboard.writeText(
-            url
-        );
-
-
-        alert(
-            "Link da mesa copiado para a área de transferência."
-        );
-
-    } catch(e) {
-
-        prompt(
-            "Copie o link abaixo:",
-            url
-        );
-
-    }
-}
-
-
-/* =====================================================
-   RESTAURAR MESA COMPARTILHADA
-===================================================== */
-
-function carregarMesaDoHash() {
-
-    if (
-        !window.location.hash.startsWith(
-            "#mesa="
-        )
-    ) {
-        return false;
-    }
-
-
-    try {
-
-        const dados =
-            window.location.hash.substring(
-                6
-            );
-
-
-        const texto =
-            decodeURIComponent(
-                escape(
-                    atob(
-                        dados
-                    )
-                )
-            );
-
-
-        const estado =
-            JSON.parse(
-                texto
-            );
-
-
-        aplicarEstado(
-            estado
-        );
-
-
-        return true;
-
-    } catch(e) {
-
-        console.error(
-            "Erro ao abrir mesa compartilhada:",
-            e
-        );
-
-        return false;
-    }
-}
-
-
-/* =====================================================
-   ESCAPAR HTML
-===================================================== */
-
-function escaparHTML(
-    texto
-) {
-
-    return String(
-        texto
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-}
-
-
-/* =====================================================
+/* =========================================================
    CRIAR 10 CANAIS
-===================================================== */
+========================================================= */
 
 for (
     let i = 0;
@@ -6090,9 +5083,9 @@ for (
 }
 
 
-/* =====================================================
+/* =========================================================
    MASTER KNOBS
-===================================================== */
+========================================================= */
 
 document.querySelectorAll(
     ".master .knob"
@@ -6101,9 +5094,9 @@ document.querySelectorAll(
 );
 
 
-/* =====================================================
-   RESTAURAR SALVAMENTO AUTOMÁTICO
-===================================================== */
+/* =========================================================
+   RESTAURAR MASTER
+========================================================= */
 
 try {
 
@@ -6123,48 +5116,82 @@ try {
             );
 
 
-        /*
-           Restauramos os controles depois
-           que os canais já foram criados.
-        */
+        if (
+            estado.masterFader
+        ) {
 
-        aplicarEstado(
-            estado
-        );
+            document.getElementById(
+                "masterFader"
+            ).value =
+                estado.masterFader;
+
+
+            document.getElementById(
+                "masterValor"
+            ).textContent =
+                estado.masterFader +
+                "%";
+        }
+
+
+        if (
+            estado.masterMute
+        ) {
+
+            document.getElementById(
+                "masterMute"
+            ).classList.add(
+                "ativo"
+            );
+        }
+
+
+        if (
+            estado.masterEQ
+        ) {
+
+            const knobs =
+                document.querySelectorAll(
+                    ".master .knob"
+                );
+
+
+            estado.masterEQ.forEach(
+                (valor, i) => {
+
+                    if (
+                        knobs[i]
+                    ) {
+
+                        knobs[i].dataset.valor =
+                            valor;
+
+
+                        atualizarVisualKnob(
+                            knobs[i]
+                        );
+                    }
+
+                }
+            );
+        }
 
     }
 
 } catch(e) {
 
     console.warn(
-        "Não foi possível restaurar a mesa.",
+        "Não foi possível restaurar.",
         e
     );
 }
 
 
-/* =====================================================
-   MESA COMPARTILHADA
-===================================================== */
-
-if (
-    !carregarMesaDoHash()
-) {
-
-    atualizarContador();
-
-}
-
-
-/* =====================================================
-   INICIALIZAÇÃO
-===================================================== */
+/* =========================================================
+   CONTADOR
+========================================================= */
 
 atualizarContador();
-
-console.log(
-    "MIXER PRO iniciado corretamente."
-);
 
 </script>
 
