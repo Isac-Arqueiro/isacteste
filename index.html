@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -2392,38 +2393,65 @@ function configurarEventosCanal(
 
 
     canal.querySelector(
-        ".seek"
-    ).addEventListener(
-        "input",
-        function(){
+    ".seek"
+).addEventListener(
+    "input",
+    function(){
 
-            const pos =
-                Number(
-                    this.value
-                );
+        const pos =
+            Number(
+                this.value
+            );
 
+        /* =================================================
+           YOUTUBE
+        ================================================= */
+
+        if(
+            canal.youtubePlayer &&
+            typeof canal.youtubePlayer.seekTo === "function"
+        ){
+
+            canal.youtubePlayer.seekTo(
+                pos,
+                true
+            );
 
             canal.offset =
                 pos;
-
 
             atualizarTempo(
                 canal,
                 pos
             );
 
-
-            if(canal.playing){
-
-                reiniciarCanal(
-                    canal,
-                    pos
-                );
-
-            }
+            return;
 
         }
-    );
+
+        /* =================================================
+           ARQUIVO DE ÁUDIO
+        ================================================= */
+
+        canal.offset =
+            pos;
+
+        atualizarTempo(
+            canal,
+            pos
+        );
+
+        if(canal.playing){
+
+            reiniciarCanal(
+                canal,
+                pos
+            );
+
+        }
+
+    }
+);
 
 
     canal.querySelector(
@@ -2845,22 +2873,41 @@ function criarYoutubePlayer(
 
                     onReady:function(){
 
-                        /*
-                           Assim que o YouTube estiver pronto,
-                           aplicamos o fader atual.
-                        */
+    aplicarVolumeYoutube(
+        canal
+    );
 
-                        aplicarVolumeYoutube(
-                            canal
-                        );
+    const duracao =
+        canal.youtubePlayer.getDuration();
 
+    if(duracao){
 
-                        canal.querySelector(
-                            ".youtube-status"
-                        ).textContent =
-                            "LINK ATIVO";
+        const seek =
+            canal.querySelector(
+                ".seek"
+            );
 
-                    },
+        seek.max =
+            duracao;
+
+        seek.value =
+            0;
+
+        canal.querySelector(
+            ".tempo-total"
+        ).textContent =
+            formatarTempo(
+                duracao
+            );
+
+    }
+
+    canal.querySelector(
+        ".youtube-status"
+    ).textContent =
+        "LINK ATIVO";
+
+},
 
 
                     onStateChange:function(
@@ -4240,6 +4287,10 @@ function atualizarRelogio(){
     canais.forEach(
         canal => {
 
+            /* =================================================
+               ARQUIVO DE ÁUDIO
+            ================================================= */
+
             if(
                 canal.audioBuffer &&
                 canal.playing &&
@@ -4250,16 +4301,13 @@ function atualizarRelogio(){
                     audioContext.currentTime -
                     canal.startTime;
 
-
                 canal.offset =
                     pos;
-
 
                 const seek =
                     canal.querySelector(
                         ".seek"
                     );
-
 
                 if(
                     pos <=
@@ -4268,7 +4316,6 @@ function atualizarRelogio(){
 
                     seek.value =
                         pos;
-
 
                     atualizarTempo(
                         canal,
@@ -4279,9 +4326,77 @@ function atualizarRelogio(){
 
             }
 
+            /* =================================================
+               YOUTUBE
+            ================================================= */
+
+            if(
+                canal.youtubePlayer &&
+                typeof canal.youtubePlayer.getCurrentTime ===
+                    "function"
+            ){
+
+                try{
+
+                    const estado =
+                        canal.youtubePlayer.getPlayerState();
+
+                    if(
+                        estado ===
+                        YT.PlayerState.PLAYING
+                    ){
+
+                        const pos =
+                            canal.youtubePlayer.getCurrentTime();
+
+                        const duracao =
+                            canal.youtubePlayer.getDuration();
+
+                        if(
+                            duracao &&
+                            duracao > 0
+                        ){
+
+                            const seek =
+                                canal.querySelector(
+                                    ".seek"
+                                );
+
+                            seek.max =
+                                duracao;
+
+                            seek.value =
+                                pos;
+
+                            canal.offset =
+                                pos;
+
+                            atualizarTempo(
+                                canal,
+                                pos
+                            );
+
+                            canal.querySelector(
+                                ".tempo-total"
+                            ).textContent =
+                                formatarTempo(
+                                    duracao
+                                );
+
+                        }
+
+                    }
+
+                }catch(e){
+
+                    /* Player ainda não está pronto */
+
+                }
+
+            }
+
         }
     );
-
 
     requestAnimationFrame(
         atualizarRelogio
