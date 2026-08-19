@@ -1,6 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<link rel="manifest" href="./manifest.json">
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<meta name="theme-color" content="#000000">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -1735,6 +1741,9 @@ function criarCanal(dados = null){
     canal.panner = null;
     canal.analyser = null;
 
+    canal.youtubePlayer = null;
+    canal.youtubeId = null;
+
     canal.offset = 0;
     canal.startTime = 0;
     canal.playing = false;
@@ -2122,19 +2131,13 @@ function obterIdYoutube(url){
 function abrirYoutubeDoCanal(canal){
 
     const campo =
-        canal.querySelector(
-            ".youtube-url"
-        );
+        canal.querySelector(".youtube-url");
 
     const player =
-        canal.querySelector(
-            ".youtube-player"
-        );
+        canal.querySelector(".youtube-player");
 
     const status =
-        canal.querySelector(
-            ".youtube-status"
-        );
+        canal.querySelector(".youtube-status");
 
 
     const url =
@@ -2156,29 +2159,187 @@ function abrirYoutubeDoCanal(canal){
     }
 
 
+    canal.youtubeId = id;
+
+
     player.innerHTML = `
 
-        <iframe
-            src="https://www.youtube.com/embed/${id}?autoplay=1"
-            title="YouTube"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowfullscreen>
-        </iframe>
+        <div
+            class="youtube-iframe"
+            style="width:100%;height:100%;">
+        </div>
 
     `;
 
 
     status.textContent =
-        "LINK ATIVO";
+        "CARREGANDO...";
+
+
+    criarYoutubePlayer(canal);
+
+}
+
+function criarYoutubePlayer(canal){
+
+    const container =
+        canal.querySelector(".youtube-iframe");
+
+
+    if(!container)
+        return;
+
+
+    canal.youtubePlayer =
+        new YT.Player(container, {
+
+            videoId:
+                canal.youtubeId,
+
+            playerVars:{
+
+                autoplay:1,
+
+                controls:1,
+
+                rel:0
+
+            },
+
+            events:{
+
+                onReady:function(){
+
+                    aplicarVolumeYoutube(canal);
+
+
+                    canal.querySelector(
+                        ".youtube-status"
+                    ).textContent =
+                        "LINK ATIVO";
+
+                },
+
+
+                onStateChange:function(event){
+
+                    if(
+                        event.data ===
+                        YT.PlayerState.ENDED
+                    ){
+
+                        canal.querySelector(
+                            ".youtube-status"
+                        ).textContent =
+                            "FINALIZADO";
+
+                    }
+
+                }
+
+            }
+
+        });
+
+}
+
+function aplicarVolumeYoutube(canal){
+
+    if(
+        !canal.youtubePlayer ||
+        typeof canal.youtubePlayer.setVolume !== "function"
+    ){
+
+        return;
+
+    }
+
+
+    const fader =
+        Number(
+            canal.querySelector(
+                ".fader"
+            ).value
+        );
+
+
+    const mute =
+        canal.querySelector(
+            ".mute"
+        ).classList.contains(
+            "ativo"
+        );
+
+
+    const existeSolo =
+        canais.some(
+            c =>
+                c.querySelector(
+                    ".solo"
+                ).classList.contains(
+                    "ativo"
+                )
+        );
+
+
+    const solo =
+        canal.querySelector(
+            ".solo"
+        ).classList.contains(
+            "ativo"
+        );
+
+
+    let volume =
+        fader;
+
+
+    if(
+        mute ||
+        (
+            existeSolo &&
+            !solo
+        )
+    ){
+
+        volume = 0;
+
+    }
+
+
+    canal.youtubePlayer.setVolume(
+        volume
+    );
 
 }
 
 
+
+
 function fecharYoutubeDoCanal(canal){
+
+    if(canal.youtubePlayer){
+
+        try{
+
+            canal.youtubePlayer.destroy();
+
+        }catch(e){}
+
+        canal.youtubePlayer =
+            null;
+
+    }
+
+
+    canal.youtubeId =
+        null;
+
 
     canal.querySelector(
         ".youtube-player"
-    ).innerHTML = "";
+    ).innerHTML =
+        "";
 
 
     canal.querySelector(
@@ -2606,10 +2767,6 @@ function atualizarBotaoPlay(canal){
 
 function atualizarVolumeCanal(canal){
 
-    if(!canal.channelGain)
-        return;
-
-
     const fader =
         Number(
             canal.querySelector(
@@ -2645,23 +2802,40 @@ function atualizarVolumeCanal(canal){
         );
 
 
-    if(
-        mute ||
-        (
-            existeSolo &&
-            !solo
-        )
-    ){
+    /*
+       ÁUDIO DO ARQUIVO
+    */
 
-        canal.channelGain.gain.value =
-            0;
+    if(canal.channelGain){
 
-    }else{
+        if(
+            mute ||
+            (
+                existeSolo &&
+                !solo
+            )
+        ){
 
-        canal.channelGain.gain.value =
-            fader / 100;
+            canal.channelGain.gain.value =
+                0;
+
+        }else{
+
+            canal.channelGain.gain.value =
+                fader / 100;
+
+        }
 
     }
+
+
+    /*
+       ÁUDIO DO YOUTUBE
+    */
+
+    aplicarVolumeYoutube(
+        canal
+    );
 
 }
 
@@ -4175,17 +4349,20 @@ function obterCena(){
         );
 
 
-    return {
+     return {
 
-        versao:1,
+    versao:1,
 
-        data:
-            new Date().toISOString(),
+    data:
+        new Date().toISOString(),
 
-        canais:
-            canais.map(
-                obterConfiguracaoCanal
-            ),
+    quantidadeCanais:
+        canais.length,
+
+    canais:
+        canais.map(
+            obterConfiguracaoCanal
+        ),
 
         master:{
 
@@ -4431,12 +4608,24 @@ function carregarCena(cena){
     numeroCanal = 0;
 
 
-    cena.canais.forEach(
-        dados =>
-            adicionarCanal(
-                dados
-            )
+    const quantidade =
+    Number(
+        cena.quantidadeCanais ??
+        cena.canais.length
     );
+
+
+for(
+    let i = 0;
+    i < quantidade;
+    i++
+){
+
+    adicionarCanal(
+        cena.canais[i] || null
+    );
+
+}
 
 
     /* MASTER */
@@ -4726,6 +4915,96 @@ atualizarContador();
 atualizarRelogio();
 
 </script>
+<style>
+#btnInstall {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
 
+  border: none;
+  border-radius: 50px;
+  padding: 14px 20px;
+
+  background: #000;
+  color: #fff;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+
+  cursor: pointer;
+
+  display: none;
+
+  transition: all .3s ease;
+}
+
+#btnInstall:hover {
+  transform: scale(1.05);
+}
+</style>
+
+<button id="btnInstall">📲 Instalar App</button>
+
+<script>
+let deferredPrompt;
+
+const btnInstall = document.getElementById("btnInstall");
+
+// Verifica se já está instalado
+function isAppInstalled() {
+  return window.matchMedia('(display-mode: standalone)').matches
+    || window.navigator.standalone === true;
+}
+
+// Se não estiver instalado
+if (!isAppInstalled()) {
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+
+    e.preventDefault();
+
+    deferredPrompt = e;
+
+    btnInstall.style.display = "block";
+  });
+
+}
+
+// Clique no botão
+btnInstall.addEventListener("click", async () => {
+
+  if (!deferredPrompt) return;
+
+  deferredPrompt.prompt();
+
+  const { outcome } = await deferredPrompt.userChoice;
+
+  console.log("Resultado:", outcome);
+
+  deferredPrompt = null;
+
+  btnInstall.style.display = "none";
+});
+
+// Quando instalar
+window.addEventListener("appinstalled", () => {
+
+  console.log("PWA instalado");
+
+  btnInstall.style.display = "none";
+});
+
+// Registrar Service Worker
+if ("serviceWorker" in navigator) {
+
+  navigator.serviceWorker.register("./service-worker.js")
+    .then(() => console.log("SW registrado"))
+    .catch((err) => console.log("Erro SW:", err));
+
+}
+</script>
 </body>
 </html>
