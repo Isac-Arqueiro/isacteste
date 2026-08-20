@@ -1,4 +1,26 @@
 
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>projeto</title>
+<style>
+body{
+  background:#f0f0f0;
+  text-align:center;
+}
+h1{
+  color:blue;
+}
+  
+</style>
+</head>
+<body>
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -778,6 +800,52 @@ header{
 /* =========================================================
    METRÔNOMO
 ========================================================= */
+
+.canal-metro{
+    background:#15100a;
+    border:1px solid #664400;
+    border-radius:4px;
+    padding:7px;
+}
+
+.canal-metro .titulo{
+    color:#ffbb00;
+}
+
+.canal-metro-batida{
+    text-align:center;
+    color:#555;
+    font-size:16px;
+    letter-spacing:4px;
+    margin-top:8px;
+}
+
+.canal-metro-batida .ativo{
+    color:#00ff88;
+    text-shadow:0 0 8px #00ff88;
+}
+
+.canal-metro-batida .acento{
+    color:#ffbb00;
+    text-shadow:0 0 10px #ffbb00;
+}
+
+.canal-metro-status{
+    text-align:center;
+    color:#777;
+    font-size:7px;
+    margin-top:5px;
+}
+
+.canal-metro-play.ativo{
+    background:#00aa55;
+    color:#fff;
+}
+
+.canal-metro-mute.ativo{
+    background:#e00000;
+    color:#fff;
+}
 
 .metronomo{
     flex:0 0 190px;
@@ -1973,7 +2041,115 @@ function criarCanal(
 
         </div>
 
+        <div class="secao">
 
+    <div class="titulo">
+        BPM DO CANAL
+    </div>
+
+    <div class="bpm-buttons">
+
+        <button
+            type="button"
+            onclick="alterarBPMCanal(this.closest('.canal'), -5)"
+        >
+            −5
+        </button>
+
+        <button
+            type="button"
+            onclick="alterarBPMCanal(this.closest('.canal'), -1)"
+        >
+            −
+        </button>
+
+        <div
+            class="bpm-display bpm-canal-display"
+        >
+            120
+        </div>
+
+        <button
+            type="button"
+            onclick="alterarBPMCanal(this.closest('.canal'), 1)"
+        >
+            +
+        </button>
+
+        <button
+            type="button"
+            onclick="alterarBPMCanal(this.closest('.canal'), 5)"
+        >
+            +5
+        </button>
+
+    </div>
+
+    <input
+        type="number"
+        class="bpm-input"
+        min="30"
+        max="300"
+        value="120"
+        style="
+            width:100%;
+            margin-top:6px;
+            background:#111;
+            color:#ffbb00;
+            border:1px solid #555;
+            border-radius:4px;
+            padding:7px;
+            text-align:center;
+            font-weight:bold;
+        "
+    >
+
+      </div>
+
+       <div class="secao canal-metro">
+
+    <div class="titulo">
+        METRÔNOMO DO CANAL
+    </div>
+
+    <div class="botoes">
+
+        <button
+            class="btn play canal-metro-play"
+            type="button"
+        >
+            ▶ PLAY
+        </button>
+
+        <button
+            class="btn remove canal-metro-stop"
+            type="button"
+        >
+            ⏹ STOP
+        </button>
+
+        <button
+            class="btn mute canal-metro-mute"
+            type="button"
+        >
+            MUTE
+        </button>
+
+    </div>
+
+    <div
+        class="canal-metro-batida"
+    >
+        ● ○ ○ ○
+    </div>
+
+    <div
+        class="canal-metro-status"
+    >
+        PARADO
+    </div>
+
+</div>
         <div class="secao">
 
             <div class="tempo">
@@ -2252,10 +2428,22 @@ function criarCanal(
 
 
     canal.offset = 0;
-
     canal.startTime = 0;
-
     canal.playing = false;
+
+    canal.bpm = 120;
+
+    canal.metro = {
+
+    playing: false,
+
+    timer: null,
+
+    beat: 0,
+
+    mute: false
+
+    };
 
 
     canal.querySelector(
@@ -2300,6 +2488,57 @@ function criarCanal(
 function configurarEventosCanal(
     canal
 ){
+
+        canal.querySelector(
+        ".canal-metro-play"
+    ).addEventListener(
+        "click",
+        function(){
+
+            iniciarAudio().then(
+                function(){
+
+                    alternarMetroCanal(
+                        canal
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    canal.querySelector(
+        ".canal-metro-stop"
+    ).addEventListener(
+        "click",
+        function(){
+
+            pararMetroCanal(
+                canal
+            );
+
+        }
+    );
+
+
+    canal.querySelector(
+        ".canal-metro-mute"
+    ).addEventListener(
+        "click",
+        function(){
+
+            canal.metro.mute =
+                !canal.metro.mute;
+
+            this.classList.toggle(
+                "ativo",
+                canal.metro.mute
+            );
+
+        }
+    );
 
     canal.querySelector(
         ".audio-file"
@@ -2437,6 +2676,47 @@ function configurarEventosCanal(
             Number(
                 this.value
             );
+     canal.querySelector(
+    ".bpm-input"
+).addEventListener(
+    "change",
+    function(){
+
+        let valor =
+            Number(this.value);
+
+        valor = Math.max(
+            30,
+            Math.min(
+                300,
+                valor || 120
+            )
+        );
+
+        canal.bpm =
+    valor;
+
+atualizarBPMVisualCanal(
+    canal
+);
+
+if(
+    canal.metro &&
+    canal.metro.playing
+){
+
+    clearTimeout(
+        canal.metro.timer
+    );
+
+    agendarMetroCanal(
+        canal
+    );
+
+}
+
+    }
+);
 
         /* =================================================
            YOUTUBE
@@ -4667,6 +4947,19 @@ function pausarTodos(){
 function pararTodos(){
 
     canais.forEach(
+    canal => {
+
+        if(canal.metro){
+
+            pararMetroCanal(
+                canal
+            );
+
+        }
+
+    }
+);
+    canais.forEach(
         canal => {
 
             try{
@@ -5292,78 +5585,128 @@ function aplicarMetroEQ(){
 
 }
 
+/* =========================================================
+   BPM INDIVIDUAL DO CANAL
+========================================================= */
+
+function alterarBPMCanal(
+    canal,
+    valor
+){
+
+    if(!canal)
+        return;
+
+    canal.bpm =
+        Math.max(
+            30,
+            Math.min(
+                300,
+                canal.bpm + valor
+            )
+        );
+
+    atualizarBPMVisualCanal(
+        canal
+    );
+
+    /*
+       Se o metrônomo estiver tocando,
+       reiniciamos o relógio com o novo BPM.
+    */
+
+    if(
+        canal.metro &&
+        canal.metro.playing
+    ){
+
+        clearTimeout(
+            canal.metro.timer
+        );
+
+        agendarMetroCanal(
+            canal
+        );
+
+    }
+
+}
+
+
+function atualizarBPMVisualCanal(canal){
+
+    const display =
+        canal.querySelector(
+            ".bpm-canal-display"
+        );
+
+    const input =
+        canal.querySelector(
+            ".bpm-input"
+        );
+
+    if(display){
+
+        display.textContent =
+            canal.bpm;
+
+    }
+
+    if(input){
+
+        input.value =
+            canal.bpm;
+
+    }
+
+}
 
 /* =========================================================
    CONFIGURAÇÃO DE CANAL
 ========================================================= */
 
-function obterConfiguracaoCanal(
-    canal
-){
+function obterConfiguracaoCanal(canal){
 
     return {
 
-              titulo:
-            canal.querySelector(
-            ".titulo-canal"
-             ).value,
+        titulo:
+            canal.querySelector(".titulo-canal").value,
 
         nome:
-            canal.querySelector(
-                ".nome"
-            ).value,
-
+            canal.querySelector(".nome").value,
 
         observacao:
-            canal.querySelector(
-                ".observacao"
-            ).value,
-
+            canal.querySelector(".observacao").value,
 
         youtube:
-            canal.querySelector(
-                ".youtube-url"
-            ).value,
-
+            canal.querySelector(".youtube-url").value,
+   
+        bpm: canal.bpm,
 
         fader:
-            canal.querySelector(
-                ".fader"
-            ).value,
-
+            Number(
+                canal.querySelector(".fader").value
+            ),
 
         pan:
-            canal.querySelector(
-                ".pan"
-            ).value,
-
+            Number(
+                canal.querySelector(".pan").value
+            ),
 
         mute:
-            canal.querySelector(
-                ".mute"
-            ).classList.contains(
-                "ativo"
-            ),
-
+            canal.querySelector(".mute")
+                .classList.contains("ativo"),
 
         solo:
-            canal.querySelector(
-                ".solo"
-            ).classList.contains(
-                "ativo"
-            ),
-
+            canal.querySelector(".solo")
+                .classList.contains("ativo"),
 
         knobs:
             Array.from(
-                canal.querySelectorAll(
-                    ".knob"
-                )
+                canal.querySelectorAll(".knob")
             ).map(
                 knob =>
-                    Number(
-                        knob.dataset.valor
-                    )
+                    Number(knob.dataset.valor)
             )
 
     };
@@ -5375,115 +5718,133 @@ function obterConfiguracaoCanal(
    APLICAR CONFIGURAÇÃO DO CANAL
 ========================================================= */
 
-function aplicarConfiguracaoCanal(
-    canal,
-    dados
-){
+function aplicarConfiguracaoCanal(canal, dados){
 
     if(!dados)
         return;
 
 
-    canal.querySelector(
-        ".nome"
-    ).value =
+    /* =====================================================
+       TÍTULO CH 1, CH 2, CH 3...
+    ===================================================== */
+
+    canal.querySelector(".titulo-canal").value =
+        dados.titulo ||
+        `CH ${canal.dataset.numero}`;
+
+
+    /* =====================================================
+       NOME
+    ===================================================== */
+
+    canal.querySelector(".nome").value =
         dados.nome ||
         "";
 
+    canal.bpm =
+    Number(
+        dados.bpm
+    ) || 120;
 
-    canal.querySelector(
-        ".observacao"
-    ).value =
+atualizarBPMVisualCanal(
+    canal
+  );
+
+    /* =====================================================
+       OBSERVAÇÃO
+    ===================================================== */
+
+    canal.querySelector(".observacao").value =
         dados.observacao ||
         "";
 
 
-    canal.querySelector(
-        ".youtube-url"
-    ).value =
+    /* =====================================================
+       YOUTUBE
+    ===================================================== */
+
+    canal.querySelector(".youtube-url").value =
         dados.youtube ||
         "";
 
 
-    canal.querySelector(
-        ".fader"
-    ).value =
-        dados.fader ??
-        75;
+    /* =====================================================
+       FADER
+    ===================================================== */
+
+    const fader =
+        dados.fader ?? 75;
+
+    canal.querySelector(".fader").value =
+        fader;
+
+    canal.querySelector(".valor-fader").textContent =
+        fader + "%";
 
 
-    canal.querySelector(
-        ".valor-fader"
-    ).textContent =
-        (
-            dados.fader ??
-            75
-        ) + "%";
+    /* =====================================================
+       PAN
+    ===================================================== */
+
+    canal.querySelector(".pan").value =
+        dados.pan ?? 0;
 
 
-    canal.querySelector(
-        ".pan"
-    ).value =
-        dados.pan ??
-        0;
+    /* =====================================================
+       MUTE
+    ===================================================== */
 
+    const mute =
+        Boolean(dados.mute);
 
-    canal.querySelector(
-        ".mute"
-    ).classList.toggle(
-        "ativo",
-        Boolean(
-            dados.mute
-        )
-    );
-
-
-    canal.querySelector(
-        ".solo"
-    ).classList.toggle(
-        "ativo",
-        Boolean(
-            dados.solo
-        )
-    );
-
+    canal.querySelector(".mute")
+        .classList.toggle(
+            "ativo",
+            mute
+        );
 
     canal.classList.toggle(
         "mutado",
-        Boolean(
-            dados.mute
-        )
+        mute
     );
 
+
+    /* =====================================================
+       SOLO
+    ===================================================== */
+
+    const solo =
+        Boolean(dados.solo);
+
+    canal.querySelector(".solo")
+        .classList.toggle(
+            "ativo",
+            solo
+        );
 
     canal.classList.toggle(
         "solo-canal",
-        Boolean(
-            dados.solo
-        )
+        solo
     );
 
 
+    /* =====================================================
+       KNOBS
+       GAIN / AGUDO / MÉDIO / GRAVE
+    ===================================================== */
+
     const knobs =
-        canal.querySelectorAll(
-            ".knob"
-        );
+        canal.querySelectorAll(".knob");
 
-
-    if(
-        Array.isArray(
-            dados.knobs
-        )
-    ){
+    if(Array.isArray(dados.knobs)){
 
         dados.knobs.forEach(
-            (valor,i) => {
+            (valor, i) => {
 
                 if(knobs[i]){
 
                     knobs[i].dataset.valor =
-                        valor;
-
+                        Number(valor);
 
                     atualizarVisualKnob(
                         knobs[i]
@@ -5497,28 +5858,18 @@ function aplicarConfiguracaoCanal(
     }
 
 
-    /*
-       Aplica os controles de áudio,
-       inclusive MUTE/SOLO.
-    */
+    /* =====================================================
+       APLICA ÁUDIO
+    ===================================================== */
 
-    aplicarControlesCanal(
-        canal
-    );
+    aplicarControlesCanal(canal);
 
 
-    /*
-       Se a cena tiver um link do YouTube,
-       abrimos automaticamente.
+    /* =====================================================
+       YOUTUBE
+    ===================================================== */
 
-       Isso também faz o fader salvo ser
-       aplicado ao YouTube quando o player
-       ficar pronto.
-    */
-
-    if(
-        dados.youtube
-    ){
+    if(dados.youtube){
 
         abrirYoutubeDoCanal(
             canal
@@ -5527,7 +5878,6 @@ function aplicarConfiguracaoCanal(
     }
 
 }
-
 
 /* =========================================================
    RESTAURAR DADOS
@@ -6260,6 +6610,336 @@ function novaCena(){
 
 }
 
+/* =========================================================
+   METRÔNOMO INDIVIDUAL DO CANAL
+========================================================= */
+
+function alternarMetroCanal(canal){
+
+    if(!canal.metro)
+        return;
+
+    if(canal.metro.playing){
+
+        pausarMetroCanal(canal);
+
+    }else{
+
+        iniciarMetroCanal(canal);
+
+    }
+
+}
+
+
+/* =========================================================
+   INICIAR METRÔNOMO DO CANAL
+========================================================= */
+
+function iniciarMetroCanal(canal){
+
+    if(!audioContext)
+        return;
+
+    canal.metro.playing =
+        true;
+
+    canal.metro.beat =
+        0;
+
+    atualizarVisualMetroCanal(
+        canal
+    );
+
+    tocarClickCanal(
+        canal,
+        true
+    );
+
+    agendarMetroCanal(
+        canal
+    );
+
+}
+
+
+/* =========================================================
+   AGENDAR
+========================================================= */
+
+function agendarMetroCanal(canal){
+
+    if(
+        !canal.metro.playing
+    )
+        return;
+
+    const intervalo =
+        60000 /
+        canal.bpm;
+
+    canal.metro.timer =
+        setTimeout(
+            function(){
+
+                if(
+                    !canal.metro.playing
+                )
+                    return;
+
+                canal.metro.beat++;
+
+                if(
+                    canal.metro.beat >= 4
+                ){
+
+                    canal.metro.beat =
+                        0;
+
+                }
+
+                tocarClickCanal(
+                    canal,
+                    canal.metro.beat === 0
+                );
+
+                atualizarVisualMetroCanal(
+                    canal
+                );
+
+                agendarMetroCanal(
+                    canal
+                );
+
+            },
+            intervalo
+        );
+
+}
+
+
+/* =========================================================
+   CLICK DO CANAL
+========================================================= */
+
+function tocarClickCanal(
+    canal,
+    acento
+){
+
+    if(
+        !audioContext ||
+        !canal.metro.playing ||
+        canal.metro.mute
+    ){
+
+        return;
+
+    }
+
+    const osc =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+    osc.type =
+        "sine";
+
+    osc.frequency.value =
+        acento
+        ? 1500
+        : 900;
+
+    const volume =
+        acento
+        ? 0.9
+        : 0.55;
+
+    const agora =
+        audioContext.currentTime;
+
+    gain.gain.setValueAtTime(
+        0,
+        agora
+    );
+
+    gain.gain.linearRampToValueAtTime(
+        volume,
+        agora + 0.001
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        agora + 0.06
+    );
+
+    osc.connect(
+        gain
+    );
+
+    /*
+       O metrônomo do canal passa
+       pelo MASTER.
+    */
+
+    if(masterHigh){
+
+        gain.connect(
+            masterHigh
+        );
+
+    }else{
+
+        gain.connect(
+            audioContext.destination
+        );
+
+    }
+
+    osc.start(
+        agora
+    );
+
+    osc.stop(
+        agora + 0.07
+    );
+
+}
+
+
+/* =========================================================
+   PAUSAR
+========================================================= */
+
+function pausarMetroCanal(canal){
+
+    canal.metro.playing =
+        false;
+
+    clearTimeout(
+        canal.metro.timer
+    );
+
+    canal.metro.timer =
+        null;
+
+    atualizarVisualMetroCanal(
+        canal
+    );
+
+}
+
+
+/* =========================================================
+   PARAR
+========================================================= */
+
+function pararMetroCanal(canal){
+
+    canal.metro.playing =
+        false;
+
+    clearTimeout(
+        canal.metro.timer
+    );
+
+    canal.metro.timer =
+        null;
+
+    canal.metro.beat =
+        0;
+
+    atualizarVisualMetroCanal(
+        canal
+    );
+
+}
+
+
+/* =========================================================
+   VISUAL
+========================================================= */
+
+function atualizarVisualMetroCanal(
+    canal
+){
+
+    const botao =
+        canal.querySelector(
+            ".canal-metro-play"
+        );
+
+    const status =
+        canal.querySelector(
+            ".canal-metro-status"
+        );
+
+    const batida =
+        canal.querySelector(
+            ".canal-metro-batida"
+        );
+
+    if(
+        canal.metro.playing
+    ){
+
+        botao.textContent =
+            "⏸ PAUSE";
+
+        botao.classList.add(
+            "ativo"
+        );
+
+        status.textContent =
+            "TOCANDO";
+
+    }else{
+
+        botao.textContent =
+            "▶ PLAY";
+
+        botao.classList.remove(
+            "ativo"
+        );
+
+        status.textContent =
+            "PARADO";
+
+    }
+
+    const beat =
+        canal.metro.beat;
+
+    let texto =
+        "";
+
+    for(
+        let i = 0;
+        i < 4;
+        i++
+    ){
+
+        if(i === beat){
+
+            texto +=
+                i === 0
+                ? "🟡 "
+                : "🟢 ";
+
+        }else{
+
+            texto +=
+                "⚪ ";
+
+        }
+
+    }
+
+    batida.textContent =
+        texto;
+
+}
 
 /* =========================================================
    INICIALIZAÇÃO
@@ -6441,3 +7121,22 @@ if(
 </body>
 
 </html>
+
+
+<script>
+console.log("Funcionando!");
+  
+</script>
+
+</body>
+</html>
+  
+
+<script>
+console.log("Funcionando!");
+  
+</script>
+
+</body>
+</html>
+  
