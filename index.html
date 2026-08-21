@@ -1,35 +1,14 @@
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>projeto</title>
-<style>
-body{
-  background:#f0f0f0;
-  text-align:center;
-}
-h1{
-  color:blue;
-}
-  
-</style>
-</head>
-<body>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>IPTV M3U8 Organizer</title>
+<title>IPTV Player M3U</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -37,15 +16,18 @@ h1{
 }
 
 :root{
-    --bg:#080c14;
-    --panel:#101722;
-    --panel2:#151e2c;
-    --border:#263449;
+    --bg:#070b12;
+    --panel:#0e1520;
+    --panel2:#131d2b;
+    --panel3:#192538;
+    --border:#26364d;
     --blue:#2997ff;
+    --blue2:#1477d4;
     --green:#22c77a;
     --red:#ef4d5c;
-    --text:#f4f7fb;
-    --muted:#8997aa;
+    --yellow:#f5b942;
+    --text:#f5f7fb;
+    --muted:#8291a6;
 }
 
 body{
@@ -59,83 +41,141 @@ body{
 
 header{
     background:
-        linear-gradient(
-            135deg,
-            #101b2d,
-            #0b1220
-        );
+        linear-gradient(135deg,#111d30,#080e18);
 
     border-bottom:1px solid var(--border);
-    padding:20px;
+    padding:18px 20px;
 }
 
 .header-inner{
-    max-width:1500px;
+    max-width:1600px;
     margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(
+        135deg,
+        var(--blue),
+        #1667c5
+    );
+
+    border-radius:12px;
+    font-size:23px;
 }
 
 .logo-title{
-    font-size:25px;
+    font-size:22px;
     font-weight:bold;
-    color:var(--blue);
 }
 
-.subtitle{
+.logo-subtitle{
     color:var(--muted);
-    margin-top:5px;
+    font-size:12px;
+    margin-top:3px;
 }
 
 /* CONTAINER */
 
 .container{
     width:95%;
-    max-width:1500px;
-    margin:20px auto;
+    max-width:1600px;
+    margin:18px auto;
 }
 
-/* STATUS */
+/* SOURCE */
 
-.status{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-
+.source{
     background:var(--panel);
 
     border:1px solid var(--border);
 
-    padding:12px 15px;
+    border-radius:12px;
 
-    border-radius:10px;
+    padding:14px;
 
     margin-bottom:15px;
 }
 
-.status-text{
-    color:var(--muted);
+.source-title{
+    font-size:14px;
+    font-weight:bold;
+
+    margin-bottom:10px;
 }
 
-.status-text strong{
-    color:var(--green);
+.source-row{
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        auto
+        auto;
+
+    gap:8px;
 }
 
-/* BUTTONS */
-
-button,
+input,
 select,
-input{
+button{
     font-family:inherit;
+}
+
+input,
+select{
+    width:100%;
+
+    background:#0a111c;
+
+    color:white;
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    padding:11px;
+
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:var(--blue);
 }
 
 button{
     border:0;
-    padding:10px 14px;
+
     border-radius:8px;
-    cursor:pointer;
+
+    padding:10px 14px;
+
     background:var(--blue);
+
     color:white;
+
     font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.15s;
 }
 
 button:hover{
@@ -146,12 +186,64 @@ button:hover{
     background:#168b55;
 }
 
+.btn-gray{
+    background:#344156;
+}
+
 .btn-red{
     background:var(--red);
 }
 
-.btn-gray{
-    background:#344156;
+/* STATUS */
+
+.status{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    padding:11px 14px;
+
+    margin-bottom:15px;
+}
+
+.status-left{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+.status-dot{
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:var(--yellow);
+}
+
+.status-dot.online{
+    background:var(--green);
+
+    box-shadow:
+        0 0 10px
+        rgba(34,199,122,.7);
+}
+
+.status-dot.error{
+    background:var(--red);
 }
 
 /* FILTERS */
@@ -161,44 +253,25 @@ button:hover{
 
     grid-template-columns:
         minmax(250px,1fr)
-        180px
-        180px
+        200px
+        auto
         auto
         auto;
 
-    gap:10px;
+    gap:8px;
 
     margin-bottom:15px;
-}
-
-input,
-select{
-    width:100%;
-
-    background:var(--panel);
-
-    color:white;
-
-    border:1px solid var(--border);
-
-    padding:11px;
-
-    border-radius:8px;
-
-    outline:none;
-}
-
-input:focus,
-select:focus{
-    border-color:var(--blue);
 }
 
 /* STATS */
 
 .stats{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:8px;
 
     margin-bottom:15px;
 }
@@ -208,15 +281,23 @@ select:focus{
 
     border:1px solid var(--border);
 
-    padding:12px 15px;
+    border-radius:9px;
 
-    border-radius:8px;
+    padding:12px;
 
     color:var(--muted);
+
+    font-size:12px;
 }
 
 .stat strong{
+    display:block;
+
     color:white;
+
+    font-size:19px;
+
+    margin-top:4px;
 }
 
 /* MAIN */
@@ -226,14 +307,14 @@ select:focus{
 
     grid-template-columns:
         minmax(0,1fr)
-        400px;
+        440px;
 
     gap:15px;
 
     align-items:start;
 }
 
-/* CHANNEL PANEL */
+/* PANEL */
 
 .panel{
     background:var(--panel);
@@ -242,22 +323,32 @@ select:focus{
 
     border-radius:12px;
 
-    padding:15px;
+    padding:14px;
 }
 
 .panel-title{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
-    margin-bottom:15px;
+    gap:10px;
+
+    margin-bottom:13px;
 }
 
 .panel-title h2{
-    font-size:18px;
+    font-size:17px;
 }
 
-/* CHANNEL GRID */
+.result-count{
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+/* CHANNELS */
 
 .channels{
     display:grid;
@@ -265,10 +356,17 @@ select:focus{
     grid-template-columns:
         repeat(
             auto-fill,
-            minmax(240px,1fr)
+            minmax(230px,1fr)
         );
 
-    gap:12px;
+    gap:10px;
+
+    max-height:
+        calc(100vh - 270px);
+
+    overflow-y:auto;
+
+    padding-right:3px;
 }
 
 .channel{
@@ -278,17 +376,19 @@ select:focus{
 
     border-radius:10px;
 
-    padding:12px;
+    padding:10px;
 
     cursor:pointer;
 
-    transition:.2s;
+    transition:.15s;
+
+    position:relative;
 }
 
 .channel:hover{
     border-color:var(--blue);
 
-    transform:translateY(-2px);
+    transform:translateY(-1px);
 }
 
 .channel.active{
@@ -296,7 +396,7 @@ select:focus{
 
     box-shadow:
         0 0 0 1px
-        rgba(34,199,122,.4);
+        rgba(34,199,122,.3);
 }
 
 .channel-header{
@@ -313,7 +413,7 @@ select:focus{
 
     object-fit:contain;
 
-    background:#05080d;
+    background:#060a10;
 
     border-radius:8px;
 
@@ -328,90 +428,93 @@ select:focus{
 
     display:flex;
 
-    align-items:center;
     justify-content:center;
+    align-items:center;
 
-    background:#05080d;
+    background:#060a10;
 
     border-radius:8px;
 
-    font-size:25px;
+    font-size:21px;
 
     flex-shrink:0;
 }
 
-.channel-name{
-    font-weight:bold;
-
-    font-size:15px;
-
-    line-height:1.3;
+.channel-info{
+    min-width:0;
 }
 
-.channel-id{
-    color:#66768d;
+.channel-name{
+    font-size:14px;
 
-    font-size:10px;
+    font-weight:bold;
 
-    margin-top:3px;
+    white-space:nowrap;
 
     overflow:hidden;
 
     text-overflow:ellipsis;
-
-    white-space:nowrap;
 }
 
-.tags{
+.channel-group{
+    color:var(--muted);
+
+    font-size:11px;
+
+    margin-top:4px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.favorite{
+    position:absolute;
+
+    right:9px;
+    top:8px;
+
+    color:#58677b;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+.favorite.active{
+    color:var(--yellow);
+}
+
+.channel-bottom{
     display:flex;
 
-    flex-wrap:wrap;
+    align-items:center;
+
+    justify-content:space-between;
 
     gap:5px;
 
-    margin-top:10px;
+    margin-top:9px;
 }
 
-.tag{
-    background:#233149;
-
-    color:#a9c6e8;
-
-    border-radius:20px;
-
-    padding:4px 7px;
+.channel-quality{
+    color:#8495aa;
 
     font-size:10px;
 }
 
-.tag.country{
-    background:#253e36;
+.channel-live{
+    font-size:9px;
 
-    color:#8fe3b7;
-}
+    padding:3px 6px;
 
-.quality{
-    margin-top:10px;
+    border-radius:10px;
 
-    color:#93a4bb;
+    background:#173a2b;
 
-    font-size:11px;
-}
-
-.channel-buttons{
-    display:flex;
-
-    gap:6px;
-
-    margin-top:10px;
-}
-
-.channel-buttons button{
-    flex:1;
-
-    font-size:11px;
-
-    padding:8px;
+    color:#79e2ad;
 }
 
 /* PLAYER */
@@ -433,7 +536,9 @@ select:focus{
 
     overflow:hidden;
 
-    margin-bottom:12px;
+    position:relative;
+
+    margin-bottom:10px;
 }
 
 video{
@@ -445,58 +550,91 @@ video{
     background:#000;
 }
 
+.player-empty{
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    color:#66768d;
+
+    gap:8px;
+
+    text-align:center;
+}
+
+.player-empty-icon{
+    font-size:42px;
+}
+
 .now{
     background:var(--panel2);
 
     border:1px solid var(--border);
 
-    border-radius:8px;
+    border-radius:9px;
 
-    padding:12px;
+    padding:11px;
 
-    margin-bottom:10px;
+    margin-bottom:9px;
 }
 
-.now-title{
+.now-label{
     color:var(--muted);
 
-    font-size:11px;
+    font-size:10px;
 
     margin-bottom:4px;
 }
 
 .now-name{
+    font-size:15px;
+
     font-weight:bold;
 }
 
 .stream-select{
-    margin-top:10px;
+    margin-bottom:9px;
 }
 
 .stream-info{
-    margin-top:10px;
+    background:var(--panel2);
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    padding:10px;
 
     color:var(--muted);
 
     font-size:11px;
 
-    line-height:1.6;
+    line-height:1.7;
 }
 
-.empty{
-    text-align:center;
+/* FAVORITES */
 
+.favorites-title{
     color:var(--muted);
 
-    padding:50px 20px;
+    font-size:11px;
 
-    grid-column:1/-1;
+    margin-bottom:7px;
 }
 
 /* LOADING */
 
 .loading{
-    padding:50px;
+    grid-column:1/-1;
+
+    padding:60px 20px;
 
     text-align:center;
 
@@ -515,7 +653,7 @@ video{
 
     animation:spin 1s linear infinite;
 
-    margin:0 auto 15px;
+    margin:0 auto 14px;
 }
 
 @keyframes spin{
@@ -524,9 +662,35 @@ video{
     }
 }
 
+.empty{
+    grid-column:1/-1;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    padding:60px 20px;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:7px;
+}
+
+::-webkit-scrollbar-track{
+    background:#080d15;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#27364b;
+
+    border-radius:10px;
+}
+
 /* MOBILE */
 
-@media(max-width:1000px){
+@media(max-width:1100px){
 
     .main{
         grid-template-columns:1fr;
@@ -538,20 +702,55 @@ video{
         order:-1;
     }
 
-}
-
-@media(max-width:800px){
-
-    .filters{
-        grid-template-columns:1fr 1fr;
+    .channels{
+        max-height:none;
     }
 
 }
 
-@media(max-width:500px){
+@media(max-width:850px){
+
+    .stats{
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .filters{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .source-row{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .source-row input{
+        grid-column:1/-1;
+    }
+
+}
+
+@media(max-width:550px){
+
+    .header-inner{
+        align-items:flex-start;
+    }
 
     .filters{
         grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .source-row{
+        grid-template-columns:1fr;
+    }
+
+    .source-row input{
+        grid-column:auto;
     }
 
     .status{
@@ -560,376 +759,452 @@ video{
     }
 
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
+    <div class="header-inner">
 
-<div class="header-inner">
+        <div class="logo">
 
-<div class="logo-title">
-📺 IPTV M3U8 Organizer
-</div>
+            <div class="logo-icon">
+                📺
+            </div>
 
-<div class="subtitle">
-Canais públicos organizados automaticamente a partir da API IPTV-org
-</div>
+            <div>
+                <div class="logo-title">
+                    IPTV Player M3U
+                </div>
 
-</div>
+                <div class="logo-subtitle">
+                    Player profissional para playlists IPTV
+                </div>
+            </div>
 
+        </div>
+
+        <button
+            class="btn-green"
+            onclick="loadPlaylist()"
+        >
+            ↻ Atualizar
+        </button>
+
+    </div>
 </header>
 
 
 <div class="container">
 
+    <!-- FONTE M3U -->
 
-<!-- STATUS -->
+    <div class="source">
 
-<div class="status">
+        <div class="source-title">
+            📂 Fonte da playlist M3U
+        </div>
 
-<div class="status-text">
-Status:
-<strong id="status">
-Aguardando atualização...
-</strong>
-</div>
+        <div class="source-row">
 
-<button
-    class="btn-green"
-    onclick="loadAPI()"
->
-↻ Atualizar lista
-</button>
+            <input
+                id="playlistUrl"
+                type="url"
+                value="https://raw.githubusercontent.com/Isac-Arqueiro/mylist/master/canais.m3u"
+                placeholder="https://servidor.com/playlist.m3u"
+            >
 
-</div>
+            <button onclick="loadPlaylist()">
+                🌐 Carregar URL
+            </button>
 
+            <button
+                class="btn-gray"
+                onclick="document.getElementById('fileInput').click()"
+            >
+                📁 Abrir arquivo
+            </button>
 
-<!-- FILTROS -->
+            <input
+                id="fileInput"
+                type="file"
+                accept=".m3u,.m3u8,.txt"
+                style="display:none"
+                onchange="loadLocalFile(event)"
+            >
 
-<div class="filters">
+        </div>
 
-<input
-    id="search"
-    placeholder="🔎 Pesquisar canal..."
-    oninput="renderChannels()"
->
-
-<select
-    id="countryFilter"
-    onchange="renderChannels()"
->
-<option value="">
-🌎 Todos os países
-</option>
-</select>
-
-<select
-    id="categoryFilter"
-    onchange="renderChannels()"
->
-<option value="">
-📂 Todas as categorias
-</option>
-</select>
-
-<button
-    onclick="exportJSON()"
->
-💾 Exportar JSON
-</button>
-
-<button
-    class="btn-gray"
-    onclick="clearCache()"
->
-🗑 Limpar cache
-</button>
-
-</div>
+    </div>
 
 
-<!-- ESTATÍSTICAS -->
+    <!-- STATUS -->
 
-<div class="stats">
+    <div class="status">
 
-<div class="stat">
-Canais:
-<strong id="totalChannels">0</strong>
-</div>
+        <div class="status-left">
 
-<div class="stat">
-Streams:
-<strong id="totalStreams">0</strong>
-</div>
+            <span
+                id="statusDot"
+                class="status-dot"
+            ></span>
 
-<div class="stat">
-Países:
-<strong id="totalCountries">0</strong>
-</div>
+            <span id="status">
+                Aguardando playlist...
+            </span>
 
-<div class="stat">
-Categorias:
-<strong id="totalCategories">0</strong>
-</div>
+        </div>
 
-</div>
+        <button
+            class="btn-gray"
+            onclick="clearPlaylist()"
+        >
+            Limpar
+        </button>
 
-
-<!-- MAIN -->
-
-<div class="main">
+    </div>
 
 
-<!-- LISTA -->
+    <!-- FILTROS -->
 
-<div class="panel">
+    <div class="filters">
 
-<div class="panel-title">
+        <input
+            id="search"
+            placeholder="🔎 Pesquisar canal..."
+            oninput="renderChannels()"
+        >
 
-<h2>
-📡 Canais
-</h2>
+        <select
+            id="groupFilter"
+            onchange="renderChannels()"
+        >
+            <option value="">
+                📂 Todos os grupos
+            </option>
+        </select>
 
-<span
-    id="resultCount"
-    style="color:#8997aa;font-size:12px"
->
-</span>
+        <button
+            onclick="toggleFavorites()"
+            id="favoriteButton"
+            class="btn-gray"
+        >
+            ⭐ Favoritos
+        </button>
 
-</div>
+        <button
+            onclick="exportPlaylist()"
+            class="btn-green"
+        >
+            💾 Exportar M3U
+        </button>
 
-<div
-    id="channels"
-    class="channels"
->
+        <button
+            onclick="clearFavorites()"
+            class="btn-gray"
+        >
+            🗑 Favoritos
+        </button>
 
-<div class="loading">
-
-<div class="spinner"></div>
-
-Carregando canais...
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- PLAYER -->
-
-<div class="panel player-panel">
-
-<div class="panel-title">
-
-<h2>
-▶️ Player
-</h2>
-
-</div>
+    </div>
 
 
-<div class="player">
+    <!-- ESTATÍSTICAS -->
 
-<video
-    id="video"
-    controls
-    playsinline
-></video>
+    <div class="stats">
 
-</div>
+        <div class="stat">
+            Canais
+            <strong id="totalChannels">0</strong>
+        </div>
 
+        <div class="stat">
+            Streams
+            <strong id="totalStreams">0</strong>
+        </div>
 
-<div class="now">
+        <div class="stat">
+            Grupos
+            <strong id="totalGroups">0</strong>
+        </div>
 
-<div class="now-title">
-CANAL SELECIONADO
-</div>
+        <div class="stat">
+            Favoritos
+            <strong id="totalFavorites">0</strong>
+        </div>
 
-<div
-    id="nowName"
-    class="now-name"
->
-Nenhum canal selecionado
-</div>
+        <div class="stat">
+            Exibidos
+            <strong id="totalVisible">0</strong>
+        </div>
 
-</div>
-
-
-<select
-    id="streamSelect"
-    class="stream-select"
-    onchange="changeStream()"
-    style="display:none"
->
-</select>
+    </div>
 
 
-<div
-    id="streamInfo"
-    class="stream-info"
->
-Selecione um canal para começar.
-</div>
+    <!-- MAIN -->
 
-</div>
+    <div class="main">
+
+        <!-- CANAIS -->
+
+        <div class="panel">
+
+            <div class="panel-title">
+
+                <h2>
+                    📡 Canais
+                </h2>
+
+                <span
+                    id="resultCount"
+                    class="result-count"
+                >
+                    0 canais
+                </span>
+
+            </div>
+
+            <div
+                id="channels"
+                class="channels"
+            >
+
+                <div class="loading">
+
+                    <div class="spinner"></div>
+
+                    Carregando playlist...
+
+                </div>
+
+            </div>
+
+        </div>
 
 
-</div>
+        <!-- PLAYER -->
+
+        <div class="panel player-panel">
+
+            <div class="panel-title">
+
+                <h2>
+                    ▶️ Player
+                </h2>
+
+            </div>
+
+
+            <div class="player">
+
+                <video
+                    id="video"
+                    controls
+                    playsinline
+                    preload="none"
+                ></video>
+
+                <div
+                    id="playerEmpty"
+                    class="player-empty"
+                >
+
+                    <div class="player-empty-icon">
+                        ▶️
+                    </div>
+
+                    <div>
+                        Selecione um canal
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="now">
+
+                <div class="now-label">
+                    CANAL ATUAL
+                </div>
+
+                <div
+                    id="nowName"
+                    class="now-name"
+                >
+                    Nenhum canal selecionado
+                </div>
+
+            </div>
+
+
+            <select
+                id="streamSelect"
+                class="stream-select"
+                onchange="changeStream()"
+                style="display:none"
+            ></select>
+
+
+            <div
+                id="streamInfo"
+                class="stream-info"
+            >
+                Selecione um canal para iniciar a reprodução.
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
 
 <script>
 
-/*
-==========================================================
- CONFIGURAÇÃO
-==========================================================
-*/
+/* =========================================================
+   CONFIGURAÇÃO
+========================================================= */
 
-const API = {
-
-    streams:
-        "https://iptv-org.github.io/api/streams.json",
-
-    channels:
-        "https://iptv-org.github.io/api/channels.json",
-
-    countries:
-        "https://iptv-org.github.io/api/countries.json",
-
-    categories:
-        "https://iptv-org.github.io/api/categories.json",
-
-    logos:
-        "https://iptv-org.github.io/api/logos.json"
-
-};
+const DEFAULT_PLAYLIST =
+    "https://raw.githubusercontent.com/Isac-Arqueiro/mylist/master/canais.m3u";
 
 
-/*
-==========================================================
- VARIÁVEIS
-==========================================================
-*/
-
-let streams = [];
+/* =========================================================
+   ESTADO
+========================================================= */
 
 let channels = [];
-
-let countries = [];
-
-let categories = [];
-
-let logos = [];
-
-let mergedChannels = [];
 
 let selectedChannel = null;
 
 let hls = null;
 
+let showOnlyFavorites = false;
 
-/*
-==========================================================
- CARREGAR API
-==========================================================
-*/
+let favorites =
+    new Set(
+        JSON.parse(
+            localStorage.getItem(
+                "iptv_favorites"
+            ) || "[]"
+        )
+    );
 
-async function loadAPI(){
 
-    setStatus("Baixando dados...");
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
 
-    document.getElementById("channels").innerHTML = `
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        document.getElementById(
+            "playlistUrl"
+        ).value = DEFAULT_PLAYLIST;
+
+        updateFavoriteCount();
+
+        loadPlaylist();
+
+    }
+);
+
+
+/* =========================================================
+   CARREGAR PLAYLIST URL
+========================================================= */
+
+async function loadPlaylist(){
+
+    const input =
+        document.getElementById(
+            "playlistUrl"
+        );
+
+    const url =
+        input.value.trim();
+
+
+    if(!url){
+
+        setStatus(
+            "Informe uma URL M3U.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    setStatus(
+        "Baixando playlist M3U...",
+        "loading"
+    );
+
+
+    document.getElementById(
+        "channels"
+    ).innerHTML = `
+
         <div class="loading">
+
             <div class="spinner"></div>
-            Baixando dados do IPTV-org...
+
+            Baixando playlist...
+
         </div>
+
     `;
 
 
     try{
 
-        /*
-        Baixa os arquivos simultaneamente.
-        */
-
-        const [
-            streamsResponse,
-            channelsResponse,
-            countriesResponse,
-            categoriesResponse,
-            logosResponse
-        ] = await Promise.all([
-
-            fetch(API.streams),
-
-            fetch(API.channels),
-
-            fetch(API.countries),
-
-            fetch(API.categories),
-
-            fetch(API.logos)
-
-        ]);
+        const response =
+            await fetch(
+                url,
+                {
+                    cache:"no-store"
+                }
+            );
 
 
-        if(
-            !streamsResponse.ok ||
-            !channelsResponse.ok
-        ){
+        if(!response.ok){
 
             throw new Error(
-                "Falha ao acessar a API."
+                "HTTP " + response.status
             );
 
         }
 
 
-        streams =
-            await streamsResponse.json();
-
-        channels =
-            await channelsResponse.json();
-
-        countries =
-            await countriesResponse.json();
-
-        categories =
-            await categoriesResponse.json();
-
-        logos =
-            await logosResponse.json();
+        const text =
+            await response.text();
 
 
-        setStatus(
-            "Organizando canais..."
-        );
+        if(
+            !text ||
+            !text.trim()
+        ){
+
+            throw new Error(
+                "Playlist vazia."
+            );
+
+        }
 
 
-        mergeData();
-
-
-        saveCache();
-
-
-        createFilters();
-
-
-        renderChannels();
-
-
-        updateStats();
+        parseM3U(text);
 
 
         setStatus(
-            "Lista atualizada com sucesso"
+            `${channels.length} canais carregados.`,
+            "online"
         );
+
 
     }
     catch(error){
@@ -937,373 +1212,522 @@ async function loadAPI(){
         console.error(error);
 
         setStatus(
-            "Erro ao carregar API"
+            "Não foi possível carregar a playlist.",
+            "error"
         );
 
 
-        /*
-        Tenta carregar cópia local.
-        */
+        document.getElementById(
+            "channels"
+        ).innerHTML = `
 
-        if(loadCache()){
+            <div class="empty">
 
-            createFilters();
+                ❌ Erro ao carregar M3U.
 
-            renderChannels();
+                <br><br>
 
-            updateStats();
+                <small>
+                    ${escapeHTML(error.message)}
+                </small>
 
-            setStatus(
-                "Usando cópia salva localmente"
-            );
+                <br><br>
 
-        }
-        else{
+                Verifique a URL ou use
+                <b>“Abrir arquivo”</b>.
 
-            document.getElementById(
-                "channels"
-            ).innerHTML = `
+            </div>
 
-                <div class="empty">
-
-                    ❌ Não foi possível
-                    carregar os dados.
-
-                    <br><br>
-
-                    Verifique sua conexão
-                    e tente novamente.
-
-                </div>
-
-            `;
-
-        }
+        `;
 
     }
 
 }
 
 
-/*
-==========================================================
- CRUZAR OS DADOS
-==========================================================
-*/
+/* =========================================================
+   ARQUIVO LOCAL
+========================================================= */
 
-function mergeData(){
+function loadLocalFile(event){
 
-    /*
-    Cria mapa dos canais.
-
-    channel.id
-    =>
-    informações completas
-    */
-
-    const channelMap =
-        new Map(
-            channels.map(
-                channel => [
-                    channel.id,
-                    channel
-                ]
-            )
-        );
+    const file =
+        event.target.files[0];
 
 
-    /*
-    Mapa dos países.
-    */
+    if(!file){
 
-    const countryMap =
-        new Map(
-            countries.map(
-                country => [
-                    country.code,
-                    country
-                ]
-            )
-        );
+        return;
+
+    }
 
 
-    /*
-    Mapa das categorias.
-    */
-
-    const categoryMap =
-        new Map(
-            categories.map(
-                category => [
-                    category.id,
-                    category
-                ]
-            )
-        );
+    setStatus(
+        "Lendo arquivo M3U...",
+        "loading"
+    );
 
 
-    /*
-    Mapa dos logos.
-    */
-
-    const logoMap =
-        new Map();
+    const reader =
+        new FileReader();
 
 
-    logos.forEach(logo => {
+    reader.onload =
+        function(){
 
-        if(!logoMap.has(logo.channel)){
+            try{
 
-            logoMap.set(
-                logo.channel,
-                logo.url
+                parseM3U(
+                    reader.result
+                );
+
+
+                document.getElementById(
+                    "playlistUrl"
+                ).value =
+                    "";
+
+
+                setStatus(
+                    `${channels.length} canais carregados do arquivo.`,
+                    "online"
+                );
+
+            }
+            catch(error){
+
+                console.error(error);
+
+                setStatus(
+                    "Arquivo M3U inválido.",
+                    "error"
+                );
+
+            }
+
+        };
+
+
+    reader.onerror =
+        function(){
+
+            setStatus(
+                "Erro ao ler arquivo.",
+                "error"
             );
 
-        }
+        };
+
+
+    reader.readAsText(file);
+
+}
+
+
+/* =========================================================
+   PARSER M3U
+========================================================= */
+
+function parseM3U(text){
+
+    const lines =
+        text
+            .replace(/\r/g,"")
+            .split("\n")
+            .map(
+                line =>
+                    line.trim()
+            )
+            .filter(Boolean);
+
+
+    const result = [];
+
+    let currentInfo = null;
+
+
+    for(
+        let i = 0;
+        i < lines.length;
+        i++
+    ){
+
+        const line =
+            lines[i];
+
 
         /*
-        Prefere logo marcada como in_use.
+        Linha EXTINF
         */
 
         if(
-            logo.in_use === true
-        ){
-
-            logoMap.set(
-                logo.channel,
-                logo.url
-            );
-
-        }
-
-    });
-
-
-    /*
-    Agrupa streams pelo canal.
-    */
-
-    const streamMap =
-        new Map();
-
-
-    streams.forEach(stream => {
-
-        if(
-            !stream.channel ||
-            !stream.url
-        ){
-
-            return;
-
-        }
-
-
-        if(
-            !stream.url
-                .toLowerCase()
-                .includes(".m3u8")
-        ){
-
-            return;
-
-        }
-
-
-        if(
-            !streamMap.has(stream.channel)
-        ){
-
-            streamMap.set(
-                stream.channel,
-                []
-            );
-
-        }
-
-
-        streamMap
-            .get(stream.channel)
-            .push(stream);
-
-    });
-
-
-    /*
-    Cria resultado final.
-
-    SOMENTE canais que possuem
-    stream M3U8.
-    */
-
-    mergedChannels = [];
-
-
-    streamMap.forEach(
-        (channelStreams, channelId) => {
-
-            const channel =
-                channelMap.get(channelId);
-
-
-            if(!channel){
-
-                return;
-
-            }
-
-
-            const country =
-                countryMap.get(
-                    channel.country
-                );
-
-
-            const channelCategories =
-                (channel.categories || [])
-                    .map(
-                        id =>
-                            categoryMap.get(id)
-                    )
-                    .filter(Boolean);
-
-
-            mergedChannels.push({
-
-                id: channel.id,
-
-                name:
-                    channel.name ||
-                    channelId,
-
-                country:
-                    channel.country ||
-                    "",
-
-                countryName:
-                    country
-                        ? country.name
-                        : channel.country || "Desconhecido",
-
-                flag:
-                    country
-                        ? country.flag
-                        : "🌎",
-
-                categories:
-                    channelCategories.map(
-                        category => ({
-                            id:category.id,
-                            name:category.name
-                        })
-                    ),
-
-                logo:
-                    logoMap.get(channelId)
-                    || "",
-
-                website:
-                    channel.website
-                    || "",
-
-                network:
-                    channel.network
-                    || "",
-
-                streams:
-                    channelStreams.map(
-                        stream => ({
-
-                            title:
-                                stream.title
-                                || "Stream",
-
-                            url:
-                                stream.url,
-
-                            feed:
-                                stream.feed
-                                || "",
-
-                            quality:
-                                stream.quality
-                                || "",
-
-                            label:
-                                stream.label
-                                || "",
-
-                            referrer:
-                                stream.referrer
-                                || "",
-
-                            user_agent:
-                                stream.user_agent
-                                || ""
-
-                        })
-                    )
-
-            });
-
-        }
-    );
-
-
-    /*
-    Ordena alfabeticamente.
-    */
-
-    mergedChannels.sort(
-        (a,b) =>
-            a.name.localeCompare(
-                b.name,
-                "pt-BR"
+            line.startsWith(
+                "#EXTINF:"
             )
-    );
+        ){
 
-}
-
-
-/*
-==========================================================
- FILTROS
-==========================================================
-*/
-
-function createFilters(){
-
-    const countrySelect =
-        document.getElementById(
-            "countryFilter"
-        );
-
-    const categorySelect =
-        document.getElementById(
-            "categoryFilter"
-        );
+            const info =
+                parseExtInf(line);
 
 
-    /*
-    Países presentes nos canais.
-    */
+            currentInfo =
+                info;
 
-    const usedCountries =
-        new Map();
+            continue;
+
+        }
 
 
-    mergedChannels.forEach(
-        channel => {
+        /*
+        Ignora comentários M3U.
+        */
+
+        if(
+            line.startsWith("#")
+        ){
+
+            continue;
+
+        }
+
+
+        /*
+        A próxima linha que não
+        começa com # é a URL.
+        */
+
+        if(currentInfo){
+
+            const url =
+                line.trim();
+
 
             if(
-                !usedCountries.has(
-                    channel.country
+                url &&
+                (
+                    url.startsWith("http://") ||
+                    url.startsWith("https://")
                 )
             ){
 
-                usedCountries.set(
-                    channel.country,
-                    channel.countryName
+                result.push({
+
+                    id:
+                        createChannelId(
+                            currentInfo,
+                            url,
+                            result.length
+                        ),
+
+                    name:
+                        currentInfo.name ||
+                        "Canal",
+
+                    logo:
+                        currentInfo.logo ||
+                        "",
+
+                    group:
+                        currentInfo.group ||
+                        "Sem grupo",
+
+                    tvgId:
+                        currentInfo.tvgId ||
+                        "",
+
+                    tvgName:
+                        currentInfo.tvgName ||
+                        "",
+
+                    language:
+                        currentInfo.language ||
+                        "",
+
+                    country:
+                        currentInfo.country ||
+                        "",
+
+                    quality:
+                        currentInfo.quality ||
+                        "",
+
+                    url:url,
+
+                    extra:
+                        currentInfo.extra ||
+                        {},
+
+                    favorite:
+                        favorites.has(
+                            createChannelId(
+                                currentInfo,
+                                url,
+                                result.length
+                            )
+                        )
+
+                });
+
+            }
+
+
+            currentInfo = null;
+
+        }
+
+    }
+
+
+    channels =
+        removeDuplicateChannels(
+            result
+        );
+
+
+    buildGroups();
+
+    updateStats();
+
+    renderChannels();
+
+}
+
+
+/* =========================================================
+   PARSE EXTINF
+========================================================= */
+
+function parseExtInf(line){
+
+    const info = {
+
+        name:"",
+
+        logo:"",
+
+        group:"",
+
+        tvgId:"",
+
+        tvgName:"",
+
+        language:"",
+
+        country:"",
+
+        quality:"",
+
+        extra:{}
+
+    };
+
+
+    /*
+    Nome do canal:
+    tudo depois da última vírgula.
+    */
+
+    const comma =
+        line.indexOf(",");
+
+
+    if(comma !== -1){
+
+        info.name =
+            line
+                .substring(
+                    comma + 1
+                )
+                .trim();
+
+    }
+
+
+    /*
+    Atributos padrão.
+    */
+
+    info.tvgId =
+        getAttribute(
+            line,
+            "tvg-id"
+        );
+
+
+    info.tvgName =
+        getAttribute(
+            line,
+            "tvg-name"
+        );
+
+
+    info.logo =
+        getAttribute(
+            line,
+            "tvg-logo"
+        );
+
+
+    info.group =
+        getAttribute(
+            line,
+            "group-title"
+        );
+
+
+    info.language =
+        getAttribute(
+            line,
+            "tvg-language"
+        );
+
+
+    info.country =
+        getAttribute(
+            line,
+            "tvg-country"
+        );
+
+
+    /*
+    Alguns provedores usam
+    quality como atributo.
+    */
+
+    info.quality =
+        getAttribute(
+            line,
+            "quality"
+        );
+
+
+    /*
+    Caso o nome não esteja
+    na parte final.
+    */
+
+    if(
+        !info.name &&
+        info.tvgName
+    ){
+
+        info.name =
+            info.tvgName;
+
+    }
+
+
+    return info;
+
+}
+
+
+/* =========================================================
+   ATRIBUTO EXTINF
+========================================================= */
+
+function getAttribute(
+    line,
+    attribute
+){
+
+    const regex =
+        new RegExp(
+            attribute +
+            '\\s*=\\s*"([^"]*)"',
+            "i"
+        );
+
+
+    const match =
+        line.match(regex);
+
+
+    if(match){
+
+        return match[1].trim();
+
+    }
+
+
+    /*
+    Também aceita atributos
+    sem aspas.
+    */
+
+    const regexUnquoted =
+        new RegExp(
+            attribute +
+            '\\s*=\\s*([^\\s,]+)',
+            "i"
+        );
+
+
+    const matchUnquoted =
+        line.match(
+            regexUnquoted
+        );
+
+
+    return matchUnquoted
+        ? matchUnquoted[1].trim()
+        : "";
+
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+function createChannelId(
+    info,
+    url,
+    index
+){
+
+    return (
+        info.tvgId ||
+        info.tvgName ||
+        info.name ||
+        url ||
+        "channel-" + index
+    )
+        .toLowerCase()
+        .trim();
+
+}
+
+
+/* =========================================================
+   DUPLICADOS
+========================================================= */
+
+function removeDuplicateChannels(list){
+
+    const map =
+        new Map();
+
+
+    list.forEach(
+        channel => {
+
+            /*
+            Usa URL como controle
+            principal contra duplicados.
+            */
+
+            const key =
+                channel.url;
+
+
+            if(
+                !map.has(key)
+            ){
+
+                map.set(
+                    key,
+                    channel
                 );
 
             }
@@ -1312,98 +1736,83 @@ function createFilters(){
     );
 
 
-    countrySelect.innerHTML = `
-        <option value="">
-            🌎 Todos os países
-        </option>
-    `;
-
-
-    [...usedCountries.entries()]
-        .sort(
-            (a,b) =>
-                a[1].localeCompare(
-                    b[1],
-                    "pt-BR"
-                )
-        )
-        .forEach(
-            ([code,name]) => {
-
-                countrySelect.innerHTML += `
-
-                    <option value="${escapeHTML(code)}">
-                        ${escapeHTML(name)}
-                    </option>
-
-                `;
-
-            }
-        );
-
-
-    /*
-    Categorias presentes.
-    */
-
-    const usedCategories =
-        new Map();
-
-
-    mergedChannels.forEach(
-        channel => {
-
-            channel.categories
-                .forEach(category => {
-
-                    usedCategories.set(
-                        category.id,
-                        category.name
-                    );
-
-                });
-
-        }
-    );
-
-
-    categorySelect.innerHTML = `
-        <option value="">
-            📂 Todas as categorias
-        </option>
-    `;
-
-
-    [...usedCategories.entries()]
-        .sort(
-            (a,b) =>
-                a[1].localeCompare(
-                    b[1],
-                    "pt-BR"
-                )
-        )
-        .forEach(
-            ([id,name]) => {
-
-                categorySelect.innerHTML += `
-
-                    <option value="${escapeHTML(id)}">
-                        ${escapeHTML(name)}
-                    </option>
-
-                `;
-
-            }
-        );
+    return [
+        ...map.values()
+    ];
 
 }
 
 
-/*
-==========================================================
- RENDER
-==========================================================
-*/
+/* =========================================================
+   GRUPOS
+========================================================= */
+
+function buildGroups(){
+
+    const select =
+        document.getElementById(
+            "groupFilter"
+        );
+
+
+    const groups =
+        [
+            ...new Set(
+                channels
+                    .map(
+                        channel =>
+                            channel.group
+                    )
+                    .filter(Boolean)
+            )
+        ]
+        .sort(
+            (a,b) =>
+                a.localeCompare(
+                    b,
+                    "pt-BR"
+                )
+        );
+
+
+    select.innerHTML = `
+
+        <option value="">
+            📂 Todos os grupos
+        </option>
+
+    `;
+
+
+    groups.forEach(
+        group => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                group;
+
+            option.textContent =
+                group;
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
 
 function renderChannels(){
 
@@ -1422,60 +1831,53 @@ function renderChannels(){
         .trim();
 
 
-    const country =
+    const group =
         document.getElementById(
-            "countryFilter"
-        ).value;
-
-
-    const category =
-        document.getElementById(
-            "categoryFilter"
-        ).value;
+            "groupFilter"
+        )
+        .value;
 
 
     const filtered =
-        mergedChannels.filter(
+        channels.filter(
             channel => {
 
+                const text =
+                    (
+                        channel.name +
+                        " " +
+                        channel.tvgName +
+                        " " +
+                        channel.tvgId +
+                        " " +
+                        channel.group
+                    )
+                    .toLowerCase();
+
+
                 const matchSearch =
-
                     !search ||
-
-                    channel.name
-                        .toLowerCase()
-                        .includes(search)
-
-                    ||
-
-                    channel.id
-                        .toLowerCase()
-                        .includes(search);
+                    text.includes(
+                        search
+                    );
 
 
-                const matchCountry =
-
-                    !country ||
-
-                    channel.country === country;
+                const matchGroup =
+                    !group ||
+                    channel.group === group;
 
 
-                const matchCategory =
-
-                    !category ||
-
-                    channel.categories
-                        .some(
-                            item =>
-                                item.id ===
-                                category
-                        );
+                const matchFavorite =
+                    !showOnlyFavorites ||
+                    favorites.has(
+                        channel.id
+                    );
 
 
                 return (
                     matchSearch &&
-                    matchCountry &&
-                    matchCategory
+                    matchGroup &&
+                    matchFavorite
                 );
 
             }
@@ -1488,13 +1890,23 @@ function renderChannels(){
         `${filtered.length} canais`;
 
 
+    document.getElementById(
+        "totalVisible"
+    ).textContent =
+        filtered.length;
+
+
     if(!filtered.length){
 
         container.innerHTML = `
 
             <div class="empty">
 
-                Nenhum canal encontrado.
+                ${
+                    showOnlyFavorites
+                    ? "⭐ Nenhum favorito encontrado."
+                    : "Nenhum canal encontrado."
+                }
 
             </div>
 
@@ -1506,40 +1918,49 @@ function renderChannels(){
 
 
     /*
-    Para listas muito grandes,
-    renderiza apenas os primeiros
-    1000 resultados.
+    Limite para evitar travar
+    a interface com playlists
+    gigantes.
     */
 
     const visible =
-        filtered.slice(0,1000);
+        filtered.slice(
+            0,
+            1500
+        );
 
 
     container.innerHTML =
         visible
-        .map(
-            channel =>
-                createChannelCard(
-                    channel
-                )
-        )
-        .join("");
+            .map(
+                channel =>
+                    createChannelCard(
+                        channel
+                    )
+            )
+            .join("");
 
 }
 
 
-/*
-==========================================================
- CARD
-==========================================================
-*/
+/* =========================================================
+   CARD
+========================================================= */
 
-function createChannelCard(channel){
+function createChannelCard(
+    channel
+){
 
     const active =
         selectedChannel &&
         selectedChannel.id ===
         channel.id;
+
+
+    const isFavorite =
+        favorites.has(
+            channel.id
+        );
 
 
     const logo =
@@ -1548,74 +1969,59 @@ function createChannelCard(channel){
         ?
 
         `
-
-        <img
-            class="channel-logo"
-            src="${escapeHTML(channel.logo)}"
-            onerror="this.style.display='none'"
-        >
-
+            <img
+                class="channel-logo"
+                src="${escapeHTML(channel.logo)}"
+                loading="lazy"
+                onerror="this.style.display='none'"
+            >
         `
 
         :
 
         `
-
-        <div class="logo-placeholder">
-            📺
-        </div>
-
+            <div class="logo-placeholder">
+                📺
+            </div>
         `;
-
-
-    const categoryTags =
-        channel.categories
-            .slice(0,3)
-            .map(
-                category => `
-
-                    <span class="tag">
-                        ${escapeHTML(
-                            category.name
-                        )}
-                    </span>
-
-                `
-            )
-            .join("");
-
-
-    const streamCount =
-        channel.streams.length;
-
-
-    const qualities =
-        [
-            ...new Set(
-                channel.streams
-                    .map(
-                        stream =>
-                            stream.quality
-                    )
-                    .filter(Boolean)
-            )
-        ]
-        .join(", ");
 
 
     return `
 
         <div
-            class="channel
-                ${active ? "active" : ""}"
-            onclick="selectChannel('${escapeJS(channel.id)}')"
+            class="
+                channel
+                ${active ? "active" : ""}
+            "
+            onclick="
+                selectChannel(
+                    '${escapeJS(channel.id)}'
+                )
+            "
         >
+
+            <span
+                class="
+                    favorite
+                    ${isFavorite ? "active" : ""}
+                "
+                onclick="
+                    event.stopPropagation();
+                    toggleFavorite(
+                        '${escapeJS(channel.id)}'
+                    )
+                "
+                title="Favorito"
+            >
+                ${isFavorite ? "★" : "☆"}
+            </span>
+
 
             <div class="channel-header">
 
                 ${logo}
 
-                <div>
+                <div class="channel-info">
 
                     <div class="channel-name">
 
@@ -1625,10 +2031,10 @@ function createChannelCard(channel){
 
                     </div>
 
-                    <div class="channel-id">
+                    <div class="channel-group">
 
                         ${escapeHTML(
-                            channel.id
+                            channel.group
                         )}
 
                     </div>
@@ -1638,54 +2044,25 @@ function createChannelCard(channel){
             </div>
 
 
-            <div class="tags">
+            <div class="channel-bottom">
 
-                <span class="tag country">
+                <span class="channel-quality">
 
-                    ${escapeHTML(
-                        channel.flag
-                    )}
-
-                    ${escapeHTML(
-                        channel.countryName
-                    )}
+                    ${
+                        channel.quality
+                        ? escapeHTML(
+                            channel.quality
+                        )
+                        : "HLS"
+                    }
 
                 </span>
 
-                ${categoryTags}
+                <span class="channel-live">
 
-            </div>
+                    LIVE
 
-
-            <div class="quality">
-
-                📡 ${streamCount}
-                stream${streamCount > 1 ? "s" : ""}
-
-                ${
-                    qualities
-                    ? " • " +
-                      escapeHTML(
-                          qualities
-                      )
-                    : ""
-                }
-
-            </div>
-
-
-            <div class="channel-buttons">
-
-                <button
-                    onclick="
-                        event.stopPropagation();
-                        selectChannel(
-                            '${escapeJS(channel.id)}'
-                        )
-                    "
-                >
-                    ▶ Assistir
-                </button>
+                </span>
 
             </div>
 
@@ -1696,16 +2073,14 @@ function createChannelCard(channel){
 }
 
 
-/*
-==========================================================
- SELECIONAR CANAL
-==========================================================
-*/
+/* =========================================================
+   SELECIONAR CANAL
+========================================================= */
 
 function selectChannel(id){
 
     const channel =
-        mergedChannels.find(
+        channels.find(
             item =>
                 item.id === id
         );
@@ -1729,7 +2104,17 @@ function selectChannel(id){
 
 
     /*
-    Preenche streams.
+    Esconde placeholder.
+    */
+
+    document.getElementById(
+        "playerEmpty"
+    ).style.display =
+        "none";
+
+
+    /*
+    Atualiza seleção de streams.
     */
 
     const select =
@@ -1738,46 +2123,37 @@ function selectChannel(id){
         );
 
 
-    select.innerHTML =
-        channel.streams
-        .map(
-            (stream,index) => `
+    /*
+    Uma playlist M3U normalmente
+    possui uma URL por canal.
+    Mas deixamos a estrutura
+    preparada para múltiplos streams.
+    */
 
-                <option value="${index}">
+    select.innerHTML = `
 
-                    ${escapeHTML(
-                        stream.title
-                    )}
+        <option value="0">
 
-                    ${
-                        stream.quality
-                        ? " - " +
-                          escapeHTML(
-                              stream.quality
-                          )
-                        : ""
-                    }
+            ${escapeHTML(
+                channel.name
+            )}
 
-                </option>
+        </option>
 
-            `
-        )
-        .join("");
+    `;
 
 
     select.style.display =
-        channel.streams.length > 1
-        ? "block"
-        : "none";
+        "none";
 
 
     showStreamInfo(
-        channel.streams[0]
+        channel
     );
 
 
     playStream(
-        channel.streams[0]
+        channel
     );
 
 
@@ -1786,147 +2162,142 @@ function selectChannel(id){
 }
 
 
-/*
-==========================================================
- TROCAR STREAM
-==========================================================
-*/
+/* =========================================================
+   STREAM INFO
+========================================================= */
 
-function changeStream(){
-
-    if(!selectedChannel){
-
-        return;
-
-    }
-
-
-    const index =
-        Number(
-            document.getElementById(
-                "streamSelect"
-            ).value
-        );
-
-
-    const stream =
-        selectedChannel
-            .streams[index];
-
-
-    if(!stream){
-
-        return;
-
-    }
-
-
-    showStreamInfo(
-        stream
-    );
-
-
-    playStream(
-        stream
-    );
-
-}
-
-
-/*
-==========================================================
- INFORMAÇÕES DO STREAM
-==========================================================
-*/
-
-function showStreamInfo(stream){
+function showStreamInfo(
+    channel
+){
 
     document.getElementById(
         "streamInfo"
     ).innerHTML = `
 
         <strong>
-            Stream:
+            Canal:
         </strong>
 
         ${escapeHTML(
-            stream.title
+            channel.name
         )}
 
         <br>
 
+        <strong>
+            Grupo:
+        </strong>
+
+        ${escapeHTML(
+            channel.group ||
+            "Sem grupo"
+        )}
+
         ${
-            stream.quality
+            channel.tvgId
             ? `
-                <strong>
-                    Qualidade:
-                </strong>
-
-                ${escapeHTML(
-                    stream.quality
-                )}
-
                 <br>
+                <strong>
+                    TVG-ID:
+                </strong>
+                ${escapeHTML(
+                    channel.tvgId
+                )}
             `
             : ""
         }
 
         ${
-            stream.feed
+            channel.language
             ? `
+                <br>
                 <strong>
-                    Feed:
+                    Idioma:
                 </strong>
-
                 ${escapeHTML(
-                    stream.feed
+                    channel.language
                 )}
             `
             : ""
         }
+
+        <br>
+
+        <strong>
+            Formato:
+        </strong>
+
+        HLS / M3U8
 
     `;
 
 }
 
 
-/*
-==========================================================
- PLAYER HLS
-==========================================================
-*/
+/* =========================================================
+   PLAYER HLS
+========================================================= */
 
-function playStream(stream){
+function playStream(channel){
 
     const video =
-        document.getElementById(
-            "video"
-        );
+        document.getElementById("video");
 
+    if(window.hls){
 
-    /*
-    Destrói HLS anterior.
-    */
+        window.hls.destroy();
 
-    if(hls){
-
-        hls.destroy();
-
-        hls = null;
+        window.hls = null;
 
     }
 
+    const url = channel.url;
 
-    video.pause();
+    if(!url){
 
-    video.removeAttribute("src");
+        showPlayerError(
+            "Canal sem URL."
+        );
 
-    video.load();
+        return;
 
+    }
 
-    /*
-    Safari / suporte nativo.
-    */
+    if(Hls.isSupported()){
+
+        const hls = new Hls();
+
+        window.hls = hls;
+
+        hls.loadSource(url);
+
+        hls.attachMedia(video);
+
+        hls.on(
+            Hls.Events.MANIFEST_PARSED,
+            function(){
+
+                video.play().catch(
+                    () => {}
+                );
+
+            }
+        );
+
+        hls.on(
+            Hls.Events.ERROR,
+            function(event,data){
+
+                console.log(
+                    "HLS:",
+                    data
+                );
+
+            }
+        );
+
+        return;
+    }
 
     if(
         video.canPlayType(
@@ -1934,118 +2305,235 @@ function playStream(stream){
         )
     ){
 
-        video.src =
-            stream.url;
+        video.src = url;
 
-        video.play()
-            .catch(
-                () => {}
-            );
+        video.play().catch(
+            () => {}
+        );
 
         return;
-
     }
 
+    showPlayerError(
+        "Seu navegador não suporta HLS."
+    );
+}
+/* =========================================================
+   ERRO PLAYER
+========================================================= */
 
-    /*
-    Chrome / Edge / Firefox.
-    */
+function showPlayerError(
+    message
+){
+
+    document.getElementById(
+        "streamInfo"
+    ).innerHTML += `
+
+        <br>
+
+        <span
+            style="
+                color:var(--red);
+                font-weight:bold;
+            "
+        >
+            ⚠️
+            ${escapeHTML(message)}
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   FAVORITOS
+========================================================= */
+
+function toggleFavorite(
+    id
+){
 
     if(
-        typeof Hls !== "undefined" &&
-        Hls.isSupported()
+        favorites.has(id)
     ){
 
-        hls =
-            new Hls({
+        favorites.delete(id);
 
-                enableWorker:true,
+    }
+    else{
 
-                lowLatencyMode:true
-
-            });
-
-
-        hls.loadSource(
-            stream.url
-        );
-
-
-        hls.attachMedia(
-            video
-        );
-
-
-        hls.on(
-            Hls.Events.MANIFEST_PARSED,
-            () => {
-
-                video.play()
-                    .catch(
-                        () => {}
-                    );
-
-            }
-        );
-
-
-        hls.on(
-            Hls.Events.ERROR,
-            (
-                event,
-                data
-            ) => {
-
-                console.error(
-                    "Erro HLS:",
-                    data
-                );
-
-                if(
-                    data.fatal
-                ){
-
-                    document.getElementById(
-                        "streamInfo"
-                    ).innerHTML += `
-
-                        <br>
-                        <span
-                            style="color:#ef4d5c"
-                        >
-                            ⚠️ Não foi possível
-                            reproduzir este stream.
-                        </span>
-
-                    `;
-
-                }
-
-            }
-        );
-
-
-        return;
+        favorites.add(id);
 
     }
 
 
-    alert(
-        "Este navegador não suporta HLS."
+    saveFavorites();
+
+    updateFavoriteCount();
+
+    renderChannels();
+
+}
+
+
+/* =========================================================
+   MOSTRAR FAVORITOS
+========================================================= */
+
+function toggleFavorites(){
+
+    showOnlyFavorites =
+        !showOnlyFavorites;
+
+
+    const button =
+        document.getElementById(
+            "favoriteButton"
+        );
+
+
+    if(showOnlyFavorites){
+
+        button.textContent =
+            "📡 Todos os canais";
+
+        button.classList.remove(
+            "btn-gray"
+        );
+
+    }
+    else{
+
+        button.textContent =
+            "⭐ Favoritos";
+
+        button.classList.add(
+            "btn-gray"
+        );
+
+    }
+
+
+    renderChannels();
+
+}
+
+
+/* =========================================================
+   SALVAR FAVORITOS
+========================================================= */
+
+function saveFavorites(){
+
+    localStorage.setItem(
+        "iptv_favorites",
+        JSON.stringify(
+            [...favorites]
+        )
     );
 
 }
 
 
-/*
-==========================================================
- EXPORTAR JSON
-==========================================================
-*/
+/* =========================================================
+   CONTADOR FAVORITOS
+========================================================= */
 
-function exportJSON(){
+function updateFavoriteCount(){
 
-    if(!mergedChannels.length){
+    document.getElementById(
+        "totalFavorites"
+    ).textContent =
+        favorites.size;
+
+}
+
+
+/* =========================================================
+   LIMPAR FAVORITOS
+========================================================= */
+
+function clearFavorites(){
+
+    if(
+        !confirm(
+            "Remover todos os favoritos?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    favorites.clear();
+
+    saveFavorites();
+
+    updateFavoriteCount();
+
+    renderChannels();
+
+}
+
+
+/* =========================================================
+   ESTATÍSTICAS
+========================================================= */
+
+function updateStats(){
+
+    const groups =
+        new Set();
+
+
+    channels.forEach(
+        channel => {
+
+            if(channel.group){
+
+                groups.add(
+                    channel.group
+                );
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalChannels"
+    ).textContent =
+        channels.length;
+
+
+    document.getElementById(
+        "totalStreams"
+    ).textContent =
+        channels.length;
+
+
+    document.getElementById(
+        "totalGroups"
+    ).textContent =
+        groups.size;
+
+
+    updateFavoriteCount();
+
+}
+
+
+/* =========================================================
+   EXPORTAR M3U
+========================================================= */
+
+function exportPlaylist(){
+
+    if(!channels.length){
 
         alert(
             "Nenhum canal carregado."
@@ -2056,43 +2544,78 @@ function exportJSON(){
     }
 
 
-    const data = {
-
-        source:
-            "iptv-org",
-
-        sourceStreams:
-            API.streams,
-
-        sourceChannels:
-            API.channels,
-
-        generatedAt:
-            new Date().toISOString(),
-
-        totalChannels:
-            mergedChannels.length,
-
-        channels:
-            mergedChannels
-
-    };
+    let output =
+        "#EXTM3U\n";
 
 
-    const json =
-        JSON.stringify(
-            data,
-            null,
-            2
-        );
+    channels.forEach(
+        channel => {
+
+            const attributes = [];
+
+
+            if(channel.tvgId){
+
+                attributes.push(
+                    `tvg-id="${escapeM3U(
+                        channel.tvgId
+                    )}"`
+                );
+
+            }
+
+
+            if(channel.tvgName){
+
+                attributes.push(
+                    `tvg-name="${escapeM3U(
+                        channel.tvgName
+                    )}"`
+                );
+
+            }
+
+
+            if(channel.logo){
+
+                attributes.push(
+                    `tvg-logo="${escapeM3U(
+                        channel.logo
+                    )}"`
+                );
+
+            }
+
+
+            if(channel.group){
+
+                attributes.push(
+                    `group-title="${escapeM3U(
+                        channel.group
+                    )}"`
+                );
+
+            }
+
+
+            output +=
+                `#EXTINF:-1 ${attributes.join(" ")},${channel.name}\n`;
+
+
+            output +=
+                channel.url +
+                "\n";
+
+        }
+    );
 
 
     const blob =
         new Blob(
-            [json],
+            [output],
             {
                 type:
-                    "application/json"
+                    "audio/x-mpegurl"
             }
         );
 
@@ -2113,7 +2636,7 @@ function exportJSON(){
         url;
 
     link.download =
-        "canais-organizados.json";
+        "playlist.m3u";
 
 
     document.body.appendChild(
@@ -2132,250 +2655,207 @@ function exportJSON(){
 }
 
 
-/*
-==========================================================
- CACHE
-==========================================================
-*/
+/* =========================================================
+   LIMPAR PLAYLIST
+========================================================= */
 
-function saveCache(){
+function clearPlaylist(){
 
-    try{
+    channels = [];
 
-        localStorage.setItem(
-            "iptv_organized_channels",
-            JSON.stringify(
-                mergedChannels
-            )
+    selectedChannel = null;
+
+
+    if(hls){
+
+        hls.destroy();
+
+        hls = null;
+
+    }
+
+
+    const video =
+        document.getElementById(
+            "video"
         );
 
-        localStorage.setItem(
-            "iptv_cache_date",
-            new Date().toISOString()
-        );
 
-    }
-    catch(error){
+    video.pause();
 
-        console.warn(
-            "Não foi possível salvar cache.",
-            error
-        );
-
-    }
-
-}
-
-
-function loadCache(){
-
-    try{
-
-        const data =
-            localStorage.getItem(
-                "iptv_organized_channels"
-            );
-
-
-        if(!data){
-
-            return false;
-
-        }
-
-
-        mergedChannels =
-            JSON.parse(
-                data
-            );
-
-
-        return true;
-
-    }
-    catch(error){
-
-        return false;
-
-    }
-
-}
-
-
-function clearCache(){
-
-    localStorage.removeItem(
-        "iptv_organized_channels"
+    video.removeAttribute(
+        "src"
     );
 
-    localStorage.removeItem(
-        "iptv_cache_date"
-    );
+    video.load();
 
 
-    alert(
-        "Cache removido."
+    document.getElementById(
+        "nowName"
+    ).textContent =
+        "Nenhum canal selecionado";
+
+
+    document.getElementById(
+        "streamInfo"
+    ).textContent =
+        "Selecione um canal para iniciar a reprodução.";
+
+
+    document.getElementById(
+        "playerEmpty"
+    ).style.display =
+        "flex";
+
+
+    document.getElementById(
+        "channels"
+    ).innerHTML = `
+
+        <div class="empty">
+
+            📺 Playlist vazia.
+
+        </div>
+
+    `;
+
+
+    updateStats();
+
+    setStatus(
+        "Playlist limpa.",
+        "loading"
     );
 
 }
 
 
-/*
-==========================================================
- ESTATÍSTICAS
-==========================================================
-*/
+/* =========================================================
+   STATUS
+========================================================= */
 
-function updateStats(){
-
-    const countrySet =
-        new Set();
-
-
-    const categorySet =
-        new Set();
-
-
-    let streamTotal = 0;
-
-
-    mergedChannels.forEach(
-        channel => {
-
-            countrySet.add(
-                channel.country
-            );
-
-
-            channel.categories
-                .forEach(
-                    category =>
-                        categorySet.add(
-                            category.id
-                        )
-                );
-
-
-            streamTotal +=
-                channel.streams.length;
-
-        }
-    );
-
-
-    document.getElementById(
-        "totalChannels"
-    ).textContent =
-        mergedChannels.length;
-
-
-    document.getElementById(
-        "totalStreams"
-    ).textContent =
-        streamTotal;
-
-
-    document.getElementById(
-        "totalCountries"
-    ).textContent =
-        countrySet.size;
-
-
-    document.getElementById(
-        "totalCategories"
-    ).textContent =
-        categorySet.size;
-
-}
-
-
-/*
-==========================================================
- STATUS
-==========================================================
-*/
-
-function setStatus(text){
+function setStatus(
+    text,
+    type
+){
 
     document.getElementById(
         "status"
     ).textContent =
         text;
 
-}
 
-
-/*
-==========================================================
- SEGURANÇA
-==========================================================
-*/
-
-function escapeHTML(value){
-
-    return String(value)
-
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-
-        .replaceAll(
-            "'",
-            "&#039;"
+    const dot =
+        document.getElementById(
+            "statusDot"
         );
 
-}
+
+    dot.className =
+        "status-dot";
 
 
-function escapeJS(value){
+    if(type === "online"){
 
-    return String(value)
-        .replaceAll(
-            "\\",
-            "\\\\"
-        )
-        .replaceAll(
-            "'",
-            "\\'"
+        dot.classList.add(
+            "online"
         );
 
+    }
+    else if(type === "error"){
+
+        dot.classList.add(
+            "error"
+        );
+
+    }
+
 }
 
 
-/*
-==========================================================
- INICIALIZAÇÃO
-==========================================================
-*/
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
-loadAPI();
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE JS
+========================================================= */
+
+function escapeJS(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+    .replaceAll(
+        "\\",
+        "\\\\"
+    )
+    .replaceAll(
+        "'",
+        "\\'"
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE M3U
+========================================================= */
+
+function escapeM3U(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+    .replaceAll(
+        '"',
+        "'"
+    );
+
+}
 
 </script>
 
 </body>
 </html>
-
-<script>
-console.log("Funcionando!");
-  
-</script>
-
-</body>
-</html>
-  
