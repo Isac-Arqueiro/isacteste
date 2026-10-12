@@ -105,6 +105,25 @@ const $ = id => document.getElementById(id);
 const DB_NAME='MinhaRadioOnlineDB', DB_VERSION=1, STORE='tracks';
 let db=null, tracks=[], currentId=null, currentFilter='all', shuffle=false, repeat=false, activeSource='none', adminUnlocked=false, customPin=localStorage.getItem('mro_pin')||'1234', logoData=localStorage.getItem('mro_logo')||'';
 const audio=$('audio');
+window.radioChannel = new BroadcastChannel('mro-sync');
+
+audio.addEventListener('play', () => {
+  if (currentId) {
+    window.radioChannel.postMessage({
+      type: 'play',
+      id: currentId
+    });
+  }
+});
+
+audio.addEventListener('pause', () => {
+  if (currentId) {
+    window.radioChannel.postMessage({
+      type: 'pause',
+      id: currentId
+    });
+  }
+});
 function openDB(){return new Promise((resolve,reject)=>{if(!('indexedDB' in window)){reject(new Error('Este navegador não oferece armazenamento IndexedDB.'));return}const req=indexedDB.open(DB_NAME,DB_VERSION);req.onupgradeneeded=()=>{const d=req.result;if(!d.objectStoreNames.contains(STORE))d.createObjectStore(STORE,{keyPath:'id'})};req.onsuccess=()=>{db=req.result;resolve(db)};req.onerror=()=>reject(req.error)})}
 function tx(mode='readonly'){return db.transaction(STORE,mode).objectStore(STORE)}
 function dbAll(){return new Promise((res,rej)=>{const r=tx().getAll();r.onsuccess=()=>res(r.result||[]);r.onerror=()=>rej(r.error)})}
@@ -117,7 +136,22 @@ function settings(){return {name:localStorage.getItem('mro_name')||'Minha Rádio
 function applySettings(){const s=settings();$('headerName').textContent=s.name;$('radioName').textContent=s.name;document.querySelector('.brand p').textContent=s.tagline;$('editName').value=s.name;$('editTagline').value=s.tagline;$('streamUrl').value=s.stream;if(logoData){$('cover').innerHTML='<img alt="Capa da rádio">';$('cover').querySelector('img').src=logoData}else $('cover').innerHTML='<div class="fallback">♫</div>'}
 function render(){const q=$('search').value.trim().toLowerCase(),pl=$('playlistSelect').value;let list=tracks.filter(t=>t.name.toLowerCase().includes(q));if(currentFilter==='recent')list=list.slice().sort((a,b)=>b.added-a.added);if(pl==='Favoritas')list=list.filter(t=>t.favorite);else if(pl!=='Todas')list=list.filter(t=>t.playlist===pl);if(currentFilter==='playlist'&&pl==='Todas')list=list.filter(t=>t.playlist&&t.playlist!=='Todas');$('songList').innerHTML='';if(!list.length){$('songList').innerHTML='<div class="empty">Nenhuma música nesta lista.</div>';return}list.forEach((t,i)=>{const el=document.createElement('div');el.className='song'+(t.id===currentId?' active':'');const num=document.createElement('div');num.className='song-num';num.textContent=t.id===currentId&&activeSource==='mp3'?'♫':String(i+1).padStart(2,'0');const info=document.createElement('div');info.className='song-info';const strong=document.createElement('strong');strong.textContent=t.name;const small=document.createElement('small');small.textContent=(t.playlist||'Todas')+' • '+(t.type||'Áudio');info.append(strong,small);const play=document.createElement('button');play.title='Reproduzir';play.textContent='▶';play.onclick=()=>playTrack(t.id);const fav=document.createElement('button');fav.title='Favoritar';fav.textContent=t.favorite?'♥':'♡';fav.onclick=async()=>{t.favorite=!t.favorite;await dbPut(t);render()};const move=document.createElement('button');move.title='Mover para playlist';move.textContent='↗';move.onclick=async()=>{const names=Array.from($('playlistSelect').options).map(o=>o.value).filter(v=>v!=='Favoritas'&&v!=='Todas');if(!names.length){alert('Crie uma playlist primeiro no botão + Playlist.');return}const choice=prompt('Digite o nome da playlist ('+names.join(', ')+'):',t.playlist==='Todas'?'':t.playlist);if(choice===null)return;if(!names.includes(choice)){alert('Essa playlist não existe.');return}t.playlist=choice;await dbPut(t);render()};const del=document.createElement('button');del.title='Excluir';del.textContent='✕';del.onclick=async()=>{if(confirm('Excluir "'+t.name+'"?')){if(t.id===currentId){audio.pause();audio.removeAttribute('src');currentId=null;activeSource='none'}await dbDelete(t.id);tracks=tracks.filter(x=>x.id!==t.id);render();updatePlayButton()}};el.append(num,info,play,fav,move,del);$('songList').appendChild(el)})}
 function updatePlayButton(){$('playBtn').textContent=audio.paused?'▶':'Ⅱ'}
-async function playTrack(id){const t=tracks.find(x=>x.id===id);if(!t)return;try{audio.pause();audio.src=URL.createObjectURL(t.blob);audio.load();currentId=id;activeSource='mp3';$('trackTitle').textContent=t.name;$('statusText').textContent='TOCANDO MP3';await audio.play();updatePlayButton();render()}catch(e){message('streamMessage','Não foi possível reproduzir este arquivo. Tente outro formato de áudio.')} }
+async function playTrack(id){const t=tracks.find(x=>x.id===id);if(!t)return;try{audio.pause();audio.src=URL.createObjectURL(t.blob);audio.load();currentId=id;activeSource='mp3';$('trackTitle').textContent=t.name;$('statusText').textContent='TOCANDO MP3';
+const syncMessage = {
+  type: 'track',
+  id: t.id,
+  autoplay: true
+};
+
+localStorage.setItem(
+  'mro-current-track',
+  JSON.stringify(syncMessage)
+);
+
+if (window.radioChannel) {
+  window.radioChannel.postMessage(syncMessage);
+}
+await audio.play();updatePlayButton();render()}catch(e){message('streamMessage','Não foi possível reproduzir este arquivo. Tente outro formato de áudio.')} }
 function playStream(){const url=$('streamUrl').value.trim()||settings().stream;if(!url){message('streamMessage','Cole primeiro o endereço do streaming.');return}try{new URL(url)}catch(e){message('streamMessage','O endereço informado não parece ser uma URL válida.');return}audio.pause();audio.src=url;audio.load();currentId=null;activeSource='stream';$('trackTitle').textContent='Transmissão ao vivo';$('statusText').textContent='CONECTANDO AO STREAMING';audio.play().then(()=>{updatePlayButton();$('statusText').textContent='RÁDIO ONLINE';message('streamMessage','Reproduzindo transmissão online.')}).catch(()=>{updatePlayButton();message('streamMessage','Não iniciou. Verifique a URL, HTTPS, CORS e se o servidor está online.')});render()}
 async function addFiles(fileList){for(const file of Array.from(fileList)){if(!file.type.startsWith('audio/')&&!/\.(mp3|ogg|wav|m4a|aac|flac)$/i.test(file.name))continue;const t={id:makeId(),name:file.name.replace(/\.[^.]+$/,''),type:file.type||'Áudio',blob:file,added:Date.now(),playlist:'Todas',favorite:false};try{await dbPut(t);tracks.push(t)}catch(e){message('adminMessage','Não foi possível guardar '+file.name+'. O armazenamento pode estar cheio.')}}render();message('adminMessage',fileList.length+' arquivo(s) processado(s).')}
 $('addFilesBtn').onclick=()=>$('filePicker').click();$('filePicker').onchange=e=>{addFiles(e.target.files);e.target.value=''};
