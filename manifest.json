@@ -1,0 +1,14 @@
+{
+  "name": "Minha Rádio Online",
+  "short_name": "Minha Rádio",
+  "description": "Player de rádio online e biblioteca MP3",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#090711",
+  "theme_color": "#090711",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
